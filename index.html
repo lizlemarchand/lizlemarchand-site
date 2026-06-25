@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PRIMARY SEO -->
+  <title>Liz Lemarchand | Business Coaching for Women | Money & Growth for Women</title>
+  <meta name="description" content="Certified NLP coach helping women start side businesses, get their first clients, and sell without feeling pushy. Join the free Money & Growth for Women community on Skool." />
+  <meta name="keywords" content="business coaching for women, money mindset coach for women, how to sell without feeling pushy, confidence coaching for women, NLP coach for women, how to get your first client, feminine energy business, nervous system support for entrepreneurs, selling with compassion, how to find clients as an introvert, how to price your services as a beginner, self-led entrepreneur" />
+
+  <!-- OPEN GRAPH (social sharing) -->
+  <meta property="og:title" content="Liz Lemarchand | Business Coaching for Women" />
+  <meta property="og:description" content="Helping women sell with confidence, rewire their money mindset, and build businesses that feel like freedom." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lizlemarchand.com" />
+  <meta property="og:image" content="https://lizlemarchand.com/images/liz-photo.jpg" />
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Liz Lemarchand | Money & Growth for Women" />
+  <meta name="twitter:description" content="Business coaching for women who want to sell with confidence, not cringe." />
+
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://lizlemarchand.com/" />
+
+  <!-- SCHEMA.ORG structured data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Liz Lemarchand",
+    "jobTitle": "Business Coach & NLP Practitioner",
+    "description": "Certified NLP coach helping women build side businesses, overcome fear of selling, and achieve financial independence.",
+    "url": "https://lizlemarchand.com",
+    "sameAs": [
+      "https://www.instagram.com/lizlemarchand/",
+      "https://www.youtube.com/@lizlemarchand",
+      "https://www.facebook.com/lizlemarchand",
+      "https://www.skool.com/money-growth-for-women-2353/about"
+    ],
+    "knowsAbout": ["Business Coaching", "NLP", "Money Mindset", "Sales Coaching", "Women Entrepreneurship", "Confidence Coaching"]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-cream:   #FDF8F3;
+      --soft-blush:   #F9EDE8;
+      --pale-rose:    #F2D9D9;
+      --blush-mid:    #E8C4BC;
+      --white:        #FFFFFF;
+      --brown:        #2C1810;
+      --brown-mid:    #5C3D2E;
+      --muted:        #9A7B6E;
+      --forest:       #1B4D42;
+      --forest-light: #2E6B5E;
+      --gold:         #C4962A;
+      --gold-light:   #E8D5A8;
+      --gold-pale:    #F5EDDB;
+      --rose-dark:    #B5686A;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+      --max: 1100px;
+      --pad: clamp(1.5rem, 5vw, 3rem);
+      --section: clamp(4rem, 8vw, 7rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--warm-cream); color: var(--brown); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,243,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0 var(--pad); height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-brand img { height: 46px; width: 46px; object-fit: contain; }
+    .nav-brand-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--brown); line-height: 1.2; }
+    .nav-brand-text small { display: block; font-size: 0.68rem; font-family: var(--sans); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
+    .nav-cta:hover { opacity: 0.88 !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh; padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; max-width: var(--max);
+      margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); gap: 4rem;
+    }
+    .hero-text { padding: var(--section) 0; }
+    .hero-eyebrow {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--forest); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--forest); }
+    h1.hero-headline {
+      font-family: var(--serif); font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+      font-weight: 300; line-height: 1.12; color: var(--brown); margin-bottom: 1.75rem;
+    }
+    h1.hero-headline em { font-style: italic; color: var(--forest); }
+    .hero-interrupt { display: flex; align-items: stretch; gap: 1rem; margin: 0 0 1.75rem; }
+    .hero-bar { flex-shrink: 0; width: 3px; background: linear-gradient(to bottom, var(--gold), var(--blush-mid)); border-radius: 2px; }
+    .hero-interrupt p { font-family: var(--serif); font-size: clamp(1.05rem, 1.8vw, 1.25rem); font-style: italic; font-weight: 400; line-height: 1.55; color: var(--brown-mid); }
+    .hero-sub { font-size: 0.88rem; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; max-width: 42ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+
+    /* Buttons */
+    .btn-forest {
+      display: inline-block; background: var(--forest); color: var(--white);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.9rem 2rem; border-radius: 40px; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-forest:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-rose {
+      display: inline-block; background: var(--rose-dark); color: var(--white);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.9rem 2rem; border-radius: 40px; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-rose:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid);
+      border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--forest); border-color: var(--forest); }
+    .btn-ghost-light { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-cream); border-bottom: 1px solid rgba(253,248,243,0.4); padding-bottom: 2px; }
+    .btn-ghost-light:hover { border-color: var(--gold-light); color: var(--gold-light); }
+    .btn-cream { display: inline-block; background: var(--warm-cream); color: var(--forest); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.9rem 2.5rem; border-radius: 40px; transition: opacity 0.2s, transform 0.2s; }
+    .btn-cream:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* Hero image */
+    .hero-image-wrap { display: flex; align-items: center; justify-content: center; position: relative; }
+    .hero-image-frame { position: relative; width: 100%; max-width: 420px; }
+    .hero-image-frame::before {
+      content: ''; position: absolute;
+      top: 1.5rem; left: 1.5rem; right: -1.5rem; bottom: -1.5rem;
+      border: 1px solid var(--blush-mid); border-radius: 200px 200px 200px 200px; z-index: 0;
+    }
+    .hero-image-frame img {
+      position: relative; z-index: 1; width: 100%;
+      aspect-ratio: 4/5; object-fit: cover; object-position: top center;
+      border-radius: 200px 200px 160px 160px;
+    }
+    .hero-badge {
+      position: absolute; bottom: 2.5rem; right: -1.5rem; z-index: 2;
+      background: var(--white); border: 1px solid var(--gold-light);
+      padding: 1rem 1.25rem; border-radius: 16px; max-width: 170px;
+      box-shadow: 0 8px 32px rgba(44,24,16,0.1);
+    }
+    .hero-badge-num { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--forest); line-height: 1; }
+    .hero-badge-label { font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 0.25rem; line-height: 1.4; }
+    .hero-logo-float {
+      position: absolute; top: 1rem; left: -1rem; z-index: 3;
+      width: 64px; height: 64px;
+      background: var(--white); border-radius: 50%;
+      padding: 6px;
+      box-shadow: 0 4px 20px rgba(44,24,16,0.12);
+    }
+    .hero-logo-float img { width: 100%; height: 100%; object-fit: contain; }
+
+    /* ── QUOTE STRIP ── */
+    .strip {
+      background: var(--soft-blush);
+      border-top: 1px solid var(--blush-mid);
+      border-bottom: 1px solid var(--blush-mid);
+      padding: 1.75rem var(--pad); text-align: center;
+      font-family: var(--serif); font-size: clamp(1rem, 2vw, 1.25rem);
+      font-style: italic; letter-spacing: 0.02em; color: var(--brown-mid);
+    }
+    .strip span { color: var(--rose-dark); }
+
+    /* ── SECTION HELPERS ── */
+    .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .section-label-rose { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-dark); margin-bottom: 1.25rem; }
+    .section-label-forest { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--forest); margin-bottom: 1.25rem; }
+
+    /* ── TRUTH ── */
+    .truth { padding: var(--section) var(--pad); max-width: var(--max); margin: 0 auto; }
+    .truth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    h2.truth-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.7rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.25rem; color: var(--brown); }
+    h2.truth-heading em { font-style: italic; color: var(--forest); }
+    .truth-body { font-size: 0.9rem; line-height: 1.85; color: var(--muted); margin-bottom: 0.85rem; }
+    .truth-list { list-style: none; margin: 1.75rem 0 2.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .truth-list li { display: flex; gap: 0.85rem; align-items: flex-start; font-size: 0.88rem; line-height: 1.6; color: var(--brown-mid); }
+    .truth-list li::before { content: '✦'; color: var(--gold); font-size: 0.55rem; margin-top: 0.45rem; flex-shrink: 0; }
+    .truth-card {
+      background: var(--white); border: 1px solid var(--gold-light);
+      border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden;
+    }
+    .truth-card::before {
+      content: '"'; font-family: var(--serif); font-size: 9rem; line-height: 0.7;
+      color: var(--pale-rose); position: absolute; top: 1rem; right: 1.25rem; pointer-events: none;
+    }
+    .truth-accent { width: 36px; height: 2px; background: var(--gold); margin-bottom: 1.5rem; }
+    .truth-quote { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; font-style: italic; line-height: 1.55; color: var(--brown); position: relative; z-index: 1; margin-bottom: 1.5rem; }
+    .truth-attr { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+    /* ── OFFER ── */
+    .offer { background: var(--soft-blush); padding: var(--section) var(--pad); border-top: 1px solid var(--blush-mid); border-bottom: 1px solid var(--blush-mid); }
+    .offer-inner { max-width: var(--max); margin: 0 auto; }
+    .offer-header { text-align: center; margin-bottom: 3.5rem; }
+    h2.offer-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.7rem); font-weight: 300; color: var(--brown); line-height: 1.2; }
+    h2.offer-heading em { font-style: italic; color: var(--rose-dark); }
+    .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .offer-card {
+      background: var(--white); border: 1px solid var(--gold-light);
+      border-radius: 16px; padding: 1.75rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .offer-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(44,24,16,0.08); }
+    .offer-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .offer-card-title { font-family: var(--serif); font-size: 1.18rem; font-weight: 500; color: var(--brown); margin-bottom: 0.6rem; line-height: 1.3; }
+    .offer-card-body { font-size: 0.83rem; line-height: 1.75; color: var(--muted); }
+
+    /* ── COMMUNITY SECTION ── */
+    .community-section { padding: var(--section) var(--pad); max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center; }
+    .community-img { border-radius: 20px; overflow: hidden; box-shadow: 0 16px 48px rgba(44,24,16,0.12); }
+    .community-img img { width: 100%; display: block; }
+    h2.community-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.25rem; color: var(--brown); }
+    h2.community-heading em { font-style: italic; color: var(--forest); }
+    .community-body { font-size: 0.9rem; color: var(--muted); line-height: 1.85; margin-bottom: 0.85rem; }
+    .free-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold-pale); border: 1px solid var(--gold-light); border-radius: 100px;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.4rem 1rem; color: var(--brown-mid); margin: 1.5rem 0 2rem;
+    }
+    .free-pill::before { content: '✓'; font-size: 0.8rem; color: var(--forest); }
+
+    /* ── ABOUT ── */
+    .about { background: var(--gold-pale); padding: var(--section) var(--pad); border-top: 1px solid var(--gold-light); }
+    .about-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1.25fr; gap: 5rem; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; border-radius: 20px; }
+    .about-tag {
+      position: absolute; bottom: -1.25rem; right: -1.25rem;
+      background: var(--forest); color: var(--white);
+      padding: 1.1rem 1.4rem; border-radius: 14px;
+      font-family: var(--serif); font-style: italic; font-size: 0.9rem; line-height: 1.45; max-width: 200px;
+    }
+    h2.about-heading { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; color: var(--brown); }
+    h2.about-heading em { font-style: italic; color: var(--forest); }
+    .about-body { font-size: 0.88rem; line-height: 1.9; color: var(--muted); margin-bottom: 0.85rem; }
+    .credentials { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.75rem 0 2rem; }
+    .cred-tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.38rem 0.8rem; border: 1px solid var(--gold-light); border-radius: 40px; color: var(--brown-mid); background: var(--white); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: var(--section) var(--pad); background: var(--warm-cream); }
+    .testimonials-inner { max-width: var(--max); margin: 0 auto; }
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+    h2.testimonials-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 300; line-height: 1.2; color: var(--brown); }
+    h2.testimonials-heading em { font-style: italic; color: var(--rose-dark); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .testi-card { background: var(--white); border: 1px solid var(--gold-light); border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; }
+    .testi-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .testi-text { font-family: var(--serif); font-size: 1rem; font-style: italic; font-weight: 300; line-height: 1.65; color: var(--brown-mid); flex: 1; margin-bottom: 1.5rem; }
+    .testi-author { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest); }
+    .testi-role { font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; }
+    .testi-wide { grid-column: span 2; background: var(--soft-blush); border-color: var(--blush-mid); }
+
+    /* ── BLOG ── */
+    .blog { background: var(--forest); padding: var(--section) var(--pad); }
+    .blog-inner { max-width: var(--max); margin: 0 auto; }
+    .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+    h2.blog-heading { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 300; color: var(--warm-cream); line-height: 1.2; }
+    h2.blog-heading em { font-style: italic; color: var(--gold-light); }
+    .blog-header .section-label { color: var(--gold-light); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .blog-card { background: rgba(253,248,243,0.06); border: 1px solid rgba(232,213,168,0.25); border-radius: 16px; overflow: hidden; transition: transform 0.25s, border-color 0.25s; display: flex; flex-direction: column; }
+    .blog-card:hover { transform: translateY(-3px); border-color: var(--gold-light); }
+    .blog-card-thumb { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, rgba(253,248,243,0.08) 0%, rgba(232,213,168,0.15) 100%); display: flex; align-items: center; justify-content: center; position: relative; }
+    .blog-thumb-icon { font-family: var(--serif); font-size: 3.5rem; opacity: 0.25; color: var(--gold-light); font-style: italic; }
+    .blog-tag-pill { position: absolute; bottom: 0.75rem; left: 0.75rem; background: var(--gold); color: var(--brown); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 40px; }
+    .blog-card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .blog-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; line-height: 1.4; color: var(--warm-cream); margin-bottom: 0.65rem; }
+    .blog-excerpt { font-size: 0.82rem; line-height: 1.7; color: rgba(253,248,243,0.55); margin-bottom: 1.25rem; flex: 1; }
+    .blog-read { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); border-bottom: 1px solid rgba(232,213,168,0.3); padding-bottom: 2px; align-self: flex-start; }
+
+    /* ── CTA ── */
+    .cta-banner { padding: var(--section) var(--pad); background: linear-gradient(135deg, var(--soft-blush) 0%, var(--pale-rose) 100%); text-align: center; border-top: 1px solid var(--blush-mid); }
+    .cta-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-dark); margin-bottom: 1.25rem; }
+    h2.cta-heading { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--brown); line-height: 1.2; max-width: 22ch; margin: 0 auto 1.25rem; }
+    h2.cta-heading em { font-style: italic; color: var(--forest); }
+    .cta-sub { font-size: 0.9rem; color: var(--brown-mid); max-width: 46ch; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .cta-note { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--brown); padding: 2.5rem var(--pad); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-brand img { height: 36px; width: 36px; object-fit: contain; opacity: 0.9; }
+    .footer-brand span { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
+    .footer-links { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,248,243,0.45); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-top: calc(68px + 2rem); padding-bottom: 3rem; gap: 2.5rem; }
+      .hero-image-wrap { order: -1; }
+      .hero-image-frame { max-width: 280px; margin: 0 auto; }
+      .hero-badge { right: 0; }
+      .hero-logo-float { left: 0; top: 0.5rem; }
+      .truth-grid, .community-section, .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-tag { right: 0; bottom: -1rem; }
+      .offer-grid, .blog-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .testi-wide { grid-column: span 1; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .offer-grid, .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <img src="logo.png" alt="Money & Growth for Women" />
+    <div class="nav-brand-text">
+      Liz Lemarchand
+      <small>Money &amp; Growth for Women</small>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Business Coaching for Women · NLP · Money Mindset</p>
+    <h1 class="hero-headline">
+      You built something<br>worth selling.<br>
+      <em>Now let's do<br>the real work.</em>
+    </h1>
+    <div class="hero-interrupt">
+      <div class="hero-bar"></div>
+      <p>You built something worth selling. Now let's work on the part no one talks about — why asking for money feels unsafe.</p>
+    </div>
+    <p class="hero-sub">Financial independence is the ultimate tool for freedom. I help women build side businesses, get their first clients, and sell with confidence — without the hustle, the cringe, or the self-abandonment.</p>
+    <div class="hero-actions">
+      <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join the Free Community</a>
+      <a href="#about" class="btn-ghost">Meet Liz</a>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-logo-float">
+      <img src="logo.png" alt="Money & Growth for Women logo" />
+    </div>
+    <div class="hero-image-frame">
+      <img src="liz-photo.png" alt="Liz Lemarchand — business coach and NLP practitioner for women" />
+      <div class="hero-badge">
+        <div class="hero-badge-num">25+</div>
+        <div class="hero-badge-label">Years in sales &amp; marketing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <span>"</span>Financial independence is the ultimate tool for freedom — and it starts with the ability to sell your work.<span>"</span>
+</div>
+
+<!-- TRUTH — SEO: how to sell without feeling pushy, money mindset coach for women -->
+<section class="truth" id="work">
+  <div class="truth-grid">
+    <div>
+      <p class="section-label">The Real Problem</p>
+      <h2 class="truth-heading">It's not that you hate sales.<br><em>It's what's underneath.</em></h2>
+      <p class="truth-body">Most women who struggle to sell their work aren't lacking a script or a strategy. They're carrying something heavier — decades of conditioning that taught them to want less, ask for less, and stay small so others feel comfortable.</p>
+      <p class="truth-body">Whether you're trying to get your first client, figure out how to price your services, or simply stop feeling pushy every time you make an offer — the answer isn't a better tactic. It's a deeper rewiring.</p>
+      <ul class="truth-list">
+        <li>Rewire money mindset patterns that keep you undercharging</li>
+        <li>Learn how to sell without feeling pushy — ever</li>
+        <li>Find clients as an introvert, without a big following</li>
+        <li>Build a sustainable side business that earns more in less time</li>
+      </ul>
+      <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Start for Free →</a>
+    </div>
+    <div>
+      <div class="truth-card">
+        <div class="truth-accent"></div>
+        <p class="truth-quote">"I don't need you to become pushier. I need you to become more rooted in your own worth — so that asking for money stops feeling like a threat."</p>
+        <p class="truth-attr">— Liz Lemarchand, Money & Growth for Women</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER — SEO: women side business community, feminine energy business -->
+<section class="offer" id="community">
+  <div class="offer-inner">
+    <div class="offer-header">
+      <p class="section-label">Inside Money &amp; Growth for Women</p>
+      <h2 class="offer-heading">Everything you need to build your business<br>with <em>confidence and compassion.</em></h2>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-icon">🎓</div>
+        <h3 class="offer-card-title">Selling for Women Who Hate Sales</h3>
+        <p class="offer-card-body">Your free entry course. The zero-cringe pitch, pricing confidence, and the mindset shift that makes selling feel like an act of service — not a transaction.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">💬</div>
+        <h3 class="offer-card-title">A Judgment-Free Community</h3>
+        <p class="offer-card-body">A warm, supportive space to practice being visible, ask the real questions, and grow alongside women who are building something meaningful — just like you.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">🧠</div>
+        <h3 class="offer-card-title">Money Mindset & NLP Coaching</h3>
+        <p class="offer-card-body">We go to the root — money beliefs, nervous system regulation, and the conditioning that blocks you from receiving. NLP, CBT, EFT, and somatic practices combined.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">🌸</div>
+        <h3 class="offer-card-title">Feminine Energy &amp; Visibility</h3>
+        <p class="offer-card-body">Show up authentically — in your content, your offers, your presence — without performing a version of yourself that isn't real. Sell from your worth, not your fear.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">🌿</div>
+        <h3 class="offer-card-title">Group Coaching Programs</h3>
+        <p class="offer-card-body">From The Self-Led Entrepreneur to AWAKEN to Abundance — cohort-based programs for deeper transformation when you're ready to go all in.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">✨</div>
+        <h3 class="offer-card-title">Premium &amp; VIP Access</h3>
+        <p class="offer-card-body">Full course access, live Q&amp;As, workshops, and private monthly coaching. More depth, more support, more momentum toward the business and life you're building.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY BANNER IMAGE -->
+<section class="community-section">
+  <div class="community-img">
+    <img src="mgfw-banner.png" alt="Money and Growth for Women Skool community — business coaching for women" />
+  </div>
+  <div>
+    <p class="section-label-forest">The Community</p>
+    <h2 class="community-heading">A sanctuary for growth.<br><em>Not just a course. A home.</em></h2>
+    <p class="community-body">This is a calm, judgment-free space where you can be messy, ask the real questions, and find the tools and the women you need to thrive as an entrepreneur.</p>
+    <p class="community-body">Whether you're here to land your first client, rewire your money story, or find the courage to finally charge what you're worth — you are in exactly the right place.</p>
+    <div class="free-pill">Free to join · No credit card required</div>
+    <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join Money &amp; Growth for Women →</a>
+  </div>
+</section>
+
+<!-- ABOUT — SEO: NLP coach for women, confidence coaching for women -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <img src="liz-photo2.png" alt="Liz Lemarchand — certified NLP coach and business mentor for women" />
+      <div class="about-tag">"We don't just fix your business. We evolve the woman running it."</div>
+    </div>
+    <div class="about-content">
+      <p class="section-label-forest">Meet Liz</p>
+      <h2 class="about-heading">25 years in sales.<br>15 years doing<br><em>the inner work.</em></h2>
+      <p class="about-body">I'm a certified NLP coach, business mentor, entrepreneur, and author — originally from New York, now living in France, and working with women around the world who are building something worth selling.</p>
+      <p class="about-body">I spent 25 years in high-stakes sales and marketing — closing deals, leading teams, building revenue. And then I spent the next 15 years figuring out what was really going on underneath my own resistance, fear, and self-doubt. Spoiler: it wasn't a strategy problem.</p>
+      <p class="about-body">My work blends sales expertise with NLP, CBT, EFT, and somatic practices — because you can have the best plan in the world, and if your internal programming says you don't deserve it, the plan won't work.</p>
+      <div class="credentials">
+        <span class="cred-tag">Certified NLP Coach</span>
+        <span class="cred-tag">CBT Practitioner</span>
+        <span class="cred-tag">EFT Practitioner</span>
+        <span class="cred-tag">25+ Yrs Sales &amp; Marketing</span>
+        <span class="cred-tag">Author</span>
+        <span class="cred-tag">Stand-Up Comedian</span>
+      </div>
+      <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-ghost">Read my full story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <p class="section-label-rose">Real Women, Real Results</p>
+      <h2 class="testimonials-heading">What happens when you do<br><em>the real work.</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card testi-wide">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I feel so grateful to have found Liz and her Skool Community. This truly is a judgment-free, safe space to grow as an entrepreneur. Working with Liz has helped me open my mind to how I can show up for my clients as a coach that is authentic, warm and true to myself. I would recommend Liz to all women who want to build something amazing that feels true to them, while breaking down old beliefs that no longer serve them."</p>
+        <p class="testi-author">Jes</p>
+        <p class="testi-role">Community Member</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Liz's course is incredible! She gave me concrete tools I could implement easily — and I have been able to close deals and onboard new customers because of the techniques I learned here. I highly recommend joining."</p>
+        <p class="testi-author">Andrea N.</p>
+        <p class="testi-role">Community Member</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Liz is an amazing mentor. She helped me figure out how to bring the best of me into my community. She knows exactly what you need to move forward — with wisdom, encouragement and heart."</p>
+        <p class="testi-author">Tatyana Madzharova</p>
+        <p class="testi-role">Community Member</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Two calls with Liz left me with clarity, direction, and helped me tighten up my niche and pivot to my passion. She leads by example and has such insight into how to make sales when you hate them."</p>
+        <p class="testi-author">Maureen Schlachter</p>
+        <p class="testi-role">Community Member</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I used to be shy talking about my business. Liz taught me to be confident in sales and gave me strategies that work. I've started getting new customers — and I feel great about what I'm doing."</p>
+        <p class="testi-author">Stephanie P.</p>
+        <p class="testi-role">Community Member</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG — SEO: nervous system for entrepreneurs, how to sell without pushy, how to price services -->
+<section class="blog" id="blog">
+  <div class="blog-inner">
+    <div class="blog-header">
+      <div>
+        <p class="section-label" style="color:var(--gold-light);">From the Blog</p>
+        <h2 class="blog-heading">Thoughts on money, freedom,<br><em>and what's really in the way.</em></h2>
+      </div>
+      <a href="/blog" class="btn-ghost-light">All Articles →</a>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <div class="blog-card-thumb">
+          <span class="blog-thumb-icon">$</span>
+          <span class="blog-tag-pill">Money Mindset</span>
+        </div>
+        <div class="blog-card-body">
+          <h3 class="blog-title">Why Asking for Money Feels Like a Threat (And What to Do About It)</h3>
+          <p class="blog-excerpt">It's not a sales problem. It's a nervous system problem — and once you understand that, everything changes.</p>
+          <a href="#" class="blog-read">Read More →</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-card-thumb">
+          <span class="blog-thumb-icon">♡</span>
+          <span class="blog-tag-pill">Confidence</span>
+        </div>
+        <div class="blog-card-body">
+          <h3 class="blog-title">How to Find Your First Client as an Introvert (Without Feeling Pushy)</h3>
+          <p class="blog-excerpt">You don't need to be louder. You need to be more rooted — and these three shifts will change how clients find you.</p>
+          <a href="#" class="blog-read">Read More →</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-card-thumb">
+          <span class="blog-thumb-icon">✦</span>
+          <span class="blog-tag-pill">Self-Leadership</span>
+        </div>
+        <div class="blog-card-body">
+          <h3 class="blog-title">How to Price Your Services When You're Just Starting Out</h3>
+          <p class="blog-excerpt">The pricing problem is almost never about numbers. Here's what's really going on — and how to charge what you're worth.</p>
+          <a href="#" class="blog-read">Read More →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <p class="cta-label">Ready to Begin?</p>
+  <h2 class="cta-heading">Your business is <em>waiting for you</em> to show up for it.</h2>
+  <p class="cta-sub">Join Money &amp; Growth for Women — a free Skool community for women building side businesses who are ready to go deeper than tactics. Start today, no credit card required.</p>
+  <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join Free Today</a>
+  <p class="cta-note">Free to join · No credit card · Cancel anytime</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Money & Growth for Women" />
+      <span>Liz Lemarchand</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@lizlemarchand" target="_blank">YouTube</a></li>
+      <li><a href="https://www.facebook.com/lizlemarchand" target="_blank">Facebook</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Liz Lemarchand · All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
