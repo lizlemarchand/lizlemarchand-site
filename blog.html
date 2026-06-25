@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Liz Lemarchand — Money & Growth for Women</title>
+  <meta name="description" content="Thoughts on money mindset, selling with confidence, nervous system support for entrepreneurs, and building a side business that feels like freedom." />
+  <link rel="canonical" href="https://lizlemarchand.com/blog.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-cream: #FDF8F3; --soft-blush: #F9EDE8; --blush-mid: #E8C4BC;
+      --white: #FFFFFF; --brown: #2C1810; --brown-mid: #5C3D2E; --muted: #9A7B6E;
+      --forest: #1B4D42; --gold: #C4962A; --gold-light: #E8D5A8; --gold-pale: #F5EDDB;
+      --rose-dark: #B5686A;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --max: 1100px; --pad: clamp(1.5rem, 5vw, 3rem);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--warm-cream); color: var(--brown); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,243,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0 var(--pad); height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-brand img { height: 44px; width: 44px; object-fit: contain; }
+    .nav-brand-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--brown); line-height: 1.2; }
+    .nav-brand-text small { display: block; font-size: 0.68rem; font-family: var(--sans); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
+
+    .blog-hero {
+      padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+      padding-bottom: 4rem;
+    }
+    .blog-hero-inner { max-width: var(--max); margin: 0 auto; padding: 4rem var(--pad) 0; }
+    .section-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    h1.blog-hero-title { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.15; color: var(--brown); margin-bottom: 1rem; }
+    h1.blog-hero-title em { font-style: italic; color: var(--forest); }
+    .blog-hero-sub { font-size: 0.95rem; color: var(--muted); max-width: 50ch; line-height: 1.8; }
+
+    .blog-grid-section { padding: 4rem var(--pad); max-width: var(--max); margin: 0 auto; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    .blog-card {
+      background: var(--white); border: 1px solid var(--gold-light);
+      border-radius: 16px; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,24,16,0.1); }
+    .blog-card-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--soft-blush) 0%, var(--blush-mid) 100%);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .blog-thumb-icon { font-family: var(--serif); font-size: 4rem; opacity: 0.3; color: var(--brown); font-style: italic; }
+    .blog-tag-pill {
+      position: absolute; bottom: 0.75rem; left: 0.75rem;
+      background: var(--gold); color: var(--white);
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border-radius: 40px;
+    }
+    .blog-card-body { padding: 1.75rem; flex: 1; display: flex; flex-direction: column; }
+    .blog-card-meta { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.75rem; letter-spacing: 0.04em; }
+    h2.blog-card-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; line-height: 1.35; color: var(--brown); margin-bottom: 0.75rem; }
+    .blog-card-excerpt { font-size: 0.85rem; line-height: 1.75; color: var(--muted); margin-bottom: 1.5rem; flex: 1; }
+    .blog-read { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest); border-bottom: 1px solid var(--gold-light); padding-bottom: 2px; align-self: flex-start; transition: border-color 0.2s; }
+    .blog-read:hover { border-color: var(--forest); }
+
+    .coming-soon { opacity: 0.5; pointer-events: none; }
+    .coming-soon .blog-tag-pill { background: var(--muted); }
+    .coming-badge {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      background: var(--warm-cream); color: var(--muted);
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 40px; border: 1px solid var(--gold-light);
+    }
+
+    footer { background: var(--brown); padding: 2rem var(--pad); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-brand { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
+    .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,248,243,0.45); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    @media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } }
+    @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Money & Growth for Women" />
+    <div class="nav-brand-text">
+      Liz Lemarchand
+      <small>Money &amp; Growth for Women</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#community">Community</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Free</a></li>
+  </ul>
+</nav>
+
+<div class="blog-hero">
+  <div class="blog-hero-inner">
+    <p class="section-label">From the Blog</p>
+    <h1 class="blog-hero-title">Thoughts on money, freedom,<br><em>and what's really in the way.</em></h1>
+    <p class="blog-hero-sub">Honest writing on money mindset, selling with confidence, nervous system support, and building a business that feels like freedom — not a second job.</p>
+  </div>
+</div>
+
+<section class="blog-grid-section">
+  <div class="blog-grid">
+
+    <!-- Article 1 - LIVE -->
+    <article class="blog-card">
+      <div class="blog-card-thumb">
+        <span class="blog-thumb-icon">$</span>
+        <span class="blog-tag-pill">Money Mindset</span>
+      </div>
+      <div class="blog-card-body">
+        <p class="blog-card-meta">June 25, 2025 · 7 min read</p>
+        <h2 class="blog-card-title">Why Asking for Money Feels Like a Threat (And What to Do About It)</h2>
+        <p class="blog-card-excerpt">It's not a sales problem. It's a nervous system problem — and once you understand that, everything changes.</p>
+        <a href="/blog/why-asking-for-money-feels-like-a-threat.html" class="blog-read">Read Article →</a>
+      </div>
+    </article>
+
+    <!-- Article 2 - Coming Soon -->
+    <article class="blog-card coming-soon">
+      <div class="blog-card-thumb">
+        <span class="blog-thumb-icon">♡</span>
+        <span class="blog-tag-pill">Confidence</span>
+        <span class="coming-badge">Coming Soon</span>
+      </div>
+      <div class="blog-card-body">
+        <p class="blog-card-meta">Coming Soon</p>
+        <h2 class="blog-card-title">How to Find Your First Client as an Introvert (Without Feeling Pushy)</h2>
+        <p class="blog-card-excerpt">You don't need to be louder. You need to be more rooted — and these three shifts will change how clients find you.</p>
+        <span class="blog-read">Read Article →</span>
+      </div>
+    </article>
+
+    <!-- Article 3 - Coming Soon -->
+    <article class="blog-card coming-soon">
+      <div class="blog-card-thumb">
+        <span class="blog-thumb-icon">✦</span>
+        <span class="blog-tag-pill">Self-Leadership</span>
+        <span class="coming-badge">Coming Soon</span>
+      </div>
+      <div class="blog-card-body">
+        <p class="blog-card-meta">Coming Soon</p>
+        <h2 class="blog-card-title">How to Price Your Services When You're Just Starting Out</h2>
+        <p class="blog-card-excerpt">The pricing problem is almost never about numbers. Here's what's really going on — and how to charge what you're worth.</p>
+        <span class="blog-read">Read Article →</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Liz Lemarchand</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank">Join Community</a></li>
+      <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Liz Lemarchand · All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
