@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(start C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\\\\index.html)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\\\\index.html.html\")",
+      "PowerShell(node --version)",
+      "PowerShell(npx --version)",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\\\\index.html\")",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" status 2>&1)",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" init)",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" add .)",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" commit -m \"Initial commit\")",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" branch -M main)",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" remote add origin https://github.com/lizlemarchand/lizlemarchand-site.git)",
+      "PowerShell(git -C \"C:\\\\Users\\\\elema\\\\Downloads\\\\lizlemarchand-site\" push -u origin main)"
+    ]
+  }
+}
