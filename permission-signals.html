@@ -400,21 +400,13 @@
 <!-- APP -->
 <div id="app-section">
   <div class="app-card">
-    <span class="app-label">Step 1 — Your Anthropic API Key</span>
-    <div class="apikey-row">
-      <input type="password" class="apikey-input" id="api-key" placeholder="sk-ant-…  (paste your Anthropic API key)" />
-    </div>
-    <p class="apikey-note">Your key is used only for this request and is never stored or sent anywhere except the Anthropic API.</p>
-  </div>
-
-  <div class="app-card">
-    <span class="app-label">Step 2 — Choose Your Context</span>
+    <span class="app-label">Step 1 — Choose Your Context</span>
     <div class="context-tabs">
       <button class="context-tab active" data-ctx="Business" onclick="setContext(this)">Business</button>
       <button class="context-tab" data-ctx="Sales" onclick="setContext(this)">Sales</button>
       <button class="context-tab" data-ctx="Personal" onclick="setContext(this)">Personal</button>
     </div>
-    <span class="app-label" style="margin-top:1rem;">Step 3 — Paste Your Text</span>
+    <span class="app-label" style="margin-top:1rem;">Step 2 — Paste Your Text</span>
     <textarea class="app-textarea" id="user-text" placeholder="Paste your email, bio, sales message, price quote, social caption, or any text you want to analyze…"></textarea>
     <button class="analyze-btn" id="analyze-btn" onclick="analyze()">
       <div class="spinner" id="spinner"></div>
@@ -508,70 +500,25 @@
   }
 
   async function analyze() {
-    const apiKey = document.getElementById('api-key').value.trim();
-    const text   = document.getElementById('user-text').value.trim();
-    const errEl  = document.getElementById('app-error');
+    const text  = document.getElementById('user-text').value.trim();
+    const errEl = document.getElementById('app-error');
     errEl.style.display = 'none';
 
-    if (!apiKey) { showError('Please enter your Anthropic API key above.'); return; }
-    if (!text)   { showError('Please paste some text to analyze.'); return; }
+    if (!text) { showError('Please paste some text to analyze.'); return; }
 
     setLoading(true);
     document.getElementById('results').style.display = 'none';
 
-    const prompt = `You are a coach specializing in helping women identify "permission signals" — subtle language patterns that unconsciously signal low confidence, self-doubt, or a need for external validation before taking up space. These include apologetic phrasing, excessive hedging, minimizing language, over-explaining, unsolicited discounting of one's own value, and fear-based qualifiers.
-
-Context: ${selectedContext}
-
-Analyze the following text and return a JSON object with exactly this structure:
-{
-  "score": <integer 0-10, where 0 = no permission signals at all, 10 = saturated with permission-seeking language>,
-  "score_label": <short phrase like "Rooted" / "Slightly Hedged" / "Seeking Permission" / "Highly Apologetic">,
-  "score_description": <1-2 sentences explaining what the score means for this specific text>,
-  "signals": [
-    { "phrase": <the exact phrase or pattern from the text>, "explanation": <why this is a permission signal and what it signals to the reader> },
-    ...
-  ],
-  "rewrites": [
-    { "label": <e.g. "Direct & Grounded">, "text": <rewritten version of the full input or the key problematic section, rooted and confident> },
-    { "label": <e.g. "Warm & Clear">, "text": <another rewrite, warmer tone but no hedging> },
-    { "label": <e.g. "Bold & Specific">, "text": <a bolder version that owns the value completely> }
-  ],
-  "reflection": <a single, personalized, empathetic paragraph (3-5 sentences) written directly to the user — acknowledge what the text is trying to do, name the underlying fear gently, and offer one grounding truth about their worth>
-}
-
-Return ONLY valid JSON. No markdown, no explanation outside the JSON.
-
-Text to analyze:
-"""
-${text}
-"""`;
-
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch('/.netlify/functions/analyze', {
         method: 'POST',
-        headers: {
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'content-type': 'application/json',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 2048,
-          messages: [{ role: 'user', content: prompt }]
-        })
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ context: selectedContext, text }),
       });
 
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body?.error?.message || `API error ${res.status}`);
-      }
-
       const data = await res.json();
-      const raw = data.content[0].text.trim();
-      const json = JSON.parse(raw);
-      renderResults(json);
+      if (!res.ok) throw new Error(data?.error || `Error ${res.status}`);
+      renderResults(data);
     } catch (e) {
       showError('Something went wrong: ' + e.message);
     } finally {
