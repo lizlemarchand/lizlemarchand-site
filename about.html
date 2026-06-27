@@ -142,9 +142,41 @@
     .footer-links a:hover { color: var(--gold-light); }
     .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
 
+    /* ── HERO IMAGE ── */
+    .about-hero-img {
+      text-align: center;
+      padding: 3rem var(--pad) 0;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+    }
+    .about-hero-img img {
+      display: inline-block;
+      width: 380px; max-width: 100%;
+      aspect-ratio: 1/1; object-fit: cover; object-position: top center;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+    }
+
+    /* ── STANDUP LAYOUT ── */
+    .standup-flex {
+      display: flex; gap: 2rem; align-items: flex-start;
+      margin-bottom: 1.4rem;
+    }
+    .standup-img {
+      flex-shrink: 0; width: 280px; max-width: 100%;
+    }
+    .standup-img img {
+      width: 100%; border-radius: 8px; display: block;
+    }
+    .standup-text { flex: 1; }
+    .standup-text .prose-p:last-child { margin-bottom: 0; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .standup-flex { flex-direction: column; }
+      .standup-img { width: 100%; }
     }
   </style>
 </head>
@@ -168,8 +200,13 @@
   </ul>
 </nav>
 
+<!-- HERO IMAGE -->
+<div class="about-hero-img" style="padding-top: 68px;">
+  <img src="images/liz-about-hero.jpg" alt="Liz Lemarchand, money coach and life coach." />
+</div>
+
 <!-- HERO -->
-<div class="about-hero">
+<div class="about-hero" style="padding-top: 0;">
   <div class="about-hero-inner">
     <p class="section-label">My Story</p>
     <h1 class="about-title">About Liz</h1>
@@ -203,8 +240,15 @@
   </div>
 
   <p class="prose-p">I am a certified NLP life coach, trained in CBT, EFT, and somatic practices. I am a voracious reader, a published author (<em>Tune In &amp; Dial Out: How to Win at B2B Cold Calling</em>), and a contributor to HuffPost.</p>
-  <p class="prose-p">I also do standup comedy.</p>
-  <p class="prose-p">Not because I want to be famous. Not because I'm trying to make money at it. I started getting on stage for one reason: to prove to myself that I could do hard things. And it worked. Comedy taught me to find the humor inside the painful parts of life, to get over my fear of rejection, and to show up fully present with zero expectations. Every single one of those lessons lives in my coaching work too.</p>
+  <div class="standup-flex">
+    <div class="standup-img">
+      <img src="images/liz-standup.jpg" alt="Liz performing standup comedy at Garage Comedy Club." />
+    </div>
+    <div class="standup-text">
+      <p class="prose-p">I also do standup comedy.</p>
+      <p class="prose-p">Not because I want to be famous. Not because I'm trying to make money at it. I started getting on stage for one reason: to prove to myself that I could do hard things. And it worked. Comedy taught me to find the humor inside the painful parts of life, to get over my fear of rejection, and to show up fully present with zero expectations. Every single one of those lessons lives in my coaching work too.</p>
+    </div>
+  </div>
   <p class="prose-p">My personal development journey has not been easy. But it has been extraordinary. And it has led me to one unshakeable belief about myself: the Universe has my back.</p>
   <p class="prose-p">That faith - in something bigger, in the law of attraction, in the idea that we are all capable of more than we can currently imagine - is what I want to give the women I work with. Not just a strategy for making money. An unshakeable foundation rooted in self-worth and confidence.</p>
   <p class="prose-p">Because when you have that, everything else becomes possible.</p>
