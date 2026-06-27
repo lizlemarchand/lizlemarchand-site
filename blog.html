@@ -14,8 +14,7 @@
     :root {
       --warm-cream: #FDF8F3; --soft-blush: #F9EDE8; --blush-mid: #E8C4BC;
       --white: #FFFFFF; --brown: #2C1810; --brown-mid: #5C3D2E; --muted: #9A7B6E;
-      --forest: #1B4D42; --gold: #C4962A; --gold-light: #E8D5A8; --gold-pale: #F5EDDB;
-      --rose-dark: #B5686A;
+      --forest: #1B4D42; --forest-light: #2E6B5E; --gold: #C4962A; --gold-light: #E8D5A8; --gold-pale: #F5EDDB;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
       --max: 1100px; --pad: clamp(1.5rem, 5vw, 3rem);
@@ -25,6 +24,7 @@
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(253,248,243,0.96); backdrop-filter: blur(12px);
@@ -40,7 +40,9 @@
     .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid); transition: color 0.2s; }
     .nav-links a:hover { color: var(--forest); }
     .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
+    .nav-cta:hover { opacity: 0.88 !important; }
 
+    /* ── BLOG HERO ── */
     .blog-hero {
       padding-top: 68px;
       background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
@@ -52,7 +54,74 @@
     h1.blog-hero-title em { font-style: italic; color: var(--forest); }
     .blog-hero-sub { font-size: 0.95rem; color: var(--muted); max-width: 50ch; line-height: 1.8; }
 
-    .blog-grid-section { padding: 4rem var(--pad); max-width: var(--max); margin: 0 auto; }
+    /* ── FEATURED HERO CARD ── */
+    .featured-section { max-width: var(--max); margin: 0 auto; padding: 3rem var(--pad) 0; }
+    .featured-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+
+    .featured-card {
+      background: var(--forest);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 320px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .featured-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(27,77,66,0.25); }
+
+    .featured-card-visual {
+      background: linear-gradient(135deg, rgba(196,150,42,0.3) 0%, rgba(27,77,66,0.6) 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2.5rem;
+      position: relative;
+    }
+    .featured-card-icon { font-family: var(--serif); font-size: 6rem; color: var(--gold-light); opacity: 0.35; font-style: italic; }
+    .featured-card-badge {
+      position: absolute; top: 1.25rem; left: 1.25rem;
+      background: var(--gold); color: var(--brown);
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 40px;
+    }
+
+    .featured-card-body {
+      padding: 2.75rem 2.5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .featured-card-category {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 1rem;
+    }
+    .featured-card-title {
+      font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 300; line-height: 1.2; color: var(--warm-cream);
+      margin-bottom: 1rem;
+    }
+    .featured-card-excerpt {
+      font-size: 0.875rem; line-height: 1.75; color: rgba(253,248,243,0.7);
+      margin-bottom: 1.75rem;
+    }
+    .btn-cream-sm {
+      display: inline-block; background: var(--warm-cream); color: var(--forest);
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.7rem 1.6rem; border-radius: 40px; align-self: flex-start;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-cream-sm:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── CATEGORY FILTERS ── */
+    .filters-section { max-width: var(--max); margin: 0 auto; padding: 2.5rem var(--pad) 0; }
+    .filter-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .filter-btn {
+      background: transparent; border: 1px solid var(--gold-light); color: var(--brown-mid);
+      font-family: var(--sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.55rem 1.2rem; border-radius: 40px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--forest); color: var(--forest); }
+    .filter-btn.active { background: var(--forest); border-color: var(--forest); color: var(--white); }
+
+    /* ── CARD GRID ── */
+    .blog-grid-section { padding: 2.5rem var(--pad) 5rem; max-width: var(--max); margin: 0 auto; }
     .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 
     .blog-card {
@@ -62,6 +131,8 @@
       display: flex; flex-direction: column;
     }
     .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,24,16,0.1); }
+    .blog-card[hidden] { display: none !important; }
+
     .blog-card-thumb {
       width: 100%; aspect-ratio: 16/9;
       background: linear-gradient(135deg, var(--soft-blush) 0%, var(--blush-mid) 100%);
@@ -81,25 +152,38 @@
     .blog-read { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--forest); border-bottom: 1px solid var(--gold-light); padding-bottom: 2px; align-self: flex-start; transition: border-color 0.2s; }
     .blog-read:hover { border-color: var(--forest); }
 
-    .coming-soon { opacity: 0.5; pointer-events: none; }
-    .coming-soon .blog-tag-pill { background: var(--muted); }
-    .coming-badge {
-      position: absolute; top: 0.75rem; right: 0.75rem;
-      background: var(--warm-cream); color: var(--muted);
-      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.2rem 0.6rem; border-radius: 40px; border: 1px solid var(--gold-light);
+    /* ── LOAD MORE ── */
+    .load-more-wrap { text-align: center; padding: 0 var(--pad) 4rem; }
+    .btn-load-more {
+      background: transparent; border: 1px solid var(--forest); color: var(--forest);
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.85rem 2.25rem; border-radius: 40px;
+      cursor: pointer; transition: all 0.2s;
     }
+    .btn-load-more:hover { background: var(--forest); color: var(--white); }
+    .btn-load-more[hidden] { display: none; }
 
+    /* ── FOOTER ── */
     footer { background: var(--brown); padding: 2rem var(--pad); }
     .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-brand { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
+    .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-brand img { height: 36px; width: 36px; object-fit: contain; opacity: 0.9; }
+    .footer-brand span { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
     .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
-    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
     .footer-links a { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,248,243,0.45); transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold-light); }
 
-    @media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } }
-    @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-card-visual { min-height: 160px; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .featured-card-body { padding: 1.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -121,6 +205,7 @@
   </ul>
 </nav>
 
+<!-- BLOG HERO -->
 <div class="blog-hero">
   <div class="blog-hero-inner">
     <p class="section-label">From the Blog</p>
@@ -129,11 +214,38 @@
   </div>
 </div>
 
-<section class="blog-grid-section">
-  <div class="blog-grid">
+<!-- FEATURED ARTICLE -->
+<section class="featured-section">
+  <p class="featured-label">Latest Article</p>
+  <a href="blog/your-sales-energy-changes.html" class="featured-card">
+    <div class="featured-card-visual">
+      <span class="featured-card-icon">✦</span>
+      <span class="featured-card-badge">New</span>
+    </div>
+    <div class="featured-card-body">
+      <p class="featured-card-category">Money Mindset</p>
+      <h2 class="featured-card-title">Your Sales Energy Changes When You Stop Managing Everyone's Opinion</h2>
+      <p class="featured-card-excerpt">Most women don't hate selling. They hate what selling might make people think of them. Here's how to stop managing everyone's opinion and start communicating your value clearly.</p>
+      <span class="btn-cream-sm">Read Article →</span>
+    </div>
+  </a>
+</section>
 
-    <!-- Article 1 - LIVE -->
-    <article class="blog-card">
+<!-- CATEGORY FILTERS -->
+<section class="filters-section">
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="money-mindset">Money Mindset</button>
+    <button class="filter-btn" data-filter="confidence">Confidence</button>
+    <button class="filter-btn" data-filter="self-leadership">Self-Leadership</button>
+  </div>
+</section>
+
+<!-- CARD GRID -->
+<section class="blog-grid-section">
+  <div class="blog-grid" id="blog-grid">
+
+    <article class="blog-card" data-category="money-mindset">
       <div class="blog-card-thumb">
         <span class="blog-thumb-icon">$</span>
         <span class="blog-tag-pill">Money Mindset</span>
@@ -141,13 +253,12 @@
       <div class="blog-card-body">
         <p class="blog-card-meta">June 25, 2025 · 7 min read</p>
         <h2 class="blog-card-title">Why Asking for Money Feels Like a Threat (And What to Do About It)</h2>
-        <p class="blog-card-excerpt">It's not a sales problem. It's a nervous system problem — and once you understand that, everything changes.</p>
+        <p class="blog-card-excerpt">Asking for money triggers something deep. Here's why it feels like a threat to your nervous system, and what to do about it.</p>
         <a href="/blog/why-asking-for-money-feels-like-a-threat.html" class="blog-read">Read Article →</a>
       </div>
     </article>
 
-    <!-- Article 2 - LIVE -->
-    <article class="blog-card">
+    <article class="blog-card" data-category="confidence">
       <div class="blog-card-thumb">
         <span class="blog-thumb-icon">♡</span>
         <span class="blog-tag-pill">Confidence</span>
@@ -155,13 +266,12 @@
       <div class="blog-card-body">
         <p class="blog-card-meta">June 26, 2025 · 8 min read</p>
         <h2 class="blog-card-title">How to Find Your First Client as an Introvert (Without Feeling Pushy)</h2>
-        <p class="blog-card-excerpt">You don't need to be louder. You need to be more rooted — and these three shifts will change how clients find you.</p>
+        <p class="blog-card-excerpt">You don't need to become an extrovert to find clients. You need a strategy that works with your energy, not against it.</p>
         <a href="/blog/how-to-find-your-first-client-as-an-introvert.html" class="blog-read">Read Article →</a>
       </div>
     </article>
 
-    <!-- Article 3 - LIVE -->
-    <article class="blog-card">
+    <article class="blog-card" data-category="self-leadership">
       <div class="blog-card-thumb">
         <span class="blog-thumb-icon">✦</span>
         <span class="blog-tag-pill">Self-Leadership</span>
@@ -169,7 +279,7 @@
       <div class="blog-card-body">
         <p class="blog-card-meta">June 26, 2025 · 8 min read</p>
         <h2 class="blog-card-title">How to Price Your Services When You're Just Starting Out</h2>
-        <p class="blog-card-excerpt">The pricing problem is almost never about numbers. Here's what's really going on — and how to charge what you're worth.</p>
+        <p class="blog-card-excerpt">Pricing isn't just a number. It's a statement about how you see your own value. Here's how to set prices you can actually say out loud.</p>
         <a href="/blog/how-to-price-your-services-when-youre-just-starting-out.html" class="blog-read">Read Article →</a>
       </div>
     </article>
@@ -177,9 +287,18 @@
   </div>
 </section>
 
+<!-- LOAD MORE -->
+<div class="load-more-wrap">
+  <button class="btn-load-more" id="load-more-btn" hidden>Load More Articles</button>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-brand">Liz Lemarchand</span>
+    <div class="footer-brand">
+      <img src="logo.png" alt="Money & Growth for Women" />
+      <span>Liz Lemarchand</span>
+    </div>
     <ul class="footer-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank">Join Community</a></li>
@@ -188,6 +307,49 @@
     <p class="footer-copy">© 2025 Liz Lemarchand · All Rights Reserved</p>
   </div>
 </footer>
+
+<script>
+  const CARDS_PER_PAGE = 6;
+  const REVEAL_COUNT = 3;
+
+  const grid = document.getElementById('blog-grid');
+  const loadMoreBtn = document.getElementById('load-more-btn');
+  let activeFilter = 'all';
+  let visibleCount = CARDS_PER_PAGE;
+
+  function getFilteredCards() {
+    return Array.from(grid.querySelectorAll('.blog-card')).filter(card => {
+      return activeFilter === 'all' || card.dataset.category === activeFilter;
+    });
+  }
+
+  function renderCards() {
+    const all = Array.from(grid.querySelectorAll('.blog-card'));
+    const filtered = getFilteredCards();
+
+    all.forEach(card => card.hidden = true);
+    filtered.slice(0, visibleCount).forEach(card => card.hidden = false);
+
+    loadMoreBtn.hidden = filtered.length <= visibleCount;
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      visibleCount = CARDS_PER_PAGE;
+      renderCards();
+    });
+  });
+
+  loadMoreBtn.addEventListener('click', () => {
+    visibleCount += REVEAL_COUNT;
+    renderCards();
+  });
+
+  renderCards();
+</script>
 
 </body>
 </html>
