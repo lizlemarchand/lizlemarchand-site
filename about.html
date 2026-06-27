@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Liz | lizlemarchand.com</title>
+  <meta name="description" content="The story behind Liz Lemarchand — NLP coach, published author, stand-up comedian, and founder of Money & Growth for Women." />
+  <link rel="canonical" href="https://lizlemarchand.com/about.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-cream:   #FDF8F3;
+      --soft-blush:   #F9EDE8;
+      --pale-rose:    #F2D9D9;
+      --blush-mid:    #E8C4BC;
+      --white:        #FFFFFF;
+      --brown:        #2C1810;
+      --brown-mid:    #5C3D2E;
+      --muted:        #9A7B6E;
+      --forest:       #1B4D42;
+      --forest-light: #2E6B5E;
+      --gold:         #C4962A;
+      --gold-light:   #E8D5A8;
+      --gold-pale:    #F5EDDB;
+      --rose-dark:    #B5686A;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+      --max: 1100px;
+      --pad: clamp(1.5rem, 5vw, 3rem);
+      --section: clamp(4rem, 8vw, 7rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--warm-cream); color: var(--brown); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,243,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0 var(--pad); height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-brand img { height: 46px; width: 46px; object-fit: contain; }
+    .nav-brand-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--brown); line-height: 1.2; }
+    .nav-brand-text small { display: block; font-size: 0.68rem; font-family: var(--sans); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
+    .nav-cta:hover { opacity: 0.88 !important; }
+
+    /* ── BUTTONS ── */
+    .btn-forest {
+      display: inline-block; background: var(--forest); color: var(--white);
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.9rem 2rem; border-radius: 40px; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-forest:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── PAGE HERO ── */
+    .about-hero {
+      padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+    }
+    .about-hero-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 4.5rem var(--pad) 4rem;
+    }
+    .section-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+    h1.about-title {
+      font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 300; line-height: 1.1; color: var(--brown);
+    }
+
+    /* ── PROSE BODY ── */
+    .about-prose {
+      max-width: 720px; margin: 0 auto;
+      padding: 3.5rem var(--pad) var(--section);
+    }
+    .prose-p {
+      font-size: 1rem; line-height: 1.9; color: var(--brown-mid);
+      margin-bottom: 1.4rem;
+    }
+
+    /* ── VISUAL DIVIDER ── */
+    .prose-divider {
+      display: flex; align-items: center; gap: 1.25rem;
+      margin: 3rem 0;
+    }
+    .prose-divider::before,
+    .prose-divider::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--gold-light);
+    }
+    .prose-divider-icon {
+      color: var(--gold); font-size: 0.7rem; letter-spacing: 0.2em;
+    }
+
+    /* ── PULL QUOTE / SUBHEADING ── */
+    .prose-pullquote {
+      border-left: 3px solid var(--forest);
+      padding: 1.25rem 1.75rem;
+      margin: 2.25rem 0;
+      background: rgba(27,77,66,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+    .prose-pullquote p {
+      font-family: var(--serif); font-size: clamp(1.15rem, 2vw, 1.4rem);
+      font-weight: 400; font-style: italic; line-height: 1.55;
+      color: var(--forest);
+    }
+
+    /* ── CTA ── */
+    .prose-cta {
+      text-align: center;
+      padding: 2.5rem 0 0;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--brown); padding: 2.5rem var(--pad); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-brand img { height: 36px; width: 36px; object-fit: contain; opacity: 0.9; }
+    .footer-brand span { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
+    .footer-links { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,248,243,0.45); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="logo.png" alt="Money & Growth for Women" />
+    <div class="nav-brand-text">
+      Liz Lemarchand
+      <small>Money &amp; Growth for Women</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="index.html#community">Community</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/permission-signals.html">Tools</a></li>
+    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero">
+  <div class="about-hero-inner">
+    <p class="section-label">My Story</p>
+    <h1 class="about-title">About Liz</h1>
+  </div>
+</div>
+
+<!-- PROSE -->
+<div class="about-prose">
+
+  <p class="prose-p">I grew up believing in the American dream.</p>
+  <p class="prose-p">Work hard. Get a good job. Follow the path. Be happy.</p>
+  <p class="prose-p">So that's what I did. I studied hard, got my degree, and landed a corporate job in Washington, D.C. - the kind of job people were supposed to want. On paper, I had the perfect life. But I was not happy. I was so desperate to escape that I actually tried to plan my own kidnapping just to get out of having to go to work.</p>
+  <p class="prose-p">That realization was the beginning of everything. I stopped following someone else's script and started writing my own. I left the United States, traveled for a year, and eventually settled in the south of France, where I earned an MBA, learned a new language, fell in love, and became a French citizen. I have two binational kids and a life that feels like it belongs to me in a way that D.C. corporate life never did.</p>
+  <p class="prose-p">But the deeper work - the real work - came later.</p>
+  <p class="prose-p">COVID nearly broke my family. What the world experienced as a global crisis, I experienced as a personal reckoning. Everything I thought I'd figured out got pressure-tested, and a lot of it cracked. When I realized my marriage was on the brink of falling apart, I also realized something that stopped me cold: financially, I would be ruined. I felt completely trapped.</p>
+  <p class="prose-p">That fear became fuel. I did the deep work on myself that I had been putting off - and it saved my marriage. It also put me on a path to more financial abundance than I could have imagined possible. I didn't arrive at this work from a place of having it all figured out. I arrived from the wreckage of a life that had to fall apart before I could build something real.</p>
+
+  <div class="prose-divider">
+    <span class="prose-divider-icon">✦ ✦ ✦</span>
+  </div>
+
+  <div class="prose-pullquote">
+    <p>What I believe, at my core, is this: Financial independence is not a nice-to-have for women. It is the foundation of our freedom.</p>
+  </div>
+
+  <p class="prose-p">Throughout history, women were not free - and that wasn't an accident. Financial dependence was the mechanism of our control. When we build financial stability for ourselves, we are not just managing money. We are reclaiming something that was taken from us. We are choosing ourselves.</p>
+  <p class="prose-p">That belief drives everything I do.</p>
+
+  <div class="prose-divider">
+    <span class="prose-divider-icon">✦ ✦ ✦</span>
+  </div>
+
+  <p class="prose-p">I am a certified NLP life coach, trained in CBT, EFT, and somatic practices. I am a voracious reader, a published author (<em>Tune In &amp; Dial Out: How to Win at B2B Cold Calling</em>), and a contributor to HuffPost.</p>
+  <p class="prose-p">I also do standup comedy.</p>
+  <p class="prose-p">Not because I want to be famous. Not because I'm trying to make money at it. I started getting on stage for one reason: to prove to myself that I could do hard things. And it worked. Comedy taught me to find the humor inside the painful parts of life, to get over my fear of rejection, and to show up fully present with zero expectations. Every single one of those lessons lives in my coaching work too.</p>
+  <p class="prose-p">My personal development journey has not been easy. But it has been extraordinary. And it has led me to one unshakeable belief about myself: the Universe has my back.</p>
+  <p class="prose-p">That faith - in something bigger, in the law of attraction, in the idea that we are all capable of more than we can currently imagine - is what I want to give the women I work with. Not just a strategy for making money. An unshakeable foundation rooted in self-worth and confidence.</p>
+  <p class="prose-p">Because when you have that, everything else becomes possible.</p>
+
+  <div class="prose-cta">
+    <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join the community &rarr;</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Money & Growth for Women" />
+      <span>Liz Lemarchand</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#community">Community</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@lizlemarchand" target="_blank">YouTube</a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61585659566756" target="_blank">Facebook</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2025 Liz Lemarchand &middot; All Rights Reserved</p>
+  </div>
+</footer>
+
+</body>
+</html>
