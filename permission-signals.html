@@ -518,8 +518,13 @@
         body: JSON.stringify({ context: selectedContext, text }),
       });
 
+      const contentType = res.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error(`The server returned an unexpected response (status ${res.status}). This usually means the analysis timed out. Please try again with a shorter text.`);
+      }
+
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || `Error ${res.status}`);
+      if (!res.ok) throw new Error(data?.error || `Server error ${res.status}`);
       renderResults(data);
     } catch (e) {
       showError('Something went wrong: ' + e.message);
