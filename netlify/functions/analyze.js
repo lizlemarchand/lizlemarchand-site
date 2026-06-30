@@ -1,3 +1,24 @@
+function parseClaudeJSON(raw) {
+  // Strip markdown code fences if present (```json ... ``` or ``` ... ```)
+  let cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+
+  // Attempt 1: direct parse on cleaned string
+  try {
+    return JSON.parse(cleaned);
+  } catch (_) {}
+
+  // Attempt 2: extract substring between first { and last }
+  const start = cleaned.indexOf('{');
+  const end = cleaned.lastIndexOf('}');
+  if (start !== -1 && end !== -1 && end > start) {
+    try {
+      return JSON.parse(cleaned.slice(start, end + 1));
+    } catch (_) {}
+  }
+
+  throw new Error('Claude returned a response that could not be parsed as JSON. Please try again.');
+}
+
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -40,7 +61,7 @@ Analyze the following text and return a JSON object with exactly this structure:
   "reflection": <a single, personalized, empathetic paragraph (3-5 sentences) written directly to the user — acknowledge what the text is trying to do, name the underlying fear gently, and offer one grounding truth about their worth>
 }
 
-Return ONLY valid JSON. No markdown, no explanation outside the JSON.
+IMPORTANT: Your entire response must be a single valid JSON object and nothing else. Do not wrap it in markdown code fences. Do not include any text, explanation, or formatting before or after the JSON. Begin your response with { and end it with }.
 
 Text to analyze:
 """
@@ -72,7 +93,7 @@ ${text}
 
     const data = await res.json();
     const raw = data.content[0].text.trim();
-    const parsed = JSON.parse(raw);
+    const parsed = parseClaudeJSON(raw);
 
     return {
       statusCode: 200,
