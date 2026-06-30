@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What's Your Selling Archetype? | Liz Lemarchand</title>
+  <meta name="description" content="Take this 2-minute quiz to find out which energy you're really selling from, and whether it's helping or quietly costing you." />
+  <link rel="canonical" href="https://lizlemarchand.com/archetype-quiz.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-cream:   #FDF8F3;
+      --soft-blush:   #F9EDE8;
+      --pale-rose:    #F2D9D9;
+      --blush-mid:    #E8C4BC;
+      --white:        #FFFFFF;
+      --brown:        #2C1810;
+      --brown-mid:    #5C3D2E;
+      --muted:        #9A7B6E;
+      --forest:       #1B4D42;
+      --forest-light: #2E6B5E;
+      --gold:         #C4962A;
+      --gold-light:   #E8D5A8;
+      --gold-pale:    #F5EDDB;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+      --max: 1100px;
+      --pad: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--warm-cream); color: var(--brown); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,243,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0 var(--pad); height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-brand img { height: 46px; width: 46px; object-fit: contain; }
+    .nav-brand-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--brown); line-height: 1.2; }
+    .nav-brand-text small { display: block; font-size: 0.68rem; font-family: var(--sans); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
+    .nav-cta:hover { opacity: 0.88 !important; }
+
+    /* ── HERO ── */
+    .quiz-hero {
+      padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+      min-height: 100vh;
+      display: flex; align-items: center;
+    }
+    .quiz-hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem var(--pad) 4rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+    }
+    h1.hero-title {
+      font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 300; line-height: 1.1; color: var(--brown); margin-bottom: 1.25rem;
+    }
+    h1.hero-title em { font-style: italic; color: var(--forest); }
+    .hero-sub {
+      font-size: 1rem; color: var(--brown-mid); line-height: 1.8;
+      max-width: 52ch; margin: 0 auto 2.25rem;
+    }
+    .btn-start {
+      display: inline-block; background: var(--forest); color: var(--white);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 1rem 2.5rem; border-radius: 40px; border: none; cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s; font-family: var(--sans);
+    }
+    .btn-start:hover { opacity: 0.88; transform: translateY(-2px); }
+    .hero-microcopy {
+      margin-top: 1rem; font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em;
+    }
+
+    /* ── QUIZ SECTION ── */
+    .quiz-section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+      align-items: center;
+    }
+    .quiz-section.active { display: flex; }
+    .quiz-inner {
+      max-width: 680px; margin: 0 auto; padding: 4rem var(--pad) 4rem; width: 100%;
+    }
+
+    /* Progress */
+    .quiz-progress-wrap { margin-bottom: 2.5rem; }
+    .quiz-progress-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 0.6rem;
+    }
+    .quiz-progress-bar {
+      height: 3px; background: var(--gold-light); border-radius: 99px; overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%; background: var(--gold); border-radius: 99px;
+      transition: width 0.35s ease;
+    }
+
+    /* Question */
+    .quiz-q {
+      font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 300; line-height: 1.3; color: var(--brown); margin-bottom: 2rem;
+    }
+
+    /* Answers */
+    .quiz-answers { display: flex; flex-direction: column; gap: 0.85rem; }
+    .quiz-answer {
+      background: var(--white); border: 1.5px solid var(--gold-light);
+      border-radius: 12px; padding: 1.1rem 1.5rem;
+      font-size: 0.95rem; color: var(--brown-mid); line-height: 1.5;
+      cursor: pointer; text-align: left; font-family: var(--sans);
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .quiz-answer:hover {
+      border-color: var(--forest); background: var(--gold-pale); transform: translateX(4px);
+    }
+    .quiz-answer.selected {
+      border-color: var(--forest); background: var(--forest); color: var(--warm-cream);
+    }
+
+    /* ── RESULT SECTION ── */
+    .result-section {
+      display: none;
+      min-height: 100vh;
+      padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+      align-items: flex-start;
+    }
+    .result-section.active { display: flex; }
+    .result-inner {
+      max-width: 680px; margin: 0 auto; padding: 4rem var(--pad) 5rem; width: 100%;
+    }
+    .result-eyebrow {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    h2.result-headline {
+      font-family: var(--serif); font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300; line-height: 1.15; color: var(--brown); margin-bottom: 1.5rem;
+    }
+    h2.result-headline em { font-style: italic; color: var(--forest); }
+    .result-copy {
+      font-size: 1rem; line-height: 1.85; color: var(--brown-mid); margin-bottom: 2.5rem;
+    }
+
+    /* Email form */
+    .result-form-wrap {
+      background: var(--forest); border-radius: 20px; padding: 2.5rem;
+    }
+    .result-form-label {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 0.75rem; display: block;
+    }
+    .result-form-title {
+      font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 300; color: var(--warm-cream); margin-bottom: 1.5rem; line-height: 1.3;
+    }
+    .form-field { margin-bottom: 1rem; }
+    .form-field input {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
+      border: 1.5px solid rgba(232,213,168,0.3); background: rgba(253,248,243,0.08);
+      color: var(--warm-cream); font-family: var(--sans); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-field input::placeholder { color: rgba(253,248,243,0.4); }
+    .form-field input:focus { border-color: var(--gold-light); background: rgba(253,248,243,0.12); }
+    .btn-submit {
+      width: 100%; background: var(--gold); color: var(--brown);
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 1rem; border-radius: 40px; border: none; cursor: pointer;
+      margin-top: 0.5rem; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .form-note {
+      font-size: 0.7rem; color: rgba(253,248,243,0.4); margin-top: 0.75rem; text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--brown); padding: 2.5rem var(--pad); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-brand img { height: 36px; width: 36px; object-fit: contain; opacity: 0.9; }
+    .footer-brand span { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
+    .footer-links { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,248,243,0.45); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) { .nav-links { display: none; } }
+    @media (max-width: 600px) {
+      .quiz-inner, .result-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/index.html" class="nav-brand">
+    <img src="/logo.png" alt="Money & Growth for Women" />
+    <div class="nav-brand-text">
+      Liz Lemarchand
+      <small>Money &amp; Growth for Women</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/index.html#about">About</a></li>
+    <li><a href="/index.html#community">Community</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/permission-signals.html">Tools</a></li>
+    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="quiz-hero" id="hero-section">
+  <div class="quiz-hero-inner">
+    <p class="hero-eyebrow">Free Quiz</p>
+    <h1 class="hero-title">What's Your<br><em>Selling Archetype?</em></h1>
+    <p class="hero-sub">Take this 2-minute quiz to find out which energy you're really selling from, and whether it's helping or quietly costing you.</p>
+    <button class="btn-start" id="start-btn">Start the Quiz</button>
+    <p class="hero-microcopy">No pressure, no pitch. Just clarity.</p>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section" id="quiz-section">
+  <div class="quiz-inner">
+    <div class="quiz-progress-wrap">
+      <p class="quiz-progress-label" id="progress-label">Question 1 of 6</p>
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+    <p class="quiz-q" id="quiz-question"></p>
+    <div class="quiz-answers" id="quiz-answers"></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="result-section" id="result-section">
+  <div class="result-inner">
+    <p class="result-eyebrow">Your Result</p>
+    <h2 class="result-headline" id="result-headline"></h2>
+    <p class="result-copy" id="result-copy"></p>
+
+    <div class="result-form-wrap">
+      <span class="result-form-label">Get Your Free Guide</span>
+      <p class="result-form-title">Send me the full Selling Archetype Guide</p>
+
+      <!-- Netlify form — detected at build time via data-netlify="true" -->
+      <form
+        name="archetype-quiz-leads"
+        method="POST"
+        action="/thank-you-quiz.html"
+        data-netlify="true"
+      >
+        <input type="hidden" name="form-name" value="archetype-quiz-leads" />
+        <input type="hidden" name="archetype" id="form-archetype" value="" />
+
+        <div class="form-field">
+          <input type="text" name="name" placeholder="Your first name" required />
+        </div>
+        <div class="form-field">
+          <input type="email" name="email" placeholder="Your email address" required />
+        </div>
+        <button type="submit" class="btn-submit">Send Me My Guide</button>
+        <p class="form-note">No spam, ever. Unsubscribe any time.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/logo.png" alt="Money & Growth for Women" />
+      <span>Liz Lemarchand</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank">Join Community</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@lizlemarchand" target="_blank">YouTube</a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61585659566756" target="_blank">Facebook</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2025 Liz Lemarchand &middot; All Rights Reserved</p>
+  </div>
+</footer>
+
+<script>
+  // ── DATA ──────────────────────────────────────────────────────────────────
+  const QUESTIONS = [
+    {
+      q: "When a prospect asks \"How much does it cost?\", your gut reaction is:",
+      answers: [
+        { text: "I state the price clearly and let the silence sit.", archetype: "Queen" },
+        { text: "I answer plainly, without softening it or over-explaining.", archetype: "Sage" },
+        { text: "I start listing everything they get, just in case it's not enough.", archetype: "Mother" },
+        { text: "I feel a flicker of urgency to close before they change their mind.", archetype: "Huntress" },
+        { text: "I make it light or charming so it doesn't feel like \"a sales moment.\"", archetype: "Lover" },
+      ]
+    },
+    {
+      q: "A prospect goes quiet after you send your offer. You:",
+      answers: [
+        { text: "Trust the silence. They're considering it.", archetype: "Queen" },
+        { text: "Follow up once, clearly, and let the ball stay in their court.", archetype: "Sage" },
+        { text: "Worry I said something wrong and want to check in \"just to help.\"", archetype: "Mother" },
+        { text: "Follow up multiple times, increasingly urgent.", archetype: "Huntress" },
+        { text: "Send something warm and playful to \"keep it friendly.\"", archetype: "Lover" },
+      ]
+    },
+    {
+      q: "Someone asks for a discount. Your first instinct is:",
+      answers: [
+        { text: "I calmly explain my price reflects my value, and hold it.", archetype: "Queen" },
+        { text: "I say no, clearly, without over-explaining.", archetype: "Sage" },
+        { text: "I feel guilty saying no and consider it.", archetype: "Mother" },
+        { text: "I offer a deal to close it before they walk away.", archetype: "Huntress" },
+        { text: "I deflect with humor rather than answer directly.", archetype: "Lover" },
+      ]
+    },
+    {
+      q: "Before a sales conversation, you feel most:",
+      answers: [
+        { text: "Grounded. I don't need this to go a certain way.", archetype: "Queen" },
+        { text: "Clear. I know exactly what I will and won't accept.", archetype: "Sage" },
+        { text: "Eager to be liked and helpful.", archetype: "Mother" },
+        { text: "Activated, like I need to make this happen.", archetype: "Huntress" },
+        { text: "A little nervous about being \"too salesy,\" so I lean on warmth.", archetype: "Lover" },
+      ]
+    },
+    {
+      q: "When someone says no, you:",
+      answers: [
+        { text: "Receive it without taking it personally.", archetype: "Queen" },
+        { text: "Respect it immediately and move on.", archetype: "Sage" },
+        { text: "Wonder what I could have done differently to change their mind.", archetype: "Mother" },
+        { text: "Feel the urge to convince them otherwise.", archetype: "Huntress" },
+        { text: "Worry they didn't like me.", archetype: "Lover" },
+      ]
+    },
+    {
+      q: "The energy you most want to be known for in your work is:",
+      answers: [
+        { text: "Confidence and presence.", archetype: "Queen" },
+        { text: "Clarity and strength.", archetype: "Sage" },
+        { text: "Warmth and generosity.", archetype: "Mother" },
+        { text: "Drive and momentum.", archetype: "Huntress" },
+        { text: "Connection and charm.", archetype: "Lover" },
+      ]
+    },
+  ];
+
+  const RESULTS = {
+    Queen: {
+      headline: "You sell from <em>Queen</em> Energy",
+      copy: "You lead with confidence and presence, the energy that closes without forcing. Get the full guide, including how to deepen this energy and where it can still slip, in your free download below."
+    },
+    Sage: {
+      headline: "You sell from <em>Sage</em> Energy",
+      copy: "You sell with clarity and strength, rare and powerful traits. Get the full guide, including how to keep your edge without losing warmth, in your free download below."
+    },
+    Mother: {
+      headline: "You sell from <em>Mother</em> Energy",
+      copy: "You sell from generosity, which is beautiful, but it may be costing you. Get your full guide below to learn how to access Queen energy instead, so your giving doesn't come at your own expense."
+    },
+    Huntress: {
+      headline: "You sell from <em>Huntress</em> Energy",
+      copy: "You sell from drive and urgency, which can read as pressure instead of confidence. Get your full guide below to learn how to access Queen energy, the steadier, more magnetic alternative."
+    },
+    Lover: {
+      headline: "You sell from <em>Lover</em> Energy",
+      copy: "You sell through charm and connection, which works, until it becomes a substitute for clarity. Get your full guide below to learn how to access Sage energy, so your worth doesn't depend on being liked."
+    },
+  };
+
+  // ── STATE ─────────────────────────────────────────────────────────────────
+  let currentQ = 0;
+  const tallies = { Queen: 0, Sage: 0, Mother: 0, Huntress: 0, Lover: 0 };
+
+  // Shuffle answer display order once per question on page load
+  const shuffledAnswers = QUESTIONS.map(q => {
+    const copy = [...q.answers];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  });
+
+  // ── HELPERS ───────────────────────────────────────────────────────────────
+  function scoreResult() {
+    const max = Math.max(...Object.values(tallies));
+    const leaders = Object.keys(tallies).filter(k => tallies[k] === max);
+    if (leaders.length === 1) return leaders[0];
+
+    // Tiebreaker: weight Q1 (index 0) and Q6 (index 5) answers by checking
+    // which archetype was chosen on those questions.
+    const tiebreakScores = {};
+    leaders.forEach(k => tiebreakScores[k] = tallies[k]);
+    // We store the Q1 and Q6 picks in the tally weight array
+    if (q1pick && leaders.includes(q1pick)) tiebreakScores[q1pick] += 0.5;
+    if (q6pick && leaders.includes(q6pick)) tiebreakScores[q6pick] += 0.5;
+    return leaders.reduce((a, b) => tiebreakScores[a] >= tiebreakScores[b] ? a : b);
+  }
+
+  let q1pick = null;
+  let q6pick = null;
+
+  function renderQuestion() {
+    const total = QUESTIONS.length;
+    document.getElementById('progress-label').textContent = `Question ${currentQ + 1} of ${total}`;
+    document.getElementById('progress-fill').style.width = `${(currentQ / total) * 100}%`;
+    document.getElementById('quiz-question').textContent = QUESTIONS[currentQ].q;
+
+    const container = document.getElementById('quiz-answers');
+    container.innerHTML = '';
+    shuffledAnswers[currentQ].forEach(answer => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-answer';
+      btn.textContent = answer.text;
+      btn.addEventListener('click', () => selectAnswer(answer.archetype, btn));
+      container.appendChild(btn);
+    });
+  }
+
+  function selectAnswer(archetype, btn) {
+    // Prevent double-click
+    document.querySelectorAll('.quiz-answer').forEach(b => b.disabled = true);
+    btn.classList.add('selected');
+
+    tallies[archetype]++;
+    if (currentQ === 0) q1pick = archetype;
+    if (currentQ === 5) q6pick = archetype;
+
+    setTimeout(() => {
+      currentQ++;
+      if (currentQ < QUESTIONS.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }, 380);
+  }
+
+  function showResult() {
+    document.getElementById('quiz-section').classList.remove('active');
+    const winner = scoreResult();
+    const result = RESULTS[winner];
+
+    document.getElementById('result-headline').innerHTML = result.headline;
+    document.getElementById('result-copy').textContent = result.copy;
+    document.getElementById('form-archetype').value = winner;
+
+    const rs = document.getElementById('result-section');
+    rs.classList.add('active');
+    rs.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── INIT ──────────────────────────────────────────────────────────────────
+  document.getElementById('start-btn').addEventListener('click', () => {
+    document.getElementById('hero-section').style.display = 'none';
+    const qs = document.getElementById('quiz-section');
+    qs.classList.add('active');
+    renderQuestion();
+    qs.scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
