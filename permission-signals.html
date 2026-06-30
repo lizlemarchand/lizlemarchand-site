@@ -424,8 +424,10 @@
         <span class="score-denom">/10</span>
       </div>
       <div class="score-text">
-        <h3 id="score-label">Permission Signal Score</h3>
+        <p class="app-label" style="margin-bottom:0.25rem;">Self-Led Score</p>
+        <h3 id="score-label">—</h3>
         <p id="score-desc"></p>
+        <p style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem;">A higher score means more direct, self-led communication.</p>
       </div>
     </div>
 
@@ -528,15 +530,15 @@
 
   function renderResults(d) {
     // Score
-    document.getElementById('score-num').textContent = d.score;
-    document.getElementById('score-label').textContent = d.score_label || 'Permission Signal Score';
+    document.getElementById('score-num').textContent = d.selfLedScore;
+    document.getElementById('score-label').textContent = d.score_label || '';
     document.getElementById('score-desc').textContent = d.score_description || '';
 
-    // Color the circle by score
+    // Color the circle by score — higher = better, so green at top end
     const circle = document.querySelector('.score-circle');
-    if (d.score <= 3)      circle.style.borderColor = '#1B4D42';
-    else if (d.score <= 6) circle.style.borderColor = '#C4962A';
-    else                   circle.style.borderColor = '#B5686A';
+    if (d.selfLedScore <= 3)      circle.style.borderColor = '#B5686A';
+    else if (d.selfLedScore <= 6) circle.style.borderColor = '#C4962A';
+    else                          circle.style.borderColor = '#1B4D42';
 
     // Signals
     const sl = document.getElementById('signals-list');

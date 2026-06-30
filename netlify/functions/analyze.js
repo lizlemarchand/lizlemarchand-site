@@ -47,9 +47,9 @@ Context: ${context}
 
 Analyze the following text and return a JSON object with exactly this structure:
 {
-  "score": <integer 0-10, where 0 = no permission signals at all, 10 = saturated with permission-seeking language>,
-  "score_label": <short phrase like "Rooted" / "Slightly Hedged" / "Seeking Permission" / "Highly Apologetic">,
-  "score_description": <1-2 sentences explaining what the score means for this specific text>,
+  "selfLedScore": <integer 1-10, where 1-3 = highly apologetic / saturated with permission-seeking language, 4-6 = some hedging present, 7-10 = mostly direct / fully self-led. Higher = better, more confident, more self-led.>,
+  "score_label": <short phrase matching the score band: for 1-3 use "Highly Apologetic" or "Heavily Permission-Seeking"; for 4-6 use "Some Hedging"; for 7-10 use "Mostly Direct", "Grounded & Clear", or "Fully Self-Led">,
+  "score_description": <1-2 sentences explaining what the score means for this specific text — frame it from the self-led direction, e.g. "Your writing is mostly direct, with a few places where hedging softens your authority.">,
   "signals": [
     { "phrase": <the exact phrase or pattern from the text>, "explanation": <why this is a permission signal and what it signals to the reader> }
   ],
