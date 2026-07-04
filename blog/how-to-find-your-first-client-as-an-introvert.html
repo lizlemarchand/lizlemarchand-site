@@ -274,6 +274,8 @@
     .newsletter-input:focus { outline: none; border-color: var(--forest); }
     .newsletter-btn { border: none; cursor: pointer; font-family: var(--sans); }
     .newsletter-note { font-size: 0.72rem; color: var(--muted); }
+    .newsletter-note a { color: var(--forest); text-decoration: underline; }
+    .newsletter-note a:hover { color: var(--gold); }
 
     /* ── FOOTER ── */
     footer { background: var(--brown); padding: 2.5rem var(--pad); }
@@ -477,7 +479,7 @@
         <input type="email" name="email" placeholder="Email address" required class="newsletter-input" />
       </div>
       <button type="submit" class="btn-forest newsletter-btn">Join the Newsletter</button>
-      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+      <p class="newsletter-note">By subscribing you agree to receive weekly emails from Liz Lemarchand. Unsubscribe anytime. View our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
     </form>
   </div>
 </section>
@@ -496,6 +498,7 @@
       <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
       <li><a href="https://www.youtube.com/@lizlemarchand" target="_blank">YouTube</a></li>
       <li><a href="https://www.facebook.com/lizlemarchand" target="_blank">Facebook</a></li>
+      <li><a href="/privacy-policy.html">Privacy Policy</a></li>
     </ul>
     <p class="footer-copy">© 2025 Liz Lemarchand · All Rights Reserved</p>
   </div>

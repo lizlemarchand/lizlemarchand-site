@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thank You | Liz Lemarchand</title>
-  <meta name="description" content="Your Selling Archetype Guide is on its way." />
-  <link rel="canonical" href="https://lizlemarchand.com/thank-you-quiz.html" />
-  <meta name="robots" content="noindex" />
+
+  <title>Privacy Policy | Liz Lemarchand</title>
+  <meta name="description" content="How E Lemarchand Services collects, uses, and protects your personal data when you visit lizlemarchand.com or sign up to receive emails." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="canonical" href="https://lizlemarchand.com/privacy-policy.html" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -15,19 +18,23 @@
     :root {
       --warm-cream:   #FDF8F3;
       --soft-blush:   #F9EDE8;
+      --pale-rose:    #F2D9D9;
       --blush-mid:    #E8C4BC;
       --white:        #FFFFFF;
       --brown:        #2C1810;
       --brown-mid:    #5C3D2E;
       --muted:        #9A7B6E;
       --forest:       #1B4D42;
+      --forest-light: #2E6B5E;
       --gold:         #C4962A;
       --gold-light:   #E8D5A8;
       --gold-pale:    #F5EDDB;
+      --rose-dark:    #B5686A;
 
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans:  'Inter', system-ui, sans-serif;
       --max: 1100px;
+      --article-max: 720px;
       --pad: clamp(1.5rem, 5vw, 3rem);
     }
 
@@ -56,53 +63,46 @@
     .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
     .nav-cta:hover { opacity: 0.88 !important; }
 
-    /* ── PAGE ── */
-    .ty-page {
+    /* ── PAGE HERO ── */
+    .page-hero {
       padding-top: 68px;
-      min-height: 100vh;
-      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
-      display: flex; align-items: center;
+      background: linear-gradient(160deg, var(--warm-cream) 55%, var(--soft-blush) 100%);
+      border-bottom: 1px solid var(--gold-light);
     }
-    .ty-inner {
-      max-width: 620px; margin: 0 auto; padding: 5rem var(--pad) 4rem; text-align: center;
+    .page-hero-inner {
+      max-width: var(--article-max);
+      margin: 0 auto;
+      padding: 4rem var(--pad) 3.5rem;
     }
-
-    .ty-icon {
-      font-family: var(--serif); font-size: 3.5rem; color: var(--gold);
-      opacity: 0.6; margin-bottom: 1.5rem; line-height: 1;
-    }
-    .ty-eyebrow {
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.25rem;
-    }
-    h1.ty-title {
+    h1.page-title {
       font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.2rem);
-      font-weight: 300; line-height: 1.15; color: var(--brown); margin-bottom: 1.25rem;
+      font-weight: 300; line-height: 1.12; color: var(--brown); margin-bottom: 1.5rem;
     }
-    h1.ty-title em { font-style: italic; color: var(--forest); }
-    .ty-body {
-      font-size: 1rem; line-height: 1.85; color: var(--brown-mid);
-      max-width: 50ch; margin: 0 auto 2.5rem;
+    .page-intro {
+      font-size: 1rem; line-height: 1.85; color: var(--brown-mid); max-width: 60ch;
     }
 
-    .ty-divider {
-      display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0;
+    /* ── PAGE BODY ── */
+    .page-body {
+      max-width: var(--article-max);
+      margin: 0 auto;
+      padding: 3.5rem var(--pad) 5rem;
     }
-    .ty-divider::before, .ty-divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--gold-light);
+    .page-body h2 {
+      font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.7rem);
+      font-weight: 500; line-height: 1.2; color: var(--forest);
+      margin: 2.5rem 0 1rem;
     }
-    .ty-divider span { font-family: var(--serif); font-size: 1rem; color: var(--gold); opacity: 0.5; }
-
-    .btn-download {
-      display: inline-block; background: var(--forest); color: var(--white);
-      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 1rem 2.5rem; border-radius: 40px;
-      transition: opacity 0.2s, transform 0.2s; margin-bottom: 1rem;
+    .page-body h2:first-child { margin-top: 0; }
+    .page-body p {
+      font-size: 0.95rem; line-height: 1.85; color: var(--brown-mid); margin-bottom: 1.25rem;
     }
-    .btn-download:hover { opacity: 0.88; transform: translateY(-2px); }
-
-    .ty-note {
-      font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem;
+    .page-body p:last-child { margin-bottom: 0; }
+    .page-body a { color: var(--forest); text-decoration: underline; text-underline-offset: 2px; }
+    .page-body a:hover { color: var(--gold); }
+    .page-updated {
+      font-size: 0.82rem; color: var(--muted); margin-top: 2.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--gold-light);
     }
 
     /* ── FOOTER ── */
@@ -116,8 +116,13 @@
     .footer-links a:hover { color: var(--gold-light); }
     .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
 
-    @media (max-width: 900px) { .nav-links { display: none; } }
-    @media (max-width: 600px) { .ty-inner { padding-left: 1.25rem; padding-right: 1.25rem; } }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .page-hero-inner, .page-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
   </style>
 </head>
 <body>
@@ -140,24 +145,41 @@
   </ul>
 </nav>
 
-<!-- THANK YOU -->
-<div class="ty-page">
-  <div class="ty-inner">
-    <div class="ty-icon">✦</div>
-    <p class="ty-eyebrow">You're in</p>
-    <h1 class="ty-title">Thank you.<br><em>Your guide is ready.</em></h1>
-    <p class="ty-body">
-      Your Selling Archetype Guide is ready to download below. It has everything you need to understand the energy you're selling from right now, and exactly what to do with that knowledge.
-    </p>
-
-    <div class="ty-divider"><span>✦</span></div>
-
-    <a href="/assets/selling-archetype-guide.pdf" class="btn-download" download>
-      Download Your Guide
-    </a>
-    <p class="ty-note">PDF opens in a new tab if your browser doesn't auto-download.</p>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-intro">This policy explains how E Lemarchand Services collects, uses, and protects your personal data when you visit lizlemarchand.com or sign up to receive emails. Your privacy matters and your data will never be sold or shared with third parties for marketing purposes.</p>
   </div>
 </div>
+
+<!-- PAGE BODY -->
+<article class="page-body">
+
+  <h2>Who We Are</h2>
+  <p>E Lemarchand Services operates lizlemarchand.com. For any privacy-related questions, contact us at <a href="mailto:contact@lizlemarchand.com">contact@lizlemarchand.com</a>. For postal address requests, please reach out by email.</p>
+
+  <h2>What Data We Collect</h2>
+  <p>When you submit a form on this site (newsletter sign-up or archetype quiz), we collect your first name and email address. We do not collect payment information, sensitive personal data, or any data from minors under 16.</p>
+
+  <h2>How We Use Your Data</h2>
+  <p>Your data is used solely to send you emails you have opted in to receive, including our weekly newsletter and related content about sales confidence and business growth. We will never use your data for any other purpose without your explicit consent.</p>
+
+  <h2>Who We Share Your Data With</h2>
+  <p>Your name and email address are stored in Systeme.io (our email marketing platform) and processed via Zapier (our automation tool). Both are GDPR-compliant processors. No data is shared with any other third parties.</p>
+
+  <h2>Cookies and Analytics</h2>
+  <p>This website does not currently use cookies or analytics tracking tools.</p>
+
+  <h2>Your Rights</h2>
+  <p>Under GDPR you have the right to access, correct, or delete your personal data at any time. You can unsubscribe from emails at any time using the unsubscribe link in any email we send. To request access to or deletion of your data, contact us at <a href="mailto:contact@lizlemarchand.com">contact@lizlemarchand.com</a>.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy occasionally. The current version will always be available at <a href="/privacy-policy.html">lizlemarchand.com/privacy-policy.html</a>.</p>
+
+  <p class="page-updated">Last updated: July 2026.</p>
+
+</article>
 
 <!-- FOOTER -->
 <footer>
@@ -167,15 +189,15 @@
       <span>Liz Lemarchand</span>
     </div>
     <ul class="footer-links">
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank">Join Community</a></li>
+      <li><a href="/index.html#about">About</a></li>
+      <li><a href="/index.html#community">Community</a></li>
       <li><a href="/blog.html">Blog</a></li>
       <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
       <li><a href="https://www.youtube.com/@lizlemarchand" target="_blank">YouTube</a></li>
-      <li><a href="https://www.facebook.com/profile.php?id=61585659566756" target="_blank">Facebook</a></li>
+      <li><a href="https://www.facebook.com/lizlemarchand" target="_blank">Facebook</a></li>
       <li><a href="/privacy-policy.html">Privacy Policy</a></li>
     </ul>
-    <p class="footer-copy">&copy; 2025 Liz Lemarchand &middot; All Rights Reserved</p>
+    <p class="footer-copy">© 2026 Liz Lemarchand · All Rights Reserved</p>
   </div>
 </footer>
 

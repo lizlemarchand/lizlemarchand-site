@@ -125,7 +125,8 @@
     .newsletter-strip-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     h2.newsletter-strip-heading { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--warm-cream); margin-bottom: 0.35rem; }
     .newsletter-strip-sub { font-size: 0.85rem; color: rgba(253,248,243,0.75); max-width: 46ch; }
-    .newsletter-strip-form { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+    .newsletter-strip-form { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    .newsletter-strip-controls { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
     .newsletter-strip-input {
       font-family: var(--sans); font-size: 0.85rem; color: var(--warm-cream);
       background: rgba(253,248,243,0.08); border: 1px solid rgba(232,213,168,0.3); border-radius: 40px;
@@ -139,6 +140,9 @@
       padding: 0.75rem 1.6rem; border-radius: 40px; white-space: nowrap; transition: opacity 0.2s;
     }
     .newsletter-strip-btn:hover { opacity: 0.88; }
+    .newsletter-strip-note { font-size: 0.68rem; color: rgba(253,248,243,0.5); max-width: 360px; line-height: 1.5; }
+    .newsletter-strip-note a { color: rgba(253,248,243,0.8); text-decoration: underline; }
+    .newsletter-strip-note a:hover { color: var(--gold-light); }
 
     /* ── CARD GRID ── */
     .blog-grid-section { padding: 2.5rem var(--pad) 5rem; max-width: var(--max); margin: 0 auto; }
@@ -200,11 +204,14 @@
       .featured-card-visual { min-height: 160px; }
       .nav-links { display: none; }
       .newsletter-strip-inner { justify-content: center; text-align: center; }
+      .newsletter-strip-form { align-items: center; }
+      .newsletter-strip-note { max-width: 100%; }
     }
     @media (max-width: 600px) {
       .blog-grid { grid-template-columns: 1fr; }
       .featured-card-body { padding: 1.75rem; }
       .newsletter-strip-form { width: 100%; }
+      .newsletter-strip-controls { width: 100%; }
       .newsletter-strip-input { flex: 1; min-width: 0; }
       .newsletter-strip-btn { width: 100%; }
     }
@@ -274,9 +281,12 @@
     </div>
     <form name="newsletter-leads" method="POST" action="/thank-you-newsletter.html" data-netlify="true" class="newsletter-strip-form">
       <input type="hidden" name="form-name" value="newsletter-leads" />
-      <input type="text" name="first-name" placeholder="First name" required class="newsletter-strip-input" />
-      <input type="email" name="email" placeholder="Email address" required class="newsletter-strip-input" />
-      <button type="submit" class="newsletter-strip-btn">Join the Newsletter</button>
+      <div class="newsletter-strip-controls">
+        <input type="text" name="first-name" placeholder="First name" required class="newsletter-strip-input" />
+        <input type="email" name="email" placeholder="Email address" required class="newsletter-strip-input" />
+        <button type="submit" class="newsletter-strip-btn">Join the Newsletter</button>
+      </div>
+      <p class="newsletter-strip-note">By subscribing you agree to receive weekly emails from Liz Lemarchand. Unsubscribe anytime. View our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
     </form>
   </div>
 </section>
@@ -408,6 +418,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank">Join Community</a></li>
       <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
+      <li><a href="/privacy-policy.html">Privacy Policy</a></li>
     </ul>
     <p class="footer-copy">© 2025 Liz Lemarchand · All Rights Reserved</p>
   </div>
