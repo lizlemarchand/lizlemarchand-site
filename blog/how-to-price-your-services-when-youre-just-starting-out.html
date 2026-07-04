@@ -257,6 +257,23 @@
     .btn-forest:hover { opacity: 0.88; transform: translateY(-1px); }
     .article-cta-note { font-size: 0.7rem; color: var(--muted); margin-top: 0.85rem; display: block; }
 
+    /* ── NEWSLETTER ── */
+    .newsletter-section { background: var(--soft-blush); padding: clamp(3rem, 6vw, 4.5rem) var(--pad); text-align: center; }
+    .newsletter-inner { max-width: 560px; margin: 0 auto; }
+    h2.newsletter-heading { font-family: var(--serif); font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 300; color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+    .newsletter-sub { font-size: 0.9rem; color: var(--brown-mid); line-height: 1.8; margin: 0 auto 2rem; max-width: 46ch; }
+    .newsletter-form { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .newsletter-fields { display: flex; gap: 0.75rem; width: 100%; }
+    .newsletter-input {
+      flex: 1; font-family: var(--sans); font-size: 0.88rem; color: var(--brown);
+      background: var(--white); border: 1px solid var(--blush-mid); border-radius: 40px;
+      padding: 0.85rem 1.4rem;
+    }
+    .newsletter-input::placeholder { color: var(--muted); }
+    .newsletter-input:focus { outline: none; border-color: var(--forest); }
+    .newsletter-btn { border: none; cursor: pointer; font-family: var(--sans); }
+    .newsletter-note { font-size: 0.72rem; color: var(--muted); }
+
     /* ── FOOTER ── */
     footer { background: var(--brown); padding: 2.5rem var(--pad); }
     .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
@@ -272,6 +289,7 @@
     @media (max-width: 900px) { .nav-links { display: none; } }
     @media (max-width: 600px) {
       .article-hero-inner, .article-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .newsletter-fields { flex-direction: column; }
     }
   </style>
 </head>
@@ -451,6 +469,23 @@
   </div>
 
 </article>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="newsletter-inner">
+    <h2 class="newsletter-heading">Enjoyed this? There's more where that came from.</h2>
+    <p class="newsletter-sub">Join the weekly newsletter for honest insights on selling, pricing, and building a business that feels like you.</p>
+    <form name="newsletter-leads" method="POST" action="/thank-you-newsletter.html" data-netlify="true" class="newsletter-form">
+      <input type="hidden" name="form-name" value="newsletter-leads" />
+      <div class="newsletter-fields">
+        <input type="text" name="first-name" placeholder="First name" required class="newsletter-input" />
+        <input type="email" name="email" placeholder="Email address" required class="newsletter-input" />
+      </div>
+      <button type="submit" class="btn-forest newsletter-btn">Join the Newsletter</button>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    </form>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>

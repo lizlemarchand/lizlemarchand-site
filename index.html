@@ -302,6 +302,23 @@
     .cta-sub { font-size: 0.9rem; color: var(--brown-mid); max-width: 46ch; margin: 0 auto 2.5rem; line-height: 1.75; }
     .cta-note { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; }
 
+    /* ── NEWSLETTER ── */
+    .newsletter-section { background: var(--soft-blush); padding: var(--section) var(--pad); border-top: 1px solid var(--blush-mid); text-align: center; }
+    .newsletter-inner { max-width: 640px; margin: 0 auto; }
+    h2.newsletter-heading { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300; color: var(--forest); line-height: 1.25; margin-bottom: 1rem; }
+    .newsletter-sub { font-size: 0.9rem; color: var(--brown-mid); line-height: 1.8; margin: 0 auto 2.25rem; max-width: 48ch; }
+    .newsletter-form { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .newsletter-fields { display: flex; gap: 0.75rem; width: 100%; }
+    .newsletter-input {
+      flex: 1; font-family: var(--sans); font-size: 0.88rem; color: var(--brown);
+      background: var(--white); border: 1px solid var(--blush-mid); border-radius: 40px;
+      padding: 0.85rem 1.4rem;
+    }
+    .newsletter-input::placeholder { color: var(--muted); }
+    .newsletter-input:focus { outline: none; border-color: var(--forest); }
+    .newsletter-btn { border: none; cursor: pointer; font-family: var(--sans); }
+    .newsletter-note { font-size: 0.72rem; color: var(--muted); }
+
     /* ── FOOTER ── */
     footer { background: var(--brown); padding: 2.5rem var(--pad); }
     .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
@@ -329,6 +346,7 @@
     }
     @media (max-width: 600px) {
       .offer-grid, .blog-grid { grid-template-columns: 1fr; }
+      .newsletter-fields { flex-direction: column; }
     }
   </style>
 </head>
@@ -598,6 +616,23 @@
   <p class="cta-sub">Join Money &amp; Growth for Women — a free Skool community for women building side businesses who are ready to go deeper than tactics. Start today, no credit card required.</p>
   <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join Free Today</a>
   <p class="cta-note">Free to join · No credit card · Cancel anytime</p>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section" id="newsletter">
+  <div class="newsletter-inner">
+    <h2 class="newsletter-heading">Selling advice for women who are done with pressure.</h2>
+    <p class="newsletter-sub">Weekly insights on sales confidence, feminine energy, and building a business that feels like you. No hustle, no hype.</p>
+    <form name="newsletter-leads" method="POST" action="/thank-you-newsletter.html" data-netlify="true" class="newsletter-form">
+      <input type="hidden" name="form-name" value="newsletter-leads" />
+      <div class="newsletter-fields">
+        <input type="text" name="first-name" placeholder="First name" required class="newsletter-input" />
+        <input type="email" name="email" placeholder="Email address" required class="newsletter-input" />
+      </div>
+      <button type="submit" class="btn-forest newsletter-btn">Join the Newsletter</button>
+      <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+    </form>
+  </div>
 </section>
 
 <!-- FOOTER -->
