@@ -323,13 +323,37 @@
     .footer-links a:hover { color: var(--gold-light); }
     .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
 
+    /* ── MORE WAYS TO GROW ── */
+    .tools-extra-section { padding: 1rem var(--pad) 5rem; }
+    .tools-extra-inner { max-width: 800px; margin: 0 auto; }
+    .tools-extra-header { text-align: center; margin-bottom: 2.5rem; }
+    .tools-extra-header h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 300; color: var(--brown); line-height: 1.25; }
+    .tools-extra-header h2 em { font-style: italic; color: var(--forest); }
+    .tools-extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .tools-extra-card { background: var(--white); border: 1px solid var(--gold-light); border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; text-align: center; align-items: center; }
+    .tools-extra-icon { font-family: var(--serif); font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem; }
+    .tools-extra-cover { width: 100%; max-width: 140px; border-radius: 10px; margin-bottom: 1.25rem; box-shadow: 0 4px 16px rgba(44,24,16,0.1); }
+    .tools-extra-card h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--brown); margin-bottom: 0.75rem; line-height: 1.3; }
+    .tools-extra-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; flex: 1; }
+    .btn-audit { display: inline-block; background: transparent; color: var(--forest); border: 1.5px solid var(--gold); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.7rem 1.5rem; border-radius: 40px; transition: all 0.2s; }
+    .btn-audit:hover { background: var(--gold); color: var(--white); }
+
     @media (max-width: 900px) { .nav-links { display: none; } }
     @media (max-width: 600px) {
       .gate-input-wrap { flex-direction: column; }
       .context-tabs { flex-wrap: wrap; }
       .tool-how { gap: 1.25rem; }
+      .tools-extra-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33B3NV9HCR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-33B3NV9HCR');
+  </script>
 </head>
 <body>
 
@@ -347,6 +371,7 @@
     <li><a href="/index.html#community">Community</a></li>
     <li><a href="/blog.html">Blog</a></li>
     <li><a href="/permission-signals.html">Tools</a></li>
+    <li><a href="https://tidycal.com/lizlemarchand/30min-consultation" target="_blank" rel="noopener">Book a Call</a></li>
     <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Free</a></li>
   </ul>
 </nav>
@@ -452,6 +477,29 @@
     </div>
   </div>
 </div>
+
+<!-- MORE WAYS TO GROW -->
+<section class="tools-extra-section">
+  <div class="tools-extra-inner">
+    <div class="tools-extra-header">
+      <h2>More ways to <em>grow with support.</em></h2>
+    </div>
+    <div class="tools-extra-grid">
+      <div class="tools-extra-card">
+        <div class="tools-extra-icon">✦</div>
+        <h3>Want to Talk It Through <em>1:1?</em></h3>
+        <p>Sometimes a tool isn't enough, you just need to talk it through with someone who's been in sales for 25 years. Book a free, no-pressure discovery call and let's look at what's really going on in your business together.</p>
+        <a href="https://tidycal.com/lizlemarchand/30min-consultation" target="_blank" rel="noopener" class="btn-forest">Book a Free Discovery Call</a>
+      </div>
+      <div class="tools-extra-card">
+        <img src="/blog/permission-signals-audit-cover.png" alt="Permission Signals Audit cover" class="tools-extra-cover" />
+        <h3>The Permission Signals <em>Audit</em></h3>
+        <p>Take five quiet minutes with the free Permission Signals Audit. Check off what feels true right now, find your strongest pattern, and walk away with one self-led action to take today.</p>
+        <a href="/blog/permission-signals-audit-guide.pdf" target="_blank" rel="noopener" class="btn-audit">Download the Free Guide →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
