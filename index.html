@@ -296,6 +296,34 @@
     .blog-excerpt { font-size: 0.82rem; line-height: 1.7; color: rgba(253,248,243,0.55); margin-bottom: 1.25rem; flex: 1; }
     .blog-read { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-light); border-bottom: 1px solid rgba(232,213,168,0.3); padding-bottom: 2px; align-self: flex-start; }
 
+    /* ── FEATURED HERO (blog section) ── */
+    .featured-hero {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 320px;
+      background: rgba(253,248,243,0.06); border: 1px solid rgba(232,213,168,0.25);
+      border-radius: 20px; overflow: hidden; margin-bottom: 2.5rem;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .featured-hero:hover { transform: translateY(-3px); border-color: var(--gold-light); }
+    .featured-hero-visual { position: relative; }
+    .featured-hero-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .featured-hero-badge {
+      position: absolute; top: 1.25rem; left: 1.25rem;
+      background: var(--gold); color: var(--brown);
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 40px;
+    }
+    .featured-hero-body { padding: 2.75rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .featured-hero-category { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1rem; }
+    .featured-hero-title { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 300; line-height: 1.2; color: var(--warm-cream); margin-bottom: 1rem; }
+    .featured-hero-excerpt { font-size: 0.875rem; line-height: 1.75; color: rgba(253,248,243,0.7); margin-bottom: 1.75rem; }
+    .btn-cream-hero {
+      display: inline-block; background: var(--warm-cream); color: var(--forest);
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.7rem 1.6rem; border-radius: 40px; align-self: flex-start;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-cream-hero:hover { opacity: 0.9; transform: translateY(-1px); }
+
     /* ── CTA ── */
     .cta-banner { padding: var(--section) var(--pad); background: linear-gradient(135deg, var(--soft-blush) 0%, var(--pale-rose) 100%); text-align: center; border-top: 1px solid var(--blush-mid); }
     .cta-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose-dark); margin-bottom: 1.25rem; }
@@ -347,10 +375,13 @@
       .testi-grid { grid-template-columns: 1fr; }
       .testi-wide { grid-column: span 1; }
       .nav-links { display: none; }
+      .featured-hero { grid-template-columns: 1fr; min-height: auto; }
+      .featured-hero-visual { min-height: 200px; }
     }
     @media (max-width: 600px) {
       .offer-grid, .blog-grid { grid-template-columns: 1fr; }
       .newsletter-fields { flex-direction: column; }
+      .featured-hero-body { padding: 1.75rem; }
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -583,38 +614,53 @@
       </div>
       <a href="/blog.html" class="btn-ghost-light">All Articles →</a>
     </div>
+
+    <p class="section-label" style="color:var(--gold-light);">Featured Article</p>
+    <a href="/blog/sales-personality-myth.html" class="featured-hero">
+      <div class="featured-hero-visual">
+        <img src="/blog/sales-personality-myth.png" alt="The Sales Personality Myth" />
+        <span class="featured-hero-badge">New</span>
+      </div>
+      <div class="featured-hero-body">
+        <p class="featured-hero-category">Confidence</p>
+        <h3 class="featured-hero-title">The Sales Personality Myth: Why "Natural Born Salespeople" Don't Actually Exist</h3>
+        <p class="featured-hero-excerpt">Science says the "natural born salesperson" barely exists. Here's what really predicts sales success, and the four beliefs keeping you from building the skill.</p>
+        <span class="btn-cream-hero">Read article →</span>
+      </div>
+    </a>
+
     <div class="blog-grid">
       <article class="blog-card">
         <div class="blog-card-thumb">
-          <img src="/blog/sales-personality-myth.png" alt="The Sales Personality Myth" style="width:100%;height:100%;object-fit:cover;" />
-          <span class="blog-tag-pill">Confidence</span>
+          <img src="/blog/good-girl-business-trap-hero.png" alt="The Good Girl Business Trap No One Talks About" style="width:100%;height:100%;object-fit:cover;" />
+          <span class="blog-tag-pill">Self-Leadership</span>
         </div>
         <div class="blog-card-body">
-          <h3 class="blog-title">The Sales Personality Myth: Why "Natural Born Salespeople" Don't Actually Exist</h3>
-          <p class="blog-excerpt">Science says the "natural born salesperson" barely exists. Here's what really predicts sales success, and the four beliefs keeping you from building the skill.</p>
-          <a href="/blog/sales-personality-myth.html" class="blog-read">Read More →</a>
+          <h3 class="blog-title">The "Good Girl" Business Trap No One Talks About</h3>
+          <p class="blog-excerpt">Being agreeable, easy, and low-maintenance was never a business strategy. It was a survival strategy — and it's costing you more than you know.</p>
+          <a href="/blog/the-good-girl-business-trap-no-one-talks-about.html" class="blog-read">Read More →</a>
         </div>
       </article>
       <article class="blog-card">
         <div class="blog-card-thumb">
-          <span class="blog-thumb-icon">♡</span>
-          <span class="blog-tag-pill">Confidence</span>
-        </div>
-        <div class="blog-card-body">
-          <h3 class="blog-title">How to Find Your First Client as an Introvert (Without Feeling Pushy)</h3>
-          <p class="blog-excerpt">You don't need to be louder. You need to be more rooted — and these three shifts will change how clients find you.</p>
-          <a href="/blog/how-to-find-your-first-client-as-an-introvert.html" class="blog-read">Read More →</a>
-        </div>
-      </article>
-      <article class="blog-card">
-        <div class="blog-card-thumb">
-          <span class="blog-thumb-icon">✦</span>
+          <img src="/blog/pricing-services-beginner.png" alt="How to Price Your Services When You're Just Starting Out" style="width:100%;height:100%;object-fit:cover;" />
           <span class="blog-tag-pill">Self-Leadership</span>
         </div>
         <div class="blog-card-body">
           <h3 class="blog-title">How to Price Your Services When You're Just Starting Out</h3>
           <p class="blog-excerpt">The pricing problem is almost never about numbers. Here's what's really going on — and how to charge what you're worth.</p>
           <a href="/blog/how-to-price-your-services-when-youre-just-starting-out.html" class="blog-read">Read More →</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-card-thumb">
+          <img src="/blog/asking-for-money-threat.png" alt="Woman standing calm and grounded, unafraid to ask for what she's worth" style="width:100%;height:100%;object-fit:cover;" />
+          <span class="blog-tag-pill">Money Mindset</span>
+        </div>
+        <div class="blog-card-body">
+          <h3 class="blog-title">Why Asking for Money Feels Like a Threat (And What to Do About It)</h3>
+          <p class="blog-excerpt">It's not a sales problem. It's a nervous system problem — and once you understand that, everything changes.</p>
+          <a href="/blog/why-asking-for-money-feels-like-a-threat.html" class="blog-read">Read More →</a>
         </div>
       </article>
     </div>
