@@ -211,6 +211,39 @@
       font-family: var(--serif); font-size: 1.1rem; color: var(--gold); opacity: 0.6;
     }
 
+    /* ── AUDIT DOWNLOAD BOX ── */
+    .audit-download {
+      background: var(--warm-cream);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin: 2.5rem 0;
+      display: flex; gap: 1.5rem; align-items: center;
+    }
+    .audit-download-cover {
+      width: 100px; flex-shrink: 0; border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(44,24,16,0.12);
+    }
+    .audit-download-text { flex: 1; }
+    .audit-download-eyebrow {
+      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem; display: block;
+    }
+    .audit-download-text h3 {
+      font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+      color: var(--forest); margin: 0 0 0.5rem; line-height: 1.3;
+    }
+    .audit-download-text p {
+      font-size: 0.85rem; line-height: 1.65; color: var(--brown-mid); margin-bottom: 1rem !important;
+    }
+    .btn-audit {
+      display: inline-block; background: transparent; color: var(--forest);
+      border: 1.5px solid var(--gold); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 0.6rem 1.4rem;
+      border-radius: 40px; transition: all 0.2s;
+    }
+    .btn-audit:hover { background: var(--gold); color: var(--white); }
+
     /* ── AUTHOR BIO ── */
     .author-bio {
       background: var(--forest);
@@ -283,6 +316,7 @@
     }
     @media (max-width: 600px) {
       .article-hero-inner, .article-body { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .audit-download { flex-direction: column; text-align: center; }
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -312,7 +346,7 @@
     <li><a href="/permission-signals.html">Tools</a></li>
     <li><a href="https://payhip.com/lizlemarchand" target="_blank" rel="noopener">Shop</a></li>
     <li><a href="https://tidycal.com/lizlemarchand/30min-consultation" target="_blank" rel="noopener">Book a Call</a></li>
-    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Free</a></li>
+    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Now</a></li>
   </ul>
 </nav>
 
@@ -404,13 +438,24 @@
 
   <p>This week. Thirty minutes. That's the whole ask.</p>
 
+  <!-- PERMISSION SIGNALS AUDIT GATED DOWNLOAD -->
+  <div class="audit-download">
+    <img src="/blog/permission-signals-audit-cover.png" alt="Permission Signals Audit cover" class="audit-download-cover" />
+    <div class="audit-download-text">
+      <span class="audit-download-eyebrow">Free Guide</span>
+      <h3>Not Sure Which Pattern Is Running the Show?</h3>
+      <p>Take five quiet minutes with the free Permission Signals Audit. Check off what feels true right now, find your strongest pattern, and walk away with one self-led action to take today.</p>
+      <a href="/permission-signals-audit.html" class="btn-audit">Download the Permission Signals Audit</a>
+    </div>
+  </div>
+
   <!-- AUTHOR BIO -->
   <div class="author-bio">
     <div class="author-bio-text">
       <span class="author-bio-label">About the Author</span>
       <h3>Liz Lemarchand</h3>
-      <p>Liz Lemarchand is a certified NLP life coach with over 25 years of corporate sales and marketing experience. She helps women grow their business, and just as importantly, grow into the calm, confident business leader they need to be to build real financial independence. She is the founder of Money &amp; Growth for Women, a free Skool community.</p>
-      <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-cream">Join Her Free Community →</a>
+      <p>Liz Lemarchand is a certified NLP life coach with over 25 years of corporate sales and marketing experience. She helps women grow their business, and just as importantly, grow into the calm, confident business leader they need to be to build real financial independence. She is the founder of Money &amp; Growth for Women, a Skool community.</p>
+      <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-cream">Join Her Community →</a>
     </div>
   </div>
 
@@ -419,8 +464,8 @@
     <p class="article-cta-label">Ready to Stop Waiting and Start Practicing?</p>
     <h2>Join <em>Money &amp; Growth for Women</em></h2>
     <p>A free community for women building businesses, offers, and confidence without the hustle, the shame, or the performance. Inside, you'll find the free course Selling for Women Who Hate Sales, real support, and women doing this work alongside you.</p>
-    <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join Free Today</a>
-    <span class="article-cta-note">Free to join · No credit card · Cancel anytime</span>
+    <a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="btn-forest">Join the Community</a>
+    <span class="article-cta-note">No credit card · Cancel anytime</span>
   </div>
 
 </article>
