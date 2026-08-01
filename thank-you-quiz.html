@@ -139,6 +139,7 @@
       <small>Money &amp; Growth for Women</small>
     </div>
   </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
   <ul class="nav-links">
     <li><a href="/index.html#about">About</a></li>
     <li><a href="/index.html#community">Community</a></li>
@@ -189,5 +190,44 @@
   </div>
 </footer>
 
-</body>
+
+<style>
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--forest, #1B4D42); cursor: pointer; padding: 0.4rem 0.6rem; line-height: 1; margin-left: auto; z-index: 1001; }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; }
+    .nav-links { position: fixed; top: 0; right: -100%; width: min(80vw, 320px); height: 100vh; background: var(--warm-cream, #FDF8F3); flex-direction: column; align-items: flex-start; gap: 0; padding: 6rem 2rem 2rem; box-shadow: -8px 0 30px rgba(44,24,16,0.12); transition: right 0.3s ease; z-index: 1000; overflow-y: auto; }
+    .nav-links.active { right: 0; display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links li a { display: block; padding: 0.9rem 0; border-bottom: 1px solid rgba(44,24,16,0.08); font-size: 0.85rem; }
+  }
+</style>
+<script>
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var links = document.querySelector('.nav-links');
+    if (!btn || !links) return;
+    function closeMenu() {
+      links.classList.remove('active');
+      btn.textContent = '☰';
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = links.classList.toggle('active');
+      btn.textContent = isOpen ? '✕' : '☰';
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('click', function (e) {
+      if (links.classList.contains('active') && !links.contains(e.target) && e.target !== btn) {
+        closeMenu();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script></body>
 </html>
