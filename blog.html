@@ -164,6 +164,7 @@
       display: flex; align-items: center; justify-content: center; position: relative;
     }
     .blog-thumb-icon { font-family: var(--serif); font-size: 4rem; opacity: 0.3; color: var(--brown); font-style: italic; }
+    .blog-card-thumb-img { width: 100%; height: 100%; object-fit: cover; }
     .blog-tag-pill {
       position: absolute; bottom: 0.75rem; left: 0.75rem;
       background: var(--gold); color: var(--white);
@@ -306,6 +307,32 @@
 <section class="blog-grid-section">
   <div class="blog-grid" id="blog-grid">
 
+    <article class="blog-card" data-category="confidence">
+      <div class="blog-card-thumb">
+        <span class="blog-thumb-icon">✦</span>
+        <span class="blog-tag-pill">Confidence</span>
+      </div>
+      <div class="blog-card-body">
+        <p class="blog-card-meta">August 1, 2026 · 6 min read</p>
+        <h2 class="blog-card-title">Nobody Buys From a Side Hustler</h2>
+        <p class="blog-card-excerpt">"Side hustle" might describe your schedule, but it won't make anyone trust you to solve their problem. Here's the quiet hedge that's costing you sales, and how to drop it.</p>
+        <a href="blog/nobody-buys-from-a-side-hustler.html" class="blog-read">Read Article →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-category="self-leadership">
+      <div class="blog-card-thumb">
+        <span class="blog-thumb-icon">✦</span>
+        <span class="blog-tag-pill">Self-Leadership</span>
+      </div>
+      <div class="blog-card-body">
+        <p class="blog-card-meta">August 1, 2026 · 6 min read</p>
+        <h2 class="blog-card-title">Faith Is a Business Skill</h2>
+        <p class="blog-card-excerpt">A launch that flops or a client who says no isn't proof you failed. Here's why trusting the timing, even when the path looks messy, might be the most underrated skill in business.</p>
+        <a href="blog/faith-is-a-business-skill.html" class="blog-read">Read Article →</a>
+      </div>
+    </article>
+
     <article class="blog-card" data-category="money-mindset">
       <div class="blog-card-thumb">
         <span class="blog-thumb-icon">✦</span>
@@ -373,7 +400,7 @@
 
     <article class="blog-card" data-category="money-mindset">
       <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
+        <img src="/blog/one-magic-method-sales.png" alt="The ONE Magic Method That Guarantees Sales" class="blog-card-thumb-img" />
         <span class="blog-tag-pill">Money Mindset</span>
       </div>
       <div class="blog-card-body">
@@ -605,6 +632,8 @@
     .nav-links.active { right: 0; display: flex; }
     .nav-links li { width: 100%; }
     .nav-links li a { display: block; padding: 0.9rem 0; border-bottom: 1px solid rgba(44,24,16,0.08); font-size: 0.85rem; }
+  .nav-links li:has(a.nav-cta) { border-bottom: none; text-align: center; margin-top: 0.5rem; }
+    .nav-links li a.nav-cta { display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0.65rem 1.8rem !important; }
   }
 </style>
 <script>
