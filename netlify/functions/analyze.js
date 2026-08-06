@@ -78,7 +78,7 @@ ${text}
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 1024,
+        max_tokens: 4096,
         messages: [{ role: 'user', content: prompt }],
       }),
     });
@@ -87,6 +87,7 @@ ${text}
       const err = await res.json().catch(() => ({}));
       return {
         statusCode: res.status,
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ error: err?.error?.message || `Anthropic API error ${res.status}` }),
       };
     }
@@ -103,6 +104,7 @@ ${text}
   } catch (e) {
     return {
       statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ error: e.message }),
     };
   }
