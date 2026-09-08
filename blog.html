@@ -110,8 +110,30 @@
     .btn-cream-sm:hover { opacity: 0.9; transform: translateY(-1px); }
 
     /* ── CATEGORY FILTERS ── */
-    .filters-section { max-width: var(--max); margin: 0 auto; padding: 2.5rem var(--pad) 0; }
+    .filters-section { max-width: var(--max); margin: 0 auto; padding: 2.5rem var(--pad) 0; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
     .filter-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .blog-search-wrap { position: relative; flex-shrink: 0; }
+    .blog-search-input {
+      font-family: var(--sans); font-size: 0.8rem; color: var(--brown);
+      background: var(--white); border: 1px solid var(--gold-light); border-radius: 40px;
+      padding: 0.65rem 1.2rem 0.65rem 2.4rem; min-width: 240px;
+      transition: border-color 0.2s;
+    }
+    .blog-search-input::placeholder { color: var(--muted); }
+    .blog-search-input:focus { outline: none; border-color: var(--forest); }
+    .blog-search-icon {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      font-size: 0.85rem; color: var(--muted); pointer-events: none;
+    }
+    .no-results-message {
+      grid-column: 1 / -1; text-align: center; padding: 3rem 1rem;
+      font-family: var(--serif); font-size: 1.15rem; font-style: italic; color: var(--muted);
+    }
+    .no-results-message[hidden] { display: none; }
+    @media (max-width: 600px) {
+      .filters-section { flex-direction: column; align-items: stretch; }
+      .blog-search-input { width: 100%; }
+    }
     .filter-btn {
       background: transparent; border: 1px solid var(--gold-light); color: var(--brown-mid);
       font-family: var(--sans); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
@@ -282,6 +304,10 @@
     <button class="filter-btn" data-filter="confidence">Confidence</button>
     <button class="filter-btn" data-filter="self-leadership">Self-Leadership</button>
   </div>
+  <div class="blog-search-wrap">
+    <span class="blog-search-icon">⌕</span>
+    <input type="text" id="blog-search" class="blog-search-input" placeholder="Search articles..." aria-label="Search articles" />
+  </div>
 </section>
 
 <!-- NEWSLETTER STRIP -->
@@ -306,6 +332,8 @@
 <!-- CARD GRID -->
 <section class="blog-grid-section">
   <div class="blog-grid" id="blog-grid">
+
+    <p class="no-results-message" id="no-results-message" hidden>No articles match your search. Try a different word.</p>
 
     <article class="blog-card" data-category="self-leadership">
       <div class="blog-card-thumb">
@@ -677,23 +705,33 @@
 
   const grid = document.getElementById('blog-grid');
   const loadMoreBtn = document.getElementById('load-more-btn');
+  const searchInput = document.getElementById('blog-search');
+  const noResultsMsg = document.getElementById('no-results-message');
   let activeFilter = 'all';
   let visibleCount = CARDS_PER_PAGE;
+  let searchQuery = '';
 
   function getFilteredCards() {
     return Array.from(grid.querySelectorAll('.blog-card')).filter(card => {
-      return activeFilter === 'all' || card.dataset.category === activeFilter;
+      const matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+      if (!matchesCategory) return false;
+      if (!searchQuery) return true;
+      const title = card.querySelector('.blog-card-title').textContent.toLowerCase();
+      const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
+      return title.includes(searchQuery) || excerpt.includes(searchQuery);
     });
   }
 
   function renderCards() {
     const all = Array.from(grid.querySelectorAll('.blog-card'));
     const filtered = getFilteredCards();
+    const limit = searchQuery ? filtered.length : visibleCount;
 
     all.forEach(card => card.hidden = true);
-    filtered.slice(0, visibleCount).forEach(card => card.hidden = false);
+    filtered.slice(0, limit).forEach(card => card.hidden = false);
 
-    loadMoreBtn.hidden = filtered.length <= visibleCount;
+    loadMoreBtn.hidden = Boolean(searchQuery) || filtered.length <= visibleCount;
+    noResultsMsg.hidden = filtered.length !== 0;
   }
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -708,6 +746,12 @@
 
   loadMoreBtn.addEventListener('click', () => {
     visibleCount += REVEAL_COUNT;
+    renderCards();
+  });
+
+  searchInput.addEventListener('input', () => {
+    searchQuery = searchInput.value.trim().toLowerCase();
+    visibleCount = CARDS_PER_PAGE;
     renderCards();
   });
 
