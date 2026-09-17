@@ -6,3 +6,9 @@
 
 [functions."analyze"]
   timeout = 26
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
