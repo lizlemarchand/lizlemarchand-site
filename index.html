@@ -179,6 +179,20 @@
     }
     .hero-logo-float img { width: 100%; height: 100%; object-fit: contain; }
 
+    /* ── DECODER PROMO ── */
+    .decoder-promo { background: var(--forest); padding: var(--section) var(--pad); }
+    .decoder-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; align-items: center; }
+    .decoder-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.25rem; }
+    h2.decoder-heading { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; line-height: 1.15; color: var(--warm-cream); margin-bottom: 1.5rem; }
+    .decoder-body { font-size: 0.95rem; line-height: 1.85; color: rgba(253,248,243,0.8); margin-bottom: 2.25rem; max-width: 56ch; }
+    .decoder-promo .btn-gold { color: var(--forest); }
+    .decoder-card { background: rgba(253,248,243,0.06); border: 1px solid rgba(232,213,168,0.3); border-radius: 20px; padding: 2.25rem; }
+    .decoder-card-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; font-style: italic; color: var(--gold-light); margin-bottom: 1.25rem; }
+    .decoder-list { list-style: none; }
+    .decoder-list li { display: flex; align-items: baseline; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid rgba(232,213,168,0.18); font-family: var(--serif); font-size: 1.2rem; color: var(--warm-cream); }
+    .decoder-list li span { font-family: var(--sans); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; color: var(--gold); }
+    .decoder-card-foot { margin-top: 1.25rem; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(253,248,243,0.5); }
+
     /* ── QUOTE STRIP ── */
     .strip {
       background: var(--soft-blush);
@@ -370,7 +384,7 @@
       .hero-image-frame { max-width: 280px; margin: 0 auto; }
       .hero-badge { right: 0; }
       .hero-logo-float { left: 0; top: 0.5rem; }
-      .truth-grid, .community-section, .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .truth-grid, .community-section, .about-inner, .decoder-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-tag { right: 0; bottom: -1rem; }
       .offer-grid, .blog-grid { grid-template-columns: 1fr 1fr; }
       .testi-grid { grid-template-columns: 1fr; }
@@ -446,6 +460,29 @@
         <div class="hero-badge-num">25+</div>
         <div class="hero-badge-label">Years in sales &amp; marketing</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECODER PROMO -->
+<section class="decoder-promo">
+  <div class="decoder-inner">
+    <div class="decoder-text">
+      <p class="decoder-eyebrow">Free Guide</p>
+      <h2 class="decoder-heading">Freeze up when it's time to talk money?</h2>
+      <p class="decoder-body">You know the feeling: the throat tightens on the price, the silence after the ask feels unbearable, 'let me think about it' turns into three weeks of nothing. The Sales Conversation Decoder gives you the exact words for the five moments that trip you up most, plus what your client's objections actually mean.</p>
+      <a href="/sales-conversation-decoder.html" class="btn-gold">Download the Guide →</a>
+    </div>
+    <div class="decoder-card">
+      <p class="decoder-card-title">The Five Freeze Points</p>
+      <ol class="decoder-list">
+        <li><span>01</span>The ask</li>
+        <li><span>02</span>The price</li>
+        <li><span>03</span>The silence</li>
+        <li><span>04</span>The follow-up</li>
+        <li><span>05</span>The close</li>
+      </ol>
+      <p class="decoder-card-foot">Kind · Clear · True</p>
     </div>
   </div>
 </section>

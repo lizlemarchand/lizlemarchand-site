@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Sales Conversation Decoder | Liz Lemarchand</title>
+  <meta name="description" content="Free download for women entrepreneurs who freeze up in sales calls. Get exactly what to say in the 5 moments that trip you up, and what your client's objections actually mean." />
+  <link rel="canonical" href="https://lizlemarchand.com/sales-conversation-decoder.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --warm-cream:   #FDF8F3;
+      --soft-blush:   #F9EDE8;
+      --pale-rose:    #F2D9D9;
+      --blush-mid:    #E8C4BC;
+      --white:        #FFFFFF;
+      --brown:        #2C1810;
+      --brown-mid:    #5C3D2E;
+      --muted:        #9A7B6E;
+      --forest:       #1B4D42;
+      --forest-light: #2E6B5E;
+      --gold:         #C4962A;
+      --gold-light:   #E8D5A8;
+      --gold-pale:    #F5EDDB;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+      --max: 1100px;
+      --pad: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--warm-cream); color: var(--brown); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(253,248,243,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0 var(--pad); height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-brand img { height: 46px; width: 46px; object-fit: contain; }
+    .nav-brand-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--brown); line-height: 1.2; }
+    .nav-brand-text small { display: block; font-size: 0.68rem; font-family: var(--sans); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brown-mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-cta { background: var(--forest) !important; color: var(--white) !important; padding: 0.6rem 1.3rem; border-radius: 40px !important; }
+    .nav-cta:hover { opacity: 0.88 !important; }
+
+    /* ── HERO ── */
+    .psa-hero {
+      padding-top: 68px;
+      background: linear-gradient(160deg, var(--warm-cream) 50%, var(--soft-blush) 100%);
+    }
+    .psa-hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem var(--pad) 4rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+    }
+    h1.psa-title {
+      font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 300; line-height: 1.1; color: var(--forest); margin-bottom: 1.25rem;
+    }
+    .psa-sub {
+      font-size: 1.05rem; color: var(--brown-mid); line-height: 1.8;
+      max-width: 52ch; margin: 0 auto 1.5rem;
+    }
+    .psa-desc {
+      font-size: 0.92rem; color: var(--muted); line-height: 1.85;
+      max-width: 54ch; margin: 0 auto 2.75rem;
+    }
+
+    /* ── FORM CARD ── */
+    .psa-form-wrap {
+      background: var(--forest); border-radius: 20px; padding: 2.5rem;
+      text-align: left;
+    }
+    .psa-form-label {
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 0.75rem; display: block;
+    }
+    .psa-form-title {
+      font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 300; color: var(--warm-cream); margin-bottom: 1.5rem; line-height: 1.3;
+    }
+    .form-field { margin-bottom: 1rem; }
+    .form-field input {
+      width: 100%; padding: 0.85rem 1rem; border-radius: 8px;
+      border: 1.5px solid rgba(232,213,168,0.3); background: rgba(253,248,243,0.08);
+      color: var(--warm-cream); font-family: var(--sans); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-field input::placeholder { color: rgba(253,248,243,0.4); }
+    .form-field input:focus { border-color: var(--gold-light); background: rgba(253,248,243,0.12); }
+    .btn-submit {
+      width: 100%; background: var(--gold); color: var(--brown);
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 1rem; border-radius: 40px; border: none; cursor: pointer;
+      margin-top: 0.5rem; transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .form-note {
+      font-size: 0.7rem; color: rgba(253,248,243,0.4); margin-top: 0.75rem; text-align: center;
+    }
+    .form-note a { color: rgba(253,248,243,0.7); text-decoration: underline; }
+    .form-note a:hover { color: var(--gold-light); }
+
+    /* ── ALSO FOR YOU ── */
+    .also-section { background: var(--soft-blush); border-top: 1px solid var(--blush-mid); padding: 4rem var(--pad); }
+    .also-inner { max-width: var(--max); margin: 0 auto; }
+    .also-header { text-align: center; margin-bottom: 2.5rem; }
+    h2.also-heading {
+      font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 300; color: var(--brown); line-height: 1.2;
+    }
+    .also-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+    .also-card {
+      background: var(--white); border: 1px solid var(--blush-mid);
+      border-radius: 20px; padding: 2rem; text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .also-card h3 {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
+      color: var(--brown); margin-bottom: 0.75rem; line-height: 1.3;
+    }
+    .also-card p {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; flex: 1;
+    }
+    .btn-forest-outline {
+      display: inline-block; background: transparent; color: var(--forest);
+      border: 1.5px solid var(--forest); font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 0.75rem 1.6rem;
+      border-radius: 40px; transition: all 0.2s;
+    }
+    .btn-forest-outline:hover { background: var(--forest); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--brown); padding: 2.5rem var(--pad); }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-brand img { height: 36px; width: 36px; object-fit: contain; opacity: 0.9; }
+    .footer-brand span { font-family: var(--serif); font-size: 1rem; color: var(--warm-cream); }
+    .footer-links { display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(253,248,243,0.45); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 0.7rem; color: rgba(253,248,243,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) { .nav-links { display: none; } }
+    @media (max-width: 600px) {
+      .psa-hero-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .also-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-33B3NV9HCR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-33B3NV9HCR');
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/index.html" class="nav-brand">
+    <img src="/logo.png" alt="Money & Growth for Women" />
+    <div class="nav-brand-text">
+      Liz Lemarchand
+      <small>Money &amp; Growth for Women</small>
+    </div>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <ul class="nav-links">
+    <li><a href="/index.html#about">About</a></li>
+    <li><a href="/index.html#community">Community</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/permission-signals.html">Tools</a></li>
+    <li><a href="https://payhip.com/lizlemarchand" target="_blank" rel="noopener">Shop</a></li>
+    <li><a href="https://tidycal.com/lizlemarchand/30min-consultation" target="_blank" rel="noopener">Book a Call</a></li>
+    <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank" class="nav-cta">Join Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="psa-hero">
+  <div class="psa-hero-inner">
+    <p class="hero-eyebrow">Free Guide</p>
+    <h1 class="psa-title">The Sales Conversation Decoder</h1>
+    <p class="psa-sub">You know the feeling: your throat tightens on the price, the silence after you ask feels unbearable, and 'let me think about it' turns into three weeks of silence. This free guide gives you the exact words for all five moments.</p>
+    <p class="psa-desc">Includes The Five Freeze Points, exactly what to say when you freeze on the ask, the price, the silence, the follow-up, and the close, plus The Objection Decoder, what your client's objections actually mean and how to respond. All through one simple rule: Kind, Clear, and True.</p>
+
+    <div class="psa-form-wrap">
+      <span class="psa-form-label">Get Your Free Guide</span>
+      <p class="psa-form-title">Download the Sales Conversation Decoder</p>
+
+      <!-- Netlify form, detected at build time via data-netlify="true" -->
+      <form
+        name="sales-conversation-decoder-leads"
+        method="POST"
+        action="/thank-you-decoder.html"
+        data-netlify="true"
+      >
+        <input type="hidden" name="form-name" value="sales-conversation-decoder-leads" />
+
+        <div class="form-field">
+          <input type="text" name="first-name" placeholder="Your first name" required />
+        </div>
+        <div class="form-field">
+          <input type="email" name="email" placeholder="Your email address" required />
+        </div>
+        <button type="submit" class="btn-submit">Download the Guide</button>
+        <p class="form-note">By submitting you agree to receive emails from Liz Lemarchand. Unsubscribe anytime. View our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ALSO FOR YOU -->
+<section class="also-section">
+  <div class="also-inner">
+    <div class="also-header">
+      <h2 class="also-heading">Also for you</h2>
+    </div>
+    <div class="also-grid">
+      <div class="also-card">
+        <h3>The Permission Signals Audit</h3>
+        <p>Find the hidden ways you're holding back in your business.</p>
+        <a href="/permission-signals-audit.html" class="btn-forest-outline">Get the Audit</a>
+      </div>
+      <div class="also-card">
+        <h3>Why You Avoid Following Up With Leads</h3>
+        <p>The follow-up habit that quietly closes more sales.</p>
+        <a href="/blog/why-you-avoid-following-up-with-leads.html" class="btn-forest-outline">Read the Article</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/logo.png" alt="Money & Growth for Women" />
+      <span>Liz Lemarchand</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="https://www.skool.com/money-growth-for-women-2353/about" target="_blank">Join Community</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="https://www.instagram.com/lizlemarchand/" target="_blank">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@lizlemarchand" target="_blank">YouTube</a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61585659566756" target="_blank">Facebook</a></li>
+      <li><a href="https://payhip.com/lizlemarchand" target="_blank" rel="noopener">Shop</a></li>
+      <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 Liz Lemarchand &middot; All Rights Reserved</p>
+  </div>
+</footer>
+
+
+<style>
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--forest, #1B4D42); cursor: pointer; padding: 0.4rem 0.6rem; line-height: 1; margin-left: auto; z-index: 1001; }
+  @media (max-width: 900px) {
+    .nav-toggle { display: block; }
+    .nav-links { position: fixed; top: 0; right: -100%; width: min(80vw, 320px); height: 100vh; background: var(--warm-cream, #FDF8F3); flex-direction: column; align-items: flex-start; gap: 0; padding: 6rem 2rem 2rem; box-shadow: -8px 0 30px rgba(44,24,16,0.12); transition: right 0.3s ease; z-index: 1000; overflow-y: auto; }
+    .nav-links.active { right: 0; display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links li a { display: block; padding: 0.9rem 0; border-bottom: 1px solid rgba(44,24,16,0.08); font-size: 0.85rem; }
+  .nav-links li:has(a.nav-cta) { border-bottom: none; text-align: center; margin-top: 0.5rem; }
+    .nav-links li a.nav-cta { display: inline-flex; align-items: center; justify-content: center; width: auto; padding: 0.65rem 1.8rem !important; }
+  }
+</style>
+<script>
+  (function () {
+    var btn = document.getElementById('navToggle');
+    var links = document.querySelector('.nav-links');
+    if (!btn || !links) return;
+    function closeMenu() {
+      links.classList.remove('active');
+      btn.textContent = '☰';
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = links.classList.toggle('active');
+      btn.textContent = isOpen ? '✕' : '☰';
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+    links.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('click', function (e) {
+      if (links.classList.contains('active') && !links.contains(e.target) && e.target !== btn) {
+        closeMenu();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
+</script></body>
+</html>
