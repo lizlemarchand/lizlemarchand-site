@@ -58,11 +58,11 @@
       --brown:        #2C1810;
       --brown-mid:    #5C3D2E;
       --muted:        #9A7B6E;
-      --forest:       #1B4D42;
-      --forest-light: #2E6B5E;
-      --gold:         #C4962A;
-      --gold-light:   #E8D5A8;
-      --gold-pale:    #F5EDDB;
+      --forest:       #024144;
+      --forest-light: #1E6367;
+      --gold:         #C70252;
+      --gold-light:   #F3C9D6;
+      --gold-pale:    #FBEFF2;
       --rose-dark:    #B5686A;
 
       --serif: 'Cormorant Garamond', Georgia, serif;
@@ -119,7 +119,7 @@
 
     .article-tag {
       display: inline-block;
-      background: var(--gold); color: var(--brown);
+      background: var(--gold); color: var(--white);
       font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 0.3rem 0.85rem; border-radius: 40px; margin-bottom: 1.5rem;
     }
@@ -437,7 +437,7 @@
 
 
 <style>
-  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--forest, #1B4D42); cursor: pointer; padding: 0.4rem 0.6rem; line-height: 1; margin-left: auto; z-index: 1001; }
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--forest, #024144); cursor: pointer; padding: 0.4rem 0.6rem; line-height: 1; margin-left: auto; z-index: 1001; }
   @media (max-width: 900px) {
     .nav-toggle { display: block; }
     .nav-links { position: fixed; top: 0; right: -100%; width: min(80vw, 320px); height: 100vh; background: var(--warm-cream, #FDF8F3); flex-direction: column; align-items: flex-start; gap: 0; padding: 6rem 2rem 2rem; box-shadow: -8px 0 30px rgba(44,24,16,0.12); transition: right 0.3s ease; z-index: 1000; overflow-y: auto; }

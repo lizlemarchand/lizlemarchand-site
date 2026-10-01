@@ -14,7 +14,7 @@
     :root {
       --warm-cream: #FDF8F3; --soft-blush: #F9EDE8; --blush-mid: #E8C4BC;
       --white: #FFFFFF; --brown: #2C1810; --brown-mid: #5C3D2E; --muted: #9A7B6E;
-      --forest: #1B4D42; --forest-light: #2E6B5E; --gold: #C4962A; --gold-light: #E8D5A8; --gold-pale: #F5EDDB;
+      --forest: #024144; --forest-light: #1E6367; --gold: #C70252; --gold-light: #F3C9D6; --gold-pale: #FBEFF2;
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
       --max: 1100px; --pad: clamp(1.5rem, 5vw, 3rem);
@@ -67,10 +67,10 @@
       min-height: 320px;
       transition: transform 0.25s, box-shadow 0.25s;
     }
-    .featured-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(27,77,66,0.25); }
+    .featured-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(2,65,68,0.25); }
 
     .featured-card-visual {
-      background: linear-gradient(135deg, rgba(196,150,42,0.3) 0%, rgba(27,77,66,0.6) 100%);
+      background: linear-gradient(135deg, rgba(199,2,82,0.3) 0%, rgba(2,65,68,0.6) 100%);
       display: flex; align-items: center; justify-content: center;
       padding: 2.5rem;
       position: relative;
@@ -79,7 +79,7 @@
     .featured-card-image { width: 100%; height: 100%; object-fit: cover; }
     .featured-card-badge {
       position: absolute; top: 1.25rem; left: 1.25rem;
-      background: var(--gold); color: var(--brown);
+      background: var(--gold); color: var(--white);
       font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 0.3rem 0.8rem; border-radius: 40px;
     }
@@ -152,13 +152,13 @@
     .newsletter-strip-controls { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
     .newsletter-strip-input {
       font-family: var(--sans); font-size: 0.85rem; color: var(--warm-cream);
-      background: rgba(253,248,243,0.08); border: 1px solid rgba(232,213,168,0.3); border-radius: 40px;
+      background: rgba(253,248,243,0.08); border: 1px solid rgba(243,201,214,0.3); border-radius: 40px;
       padding: 0.7rem 1.2rem; min-width: 160px;
     }
     .newsletter-strip-input::placeholder { color: rgba(253,248,243,0.5); }
     .newsletter-strip-input:focus { outline: none; border-color: var(--gold-light); background: rgba(253,248,243,0.14); }
     .newsletter-strip-btn {
-      background: var(--gold); color: var(--brown); border: none; cursor: pointer;
+      background: var(--gold); color: var(--white); border: none; cursor: pointer;
       font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 0.75rem 1.6rem; border-radius: 40px; white-space: nowrap; transition: opacity 0.2s;
     }
@@ -840,7 +840,7 @@
 
 
 <style>
-  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--forest, #1B4D42); cursor: pointer; padding: 0.4rem 0.6rem; line-height: 1; margin-left: auto; z-index: 1001; }
+  .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--forest, #024144); cursor: pointer; padding: 0.4rem 0.6rem; line-height: 1; margin-left: auto; z-index: 1001; }
   @media (max-width: 900px) {
     .nav-toggle { display: block; }
     .nav-links { position: fixed; top: 0; right: -100%; width: min(80vw, 320px); height: 100vh; background: var(--warm-cream, #FDF8F3); flex-direction: column; align-items: flex-start; gap: 0; padding: 6rem 2rem 2rem; box-shadow: -8px 0 30px rgba(44,24,16,0.12); transition: right 0.3s ease; z-index: 1000; overflow-y: auto; }
