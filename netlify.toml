@@ -1,6 +1,10 @@
 [build]
   functions = "netlify/functions"
 
+# Keep .html in links so they match canonical tags and the sitemap (fixes Search Console indexing)
+[build.processing.html]
+  pretty_urls = false
+
 [functions]
   node_bundler = "esbuild"
 
