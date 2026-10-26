@@ -180,6 +180,19 @@
     .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,24,16,0.1); }
     .blog-card[hidden] { display: none !important; }
 
+    /* quiet cards: category band instead of image */
+    .blog-card-band { height: 6px; background: var(--forest); }
+    .blog-card[data-category="money-mindset"] .blog-card-band { background: var(--gold); }
+    .blog-card[data-category="self-leadership"] .blog-card-band { background: var(--blush-mid); }
+    .blog-card-cat { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); margin-bottom: 0.6rem; }
+    .blog-card[data-category="money-mindset"] .blog-card-cat { color: var(--gold); }
+    .blog-card[data-category="self-leadership"] .blog-card-cat { color: #B5686A; }
+    /* featured: pull quote instead of image */
+    .featured-card-visual { background: rgba(253,248,243,0.06); flex-direction: column; align-items: flex-start; justify-content: center; padding: 3rem 2.75rem; }
+    @media (max-width: 900px) { .featured-card-visual { padding: 4rem 1.75rem 2rem; } }
+    .featured-quote-line { width: 40px; height: 2px; background: var(--gold-light); margin-bottom: 1.25rem; }
+    .featured-quote { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.2; color: var(--warm-cream); }
+
     .blog-card-thumb {
       width: 100%; aspect-ratio: 16/9;
       background: linear-gradient(135deg, var(--soft-blush) 0%, var(--blush-mid) 100%);
@@ -283,14 +296,16 @@
 <!-- FEATURED ARTICLE -->
 <section class="featured-section">
   <p class="featured-label">Featured Article</p>
-  <a href="blog/stop-saying-no-pressure-on-sales-calls.html" class="featured-card">
+  <a href="/blog/why-people-like-your-offer-but-dont-buy.html" class="featured-card">
     <div class="featured-card-visual">
-      <img src="/blog/no-pressure-sales-calls-thumb.webp" alt="Stop Saying No Pressure on Sales Calls" class="featured-card-image" />
+      <span class="featured-card-badge">New</span>
+      <div class="featured-quote-line"></div>
+      <p class="featured-quote">Interest is not the same as a decision.</p>
     </div>
     <div class="featured-card-body">
       <p class="featured-card-category">Confidence</p>
-      <h2 class="featured-card-title">Stop Saying "No Pressure" on Sales Calls (Here's What It's Actually Signaling)</h2>
-      <p class="featured-card-excerpt">That "no pressure" you tack onto the end of a sales call sounds kind. But it might be undermining you at the exact moment your prospect needs you to be certain.</p>
+      <h2 class="featured-card-title">Why People Like Your Offer and Still Don't Buy</h2>
+      <p class="featured-card-excerpt">They said it sounds amazing, then went quiet. Why interest is not a buying decision, and how to lead a sales conversation toward a clear yes or no.</p>
       <span class="btn-cream-sm">Read Article →</span>
     </div>
   </a>
@@ -317,11 +332,42 @@
     <p class="no-results-message" id="no-results-message" hidden>No articles match your search. Try a different word.</p>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
+        <p class="blog-card-meta">October 26, 2026 · 9 min read</p>
+        <h2 class="blog-card-title">Why People Like Your Offer and Still Don't Buy</h2>
+        <p class="blog-card-excerpt">They said it sounds amazing, then went quiet. Why interest is not a buying decision, and how to lead a sales conversation toward a clear yes or no.</p>
+        <a href="/blog/why-people-like-your-offer-but-dont-buy.html" class="blog-read">Read Article →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-category="money-mindset">
+      <div class="blog-card-band"></div>
+      <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
+        <p class="blog-card-meta">October 26, 2026 · 7 min read</p>
+        <h2 class="blog-card-title">What to Say When a Client Says "I Can't Afford It"</h2>
+        <p class="blog-card-excerpt">"I can't afford it" is one of the most common sales objections and one of the most misunderstood. What it can really mean, and how to respond without rescuing or pushing.</p>
+        <a href="/blog/what-to-say-when-a-client-says-i-cant-afford-it.html" class="blog-read">Read Article →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-category="confidence">
+      <div class="blog-card-band"></div>
+      <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
+        <p class="blog-card-meta">October 26, 2026 · 7 min read</p>
+        <h2 class="blog-card-title">What "I Need to Think About It" Really Means</h2>
+        <p class="blog-card-excerpt">"I need to think about it" rarely means no. What this common sales objection is really telling you, and how to respond with curiosity instead of chasing.</p>
+        <a href="/blog/what-i-need-to-think-about-it-really-means.html" class="blog-read">Read Article →</a>
+      </div>
+    </article>
+
+    <article class="blog-card" data-category="confidence">
+      <div class="blog-card-band"></div>
+      <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">October 7, 2026 · 5 min read</p>
         <h2 class="blog-card-title">If You're Doing Everything Except Talking to Potential Buyers, That's the Problem</h2>
         <p class="blog-card-excerpt">Busy work feels safer than a real conversation. If you're creating nonstop and still not converting, the bottleneck may not be visibility at all.</p>
@@ -330,11 +376,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">September 22, 2026 · 3 min read</p>
         <h2 class="blog-card-title">The Difference Between Networking and Belonging</h2>
         <p class="blog-card-excerpt">You've been to the events. You've collected the cards. So why does building your business still feel so lonely?</p>
@@ -343,11 +387,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">September 22, 2026 · 4 min read</p>
         <h2 class="blog-card-title">Why "Just Believe in Yourself" Doesn't Work For You</h2>
         <p class="blog-card-excerpt">You've said the affirmations. You've journaled the gratitude lists. So why does your business still feel like it's running on fumes?</p>
@@ -356,11 +398,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">September 22, 2026 · 4 min read</p>
         <h2 class="blog-card-title">The Real Reason You Compare Yourself to Other Business Owners</h2>
         <p class="blog-card-excerpt">You know comparison steals your joy. You've heard it a hundred times. So why can't you stop doing it?</p>
@@ -369,11 +409,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">September 22, 2026 · 4 min read</p>
         <h2 class="blog-card-title">Why You Avoid Following Up With Leads (And It's Not Because You're Lazy)</h2>
         <p class="blog-card-excerpt">She said "let me think about it" three weeks ago. You still haven't followed up. Here's what's actually stopping you, and what to say instead.</p>
@@ -382,11 +420,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">September 8, 2026 · 4 min read</p>
         <h2 class="blog-card-title">Stop Saying "No Pressure" on Sales Calls (Here's What It's Actually Signaling)</h2>
         <p class="blog-card-excerpt">That "no pressure" you tack onto the end of a sales call sounds kind. But it might be undermining you at the exact moment your prospect needs you to be certain.</p>
@@ -395,11 +431,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">September 8, 2026 · 5 min read</p>
         <h2 class="blog-card-title">Everyone's Talking About AI Replacing Coaches. Here's the Question No One's Asking.</h2>
         <p class="blog-card-excerpt">The fear that AI will replace coaches isn't really about technology. Here's the question underneath it that almost nobody is willing to ask.</p>
@@ -408,11 +442,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">September 2, 2026 · 6 min read</p>
         <h2 class="blog-card-title">Stop Measuring Your Business by Your Mood</h2>
         <p class="blog-card-excerpt">Your mood is not a business metric. Here's how to stop making reactive decisions from a bad day, and start telling the difference between real data and emotional drama.</p>
@@ -421,11 +453,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">September 2, 2026 · 5 min read</p>
         <h2 class="blog-card-title">Your Offer Is Not Obvious Just Because It's Obvious to You</h2>
         <p class="blog-card-excerpt">Your audience doesn't live inside your head. Here's why a quiet offer is usually a clarity problem, not a sales problem, and the three things people need to understand before they'll say yes.</p>
@@ -434,11 +464,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">September 1, 2026 · 7 min read</p>
         <h2 class="blog-card-title">Nervous System Regulation Is a Practice, Not a One-Time Fix</h2>
         <p class="blog-card-excerpt">Nervous system regulation doesn't work if you only reach for it once you're already triggered. Here's what a hard parenting moment taught me about building the daily practice that actually holds under pressure.</p>
@@ -447,11 +475,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">September 1, 2026 · 6 min read</p>
         <h2 class="blog-card-title">Lead Generation Is Not Throwing Spaghetti at the Wall</h2>
         <p class="blog-card-excerpt">Lead generation isn't about being everywhere and hoping something works. Here's the real three-question strategy behind consistent, intentional lead generation, without the panic-posting.</p>
@@ -460,11 +486,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">August 11, 2026 · 8 min read</p>
         <h2 class="blog-card-title">The Real Reason Your Boundaries Don't Stick</h2>
         <p class="blog-card-excerpt">Boundaries don't fail because you lack the right words. They fail when you stop trusting yourself. Here's what actually makes a boundary hold.</p>
@@ -473,11 +497,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">August 11, 2026 · 8 min read</p>
         <h2 class="blog-card-title">The Opposite of Pushy Is Not Invisible</h2>
         <p class="blog-card-excerpt">You don't have to choose between pushy and invisible. Here's how to get clients through clarity, not pressure, with sales confidence built one honest offer at a time.</p>
@@ -486,11 +508,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">August 11, 2026 · 6 min read</p>
         <h2 class="blog-card-title">How to Build Sales Confidence When You're Afraid of Rejection</h2>
         <p class="blog-card-excerpt">Fear of rejection in sales is a nervous system pattern, not a confidence flaw. Here's how to build real sales confidence as a woman in business.</p>
@@ -499,11 +519,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">August 1, 2026 · 6 min read</p>
         <h2 class="blog-card-title">Nobody Buys From a Side Hustler</h2>
         <p class="blog-card-excerpt">"Side hustle" might describe your schedule, but it won't make anyone trust you to solve their problem. Here's the quiet hedge that's costing you sales, and how to drop it.</p>
@@ -512,11 +530,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">August 1, 2026 · 6 min read</p>
         <h2 class="blog-card-title">Faith Is a Business Skill</h2>
         <p class="blog-card-excerpt">A launch that flops or a client who says no isn't proof you failed. Here's why trusting the timing, even when the path looks messy, might be the most underrated skill in business.</p>
@@ -525,11 +541,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">July 25, 2026 · 5 min read</p>
         <h2 class="blog-card-title">The Pricing Formula You Want Isn't a Pricing Problem</h2>
         <p class="blog-card-excerpt">Looking for the "right" pricing formula? Here's why that search is really about permission, and what real pricing confidence actually requires.</p>
@@ -538,11 +552,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <img src="blog/sales-personality-myth.webp" alt="The Sales Personality Myth" style="width:100%;height:100%;object-fit:cover;" />
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">July 20, 2026 · 9 min read</p>
         <h2 class="blog-card-title">The Sales Personality Myth: Why "Natural Born Salespeople" Don't Actually Exist</h2>
         <p class="blog-card-excerpt">Science says the "natural born salesperson" barely exists. Here's what really predicts sales success, and the four beliefs keeping you from building the skill.</p>
@@ -551,11 +563,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">July 20, 2026 · 6 min read</p>
         <h2 class="blog-card-title">Nobody Has Ever Looked Back and Been Glad They Worried</h2>
         <p class="blog-card-excerpt">Worry feels productive but it never once prevented a bad outcome. Here's why women worry so much, and what to do instead to actually feel ready.</p>
@@ -564,11 +574,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">July 18, 2026 · 6 min read</p>
         <h2 class="blog-card-title">The Real Reason You Undercharge Has Nothing to Do With Confidence</h2>
         <p class="blog-card-excerpt">Undercharging isn't a confidence problem, it's a nervous system pattern wearing a confidence costume. Here's why pep talks don't work and what actually creates lasting change.</p>
@@ -577,11 +585,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">July 18, 2026 · 7 min read</p>
         <h2 class="blog-card-title">The Difference Between Blame and Power (And Why You Can't Have Both)</h2>
         <p class="blog-card-excerpt">Blame explains your pain, but it can't build your future. Learn the real difference between fault and personal responsibility, and how to reclaim your power without denying what happened to you.</p>
@@ -590,11 +596,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <img src="/blog/one-magic-method-sales.webp" alt="The ONE Magic Method That Guarantees Sales" class="blog-card-thumb-img" />
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">July 11, 2026 · 8 min read</p>
         <h2 class="blog-card-title">The ONE Magic Method That Guarantees Sales</h2>
         <p class="blog-card-excerpt">Every coach claims to have found the one sales method that works. Here's why that belief might be the very thing keeping you stuck, and what actually works instead.</p>
@@ -603,11 +607,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">July 10, 2026 · 7 min read</p>
         <h2 class="blog-card-title">The Business Advice That Works Great for Men and Terribly for You</h2>
         <p class="blog-card-excerpt">Most popular business advice was built for a nervous system that never had to manage rejection, visibility, or worth the way yours does. Here's what to build instead.</p>
@@ -616,11 +618,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">July 9, 2026 · 7 min read</p>
         <h2 class="blog-card-title">The Skill You Don't Practice Will Not Magically Appear</h2>
         <p class="blog-card-excerpt">Confidence in sales doesn't arrive before the work. It's built by the work. Here's why the practice always comes first.</p>
@@ -629,11 +629,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">July 8, 2026 · 8 min read</p>
         <h2 class="blog-card-title">The To-Do List That's Quietly Killing Your Business</h2>
         <p class="blog-card-excerpt">Busy isn't the same as profitable. Here's why a full to-do list might actually be hiding you from the few things that grow your business.</p>
@@ -642,11 +640,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">July 4, 2026 · 7 min read</p>
         <h2 class="blog-card-title">If You Never Invest in Yourself, It's Hard to Ask Others to Invest in You</h2>
         <p class="blog-card-excerpt">The way you buy often reveals the way you sell. A look at the hidden link between money mindset, discernment, and confident pricing.</p>
@@ -655,11 +651,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">July 2, 2026 · 8 min read</p>
         <h2 class="blog-card-title">The "Good Girl" Business Trap No One Talks About</h2>
         <p class="blog-card-excerpt">Being agreeable, easy, and low-maintenance was never a business strategy. It was a survival strategy — and it's costing you more than you know.</p>
@@ -668,11 +662,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">June 30, 2026 · 9 min read</p>
         <h2 class="blog-card-title">What If You Actually Loved Selling?</h2>
         <p class="blog-card-excerpt">The women who struggle most with sales aren't bad at business. They're carrying a story that was never theirs to begin with.</p>
@@ -681,11 +673,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">♡</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">June 30, 2026 · 8 min read</p>
         <h2 class="blog-card-title">Are You Asking for Permission to Take Up Space?</h2>
         <p class="blog-card-excerpt">Most women don't know they're doing it. But permission signals are hidden inside every bio, email, and sales message they write.</p>
@@ -694,12 +684,10 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <img src="blog/asking-for-money-threat.webp" alt="Woman standing calm and grounded, unafraid to ask for what she's worth" style="width:100%;height:100%;object-fit:cover;" />
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
-        <p class="blog-card-meta">June 25, 2025 · 7 min read</p>
+        <p class="blog-card-cat">Money Mindset</p>
+        <p class="blog-card-meta">June 25, 2026 · 7 min read</p>
         <h2 class="blog-card-title">Why Asking for Money Feels Like a Threat (And What to Do About It)</h2>
         <p class="blog-card-excerpt">Asking for money triggers something deep. Here's why it feels like a threat to your nervous system, and what to do about it.</p>
         <a href="/blog/why-asking-for-money-feels-like-a-threat.html" class="blog-read">Read Article →</a>
@@ -707,11 +695,9 @@
     </article>
 
     <article class="blog-card" data-category="money-mindset">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Money Mindset</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Money Mindset</p>
         <p class="blog-card-meta">June 27, 2026 · 8 min read</p>
         <h2 class="blog-card-title">Your Sales Energy Changes When You Stop Managing Everyone's Opinion</h2>
         <p class="blog-card-excerpt">Most women don't hate selling. They hate what selling might make people think of them. Here's how to stop managing everyone's opinion and start communicating your value clearly.</p>
@@ -720,11 +706,9 @@
     </article>
 
     <article class="blog-card" data-category="confidence">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">♡</span>
-        <span class="blog-tag-pill">Confidence</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Confidence</p>
         <p class="blog-card-meta">June 26, 2025 · 8 min read</p>
         <h2 class="blog-card-title">How to Find Your First Client as an Introvert (Without Feeling Pushy)</h2>
         <p class="blog-card-excerpt">You don't need to become an extrovert to find clients. You need a strategy that works with your energy, not against it.</p>
@@ -733,11 +717,9 @@
     </article>
 
     <article class="blog-card" data-category="self-leadership">
-      <div class="blog-card-thumb">
-        <span class="blog-thumb-icon">✦</span>
-        <span class="blog-tag-pill">Self-Leadership</span>
-      </div>
+      <div class="blog-card-band"></div>
       <div class="blog-card-body">
+        <p class="blog-card-cat">Self-Leadership</p>
         <p class="blog-card-meta">June 26, 2025 · 8 min read</p>
         <h2 class="blog-card-title">How to Price Your Services When You're Just Starting Out</h2>
         <p class="blog-card-excerpt">Pricing isn't just a number. It's a statement about how you see your own value. Here's how to set prices you can actually say out loud.</p>
