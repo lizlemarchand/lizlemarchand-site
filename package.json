@@ -1,0 +1,8 @@
+{
+  "name": "lizlemarchand-site",
+  "private": true,
+  "description": "Netlify functions for lizlemarchand.com",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.7"
+  }
+}

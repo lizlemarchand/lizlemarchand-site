@@ -1,2 +1,5 @@
 # Unpublished blog post drafts — not to be committed/deployed until ready
 drafts/
+
+# Installed packages
+node_modules/

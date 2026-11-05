@@ -296,6 +296,25 @@
       color: var(--muted); transition: all 0.2s;
     }
     .copy-btn:hover { border-color: var(--forest); color: var(--forest); }
+    .word-count {
+      font-size: 0.75rem; color: var(--muted); text-align: right;
+      margin: -0.9rem 0 1rem;
+    }
+    .word-count.over { color: var(--rose-dark); font-weight: 500; }
+    .passages-intro { font-size: 0.85rem; color: var(--brown-mid); margin-bottom: 1rem; }
+    .passages-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .passage-original {
+      font-size: 0.85rem; line-height: 1.6; color: var(--brown);
+      border-left: 3px solid var(--rose-dark); padding: 0.25rem 0 0.25rem 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    .passage-original span {
+      display: block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem;
+    }
+    .passage-variations { display: flex; flex-direction: column; gap: 0.6rem; }
+    .passage-variations .rewrite-card { padding: 1rem 1.25rem; }
+    .passage-variations .rewrite-text { font-size: 0.95rem; padding-right: 3.5rem; }
     .copy-btn.copied { border-color: var(--forest); color: var(--forest); }
 
     .reflection-card {
@@ -311,6 +330,17 @@
       border-radius: 12px; padding: 1rem 1.25rem; margin-top: 1rem;
       font-size: 0.85rem; color: var(--brown-mid); display: none;
     }
+    .loading-note {
+      font-family: var(--serif); font-style: italic; font-size: 0.95rem;
+      color: var(--muted); text-align: center; margin-top: 0.9rem; display: none;
+    }
+    .retry-btn {
+      margin-top: 0.75rem; background: var(--forest); color: var(--white);
+      font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.55rem 1.2rem; border: none; border-radius: 10px; cursor: pointer;
+    }
+    .retry-btn:hover { opacity: 0.88; }
 
     /* ── FOOTER ── */
     footer { background: var(--brown); padding: 2.5rem var(--pad); }
@@ -435,11 +465,13 @@
     </div>
     <span class="app-label" style="margin-top:1rem;">Step 2 — Paste Your Text</span>
     <textarea class="app-textarea" id="user-text" placeholder="Paste your email, bio, sales message, price quote, social caption, or any text you want to analyze…"></textarea>
+    <p class="word-count" id="word-count" aria-live="polite">0 words</p>
     <button class="analyze-btn" id="analyze-btn" onclick="analyze()">
       <div class="spinner" id="spinner"></div>
       <span id="btn-label">Analyze My Text</span>
     </button>
-    <div class="app-error" id="app-error"></div>
+    <p class="loading-note" id="loading-note" aria-live="polite"></p>
+    <div class="app-error" id="app-error" role="alert"></div>
   </div>
 
   <!-- RESULTS -->
@@ -466,8 +498,15 @@
 
     <!-- Rewrites -->
     <div class="result-section">
-      <p class="result-section-label">3 Stronger Rewrites</p>
+      <p class="result-section-label" id="rewrites-label">3 Stronger Rewrites</p>
       <div class="rewrites-list" id="rewrites-list"></div>
+    </div>
+
+    <!-- Sentence-by-sentence variations (longer messages only) -->
+    <div class="result-section" id="passages-section" style="display:none;">
+      <p class="result-section-label">Sentence by Sentence</p>
+      <p class="passages-intro">Three ways to say each flagged part of your message. Pick the one that sounds most like you.</p>
+      <div class="passages-list" id="passages-list"></div>
     </div>
 
     <!-- Reflection -->
@@ -526,18 +565,62 @@
 </footer>
 
 <script>
-  const CORRECT_PASSWORD = 'freedom2026';
   let selectedContext = 'Business';
+  let memberPassword = '';
+  const MAX_WORDS = 800; // keep in step with netlify/lib/shared.mjs
 
-  function checkPassword() {
+  function countWords(text) {
+    const t = text.trim();
+    return t ? t.split(/\s+/).length : 0;
+  }
+
+  // Live word count under the text box
+  document.getElementById('user-text').addEventListener('input', function () {
+    const n = countWords(this.value);
+    const el = document.getElementById('word-count');
+    el.textContent = n > MAX_WORDS
+      ? `${n} words · please keep it to about ${MAX_WORDS}`
+      : `${n} word${n === 1 ? '' : 's'}`;
+    el.classList.toggle('over', n > MAX_WORDS);
+  });
+
+  async function postJSON(url, payload) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+    return { res, data };
+  }
+
+  // The password is checked on the server, not in the page.
+  async function checkPassword() {
     const val = document.getElementById('gate-password').value.trim();
     const err = document.getElementById('gate-error');
-    if (val === CORRECT_PASSWORD) {
+    const defaultMsg = "That password doesn't match. Try again, or join below.";
+    let ok = false;
+    try {
+      const { res } = await postJSON('/.netlify/functions/analyze-start', { password: val, check: true });
+      if (res.ok) ok = true;
+      else if (res.status !== 401) {
+        err.textContent = "We couldn't check your password just now. Please try again in a moment.";
+        err.style.display = 'block';
+        return;
+      }
+    } catch {
+      err.textContent = "We couldn't check your password just now. Please try again in a moment.";
+      err.style.display = 'block';
+      return;
+    }
+    if (ok) {
+      memberPassword = val;
       document.getElementById('gate-section').style.display = 'none';
       document.getElementById('premium-msg').style.display = 'none';
       document.getElementById('app-section').style.display = 'block';
       err.style.display = 'none';
     } else {
+      err.textContent = defaultMsg;
       err.style.display = 'block';
       document.getElementById('premium-msg').style.display = 'block';
       document.getElementById('app-section').style.display = 'none';
@@ -560,30 +643,64 @@
     errEl.style.display = 'none';
 
     if (!text) { showError('Please paste some text to analyze.'); return; }
+    if (countWords(text) > MAX_WORDS) {
+      showError(`This one is quite long. For the clearest results, paste up to about ${MAX_WORDS} words at a time, or one section of your email.`);
+      return;
+    }
 
     setLoading(true);
     document.getElementById('results').style.display = 'none';
 
     try {
-      const res = await fetch('/.netlify/functions/analyze', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ context: selectedContext, text }),
-      });
-
-      const contentType = res.headers.get('content-type') || '';
-      if (!contentType.includes('application/json')) {
-        throw new Error(`The server returned an unexpected response (status ${res.status}). This usually means the analysis timed out. Please try again with a shorter text.`);
-      }
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || `Server error ${res.status}`);
-      renderResults(data);
+      const result = await runAnalysisJob(text);
+      renderResults(result);
     } catch (e) {
-      showError('Something went wrong: ' + e.message);
+      showError(e.message, true);
     } finally {
       setLoading(false);
     }
+  }
+
+  const POLL_EVERY_MS = 2500;
+  const GIVE_UP_AFTER_MS = 3 * 60 * 1000;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const GENERIC_ERROR = "Something went wrong while analyzing your message. Please try again.";
+
+  // Starts the analysis in the background, then checks every few seconds until it's ready.
+  async function runAnalysisJob(text) {
+    const payload = { password: memberPassword, context: selectedContext, text };
+    // Test hook for the error message. The server ignores it on the live site.
+    if (new URLSearchParams(location.search).has('simulateError')) payload.simulateError = true;
+
+    let start;
+    try {
+      start = await postJSON('/.netlify/functions/analyze-start', payload);
+    } catch {
+      throw new Error("We couldn't reach the tool. Please check your connection and try again.");
+    }
+    if (!start.res.ok || !start.data.jobId) {
+      throw new Error(start.data.error || GENERIC_ERROR);
+    }
+
+    const startedAt = Date.now();
+    let misses = 0;
+    while (Date.now() - startedAt < GIVE_UP_AFTER_MS) {
+      await sleep(POLL_EVERY_MS);
+      if (Date.now() - startedAt > 15000) setLoadingNote('Longer messages take a little more time.');
+      let status;
+      try {
+        status = await postJSON('/.netlify/functions/analyze-status', { password: memberPassword, jobId: start.data.jobId });
+      } catch {
+        if (++misses >= 3) throw new Error("We lost the connection while waiting. Please try again.");
+        continue; // a brief network blip: keep waiting
+      }
+      const d = status.data;
+      if (d.status === 'done') return d.result;
+      if (d.status === 'error' || d.status === 'missing' || !status.res.ok) {
+        throw new Error(d.error || GENERIC_ERROR);
+      }
+    }
+    throw new Error("This is taking much longer than usual. Please try again in a moment.");
   }
 
   function renderResults(d) {
@@ -611,21 +728,59 @@
     // Rewrites
     const rl = document.getElementById('rewrites-list');
     rl.innerHTML = '';
-    (d.rewrites || []).forEach((r, i) => {
-      const div = document.createElement('div');
-      div.className = 'rewrite-card';
-      div.innerHTML = `
-        <p class="rewrite-num">Option ${i + 1} — ${r.label}</p>
-        <p class="rewrite-text">${r.text}</p>
-        <button class="copy-btn" onclick="copyText(this, \`${r.text.replace(/`/g, '\\`')}\`)">Copy</button>`;
-      rl.appendChild(div);
+    const isLong = d.mode === 'long';
+    const fullRewrites = isLong ? (d.fullRewrite ? [d.fullRewrite] : []) : (d.rewrites || []);
+    document.getElementById('rewrites-label').textContent = isLong ? 'Your Self-Led Rewrite' : '3 Stronger Rewrites';
+    fullRewrites.forEach((r, i) => {
+      rl.appendChild(rewriteCard(isLong ? r.label : `Option ${i + 1} — ${r.label}`, r.text));
     });
+
+    // Longer messages: three variations for each flagged sentence or passage
+    const ps = document.getElementById('passages-section');
+    const pl = document.getElementById('passages-list');
+    pl.innerHTML = '';
+    if (isLong && (d.passages || []).length) {
+      d.passages.forEach(p => {
+        const block = document.createElement('div');
+        const orig = document.createElement('p');
+        orig.className = 'passage-original';
+        const tag = document.createElement('span');
+        tag.textContent = 'You wrote';
+        orig.append(tag, `"${p.original}"`);
+        const vars = document.createElement('div');
+        vars.className = 'passage-variations';
+        (p.variations || []).forEach(v => vars.appendChild(rewriteCard(v.label, v.text)));
+        block.append(orig, vars);
+        pl.appendChild(block);
+      });
+      ps.style.display = 'block';
+    } else {
+      ps.style.display = 'none';
+    }
 
     // Reflection
     document.getElementById('reflection-text').textContent = d.reflection || '';
 
     document.getElementById('results').style.display = 'block';
     document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // One rewrite card with a Copy button. Built with textContent so quotes in the text can't break it.
+  function rewriteCard(label, text) {
+    const div = document.createElement('div');
+    div.className = 'rewrite-card';
+    const num = document.createElement('p');
+    num.className = 'rewrite-num';
+    num.textContent = label;
+    const body = document.createElement('p');
+    body.className = 'rewrite-text';
+    body.textContent = text;
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'Copy';
+    btn.onclick = () => copyText(btn, text);
+    div.append(num, body, btn);
+    return div;
   }
 
   function copyText(btn, text) {
@@ -643,11 +798,26 @@
     btn.disabled = on;
     spinner.style.display = on ? 'block' : 'none';
     label.textContent = on ? 'Analyzing…' : 'Analyze My Text';
+    setLoadingNote(on ? 'Reading your message…' : '');
   }
 
-  function showError(msg) {
+  function setLoadingNote(msg) {
+    const note = document.getElementById('loading-note');
+    note.textContent = msg;
+    note.style.display = msg ? 'block' : 'none';
+  }
+
+  function showError(msg, withRetry) {
     const el = document.getElementById('app-error');
     el.textContent = msg;
+    if (withRetry) {
+      const retry = document.createElement('button');
+      retry.className = 'retry-btn';
+      retry.textContent = 'Try again';
+      retry.onclick = analyze;
+      el.appendChild(document.createElement('br'));
+      el.appendChild(retry);
+    }
     el.style.display = 'block';
   }
 </script>
