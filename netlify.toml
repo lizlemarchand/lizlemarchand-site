@@ -8,9 +8,6 @@
 [functions]
   node_bundler = "esbuild"
 
-[functions."analyze"]
-  timeout = 26
-
 [[redirects]]
   from = "/index.html"
   to = "/"

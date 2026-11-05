@@ -311,6 +311,17 @@
       border-radius: 12px; padding: 1rem 1.25rem; margin-top: 1rem;
       font-size: 0.85rem; color: var(--brown-mid); display: none;
     }
+    .loading-note {
+      font-family: var(--serif); font-style: italic; font-size: 0.95rem;
+      color: var(--muted); text-align: center; margin-top: 0.9rem; display: none;
+    }
+    .retry-btn {
+      margin-top: 0.75rem; background: var(--forest); color: var(--white);
+      font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 0.55rem 1.2rem; border: none; border-radius: 10px; cursor: pointer;
+    }
+    .retry-btn:hover { opacity: 0.88; }
 
     /* ── FOOTER ── */
     footer { background: var(--brown); padding: 2.5rem var(--pad); }
@@ -439,7 +450,8 @@
       <div class="spinner" id="spinner"></div>
       <span id="btn-label">Analyze My Text</span>
     </button>
-    <div class="app-error" id="app-error"></div>
+    <p class="loading-note" id="loading-note" aria-live="polite"></p>
+    <div class="app-error" id="app-error" role="alert"></div>
   </div>
 
   <!-- RESULTS -->
@@ -526,18 +538,46 @@
 </footer>
 
 <script>
-  const CORRECT_PASSWORD = 'freedom2026';
   let selectedContext = 'Business';
+  let memberPassword = '';
 
-  function checkPassword() {
+  async function postJSON(url, payload) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+    return { res, data };
+  }
+
+  // The password is checked on the server, not in the page.
+  async function checkPassword() {
     const val = document.getElementById('gate-password').value.trim();
     const err = document.getElementById('gate-error');
-    if (val === CORRECT_PASSWORD) {
+    const defaultMsg = "That password doesn't match. Try again, or join below.";
+    let ok = false;
+    try {
+      const { res } = await postJSON('/.netlify/functions/analyze-start', { password: val, check: true });
+      if (res.ok) ok = true;
+      else if (res.status !== 401) {
+        err.textContent = "We couldn't check your password just now. Please try again in a moment.";
+        err.style.display = 'block';
+        return;
+      }
+    } catch {
+      err.textContent = "We couldn't check your password just now. Please try again in a moment.";
+      err.style.display = 'block';
+      return;
+    }
+    if (ok) {
+      memberPassword = val;
       document.getElementById('gate-section').style.display = 'none';
       document.getElementById('premium-msg').style.display = 'none';
       document.getElementById('app-section').style.display = 'block';
       err.style.display = 'none';
     } else {
+      err.textContent = defaultMsg;
       err.style.display = 'block';
       document.getElementById('premium-msg').style.display = 'block';
       document.getElementById('app-section').style.display = 'none';
@@ -565,25 +605,55 @@
     document.getElementById('results').style.display = 'none';
 
     try {
-      const res = await fetch('/.netlify/functions/analyze', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ context: selectedContext, text }),
-      });
-
-      const contentType = res.headers.get('content-type') || '';
-      if (!contentType.includes('application/json')) {
-        throw new Error(`The server returned an unexpected response (status ${res.status}). This usually means the analysis timed out. Please try again with a shorter text.`);
-      }
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || `Server error ${res.status}`);
-      renderResults(data);
+      const result = await runAnalysisJob(text);
+      renderResults(result);
     } catch (e) {
-      showError('Something went wrong: ' + e.message);
+      showError(e.message, true);
     } finally {
       setLoading(false);
     }
+  }
+
+  const POLL_EVERY_MS = 2500;
+  const GIVE_UP_AFTER_MS = 3 * 60 * 1000;
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const GENERIC_ERROR = "Something went wrong while analyzing your message. Please try again.";
+
+  // Starts the analysis in the background, then checks every few seconds until it's ready.
+  async function runAnalysisJob(text) {
+    const payload = { password: memberPassword, context: selectedContext, text };
+    // Test hook for the error message. The server ignores it on the live site.
+    if (new URLSearchParams(location.search).has('simulateError')) payload.simulateError = true;
+
+    let start;
+    try {
+      start = await postJSON('/.netlify/functions/analyze-start', payload);
+    } catch {
+      throw new Error("We couldn't reach the tool. Please check your connection and try again.");
+    }
+    if (!start.res.ok || !start.data.jobId) {
+      throw new Error(start.data.error || GENERIC_ERROR);
+    }
+
+    const startedAt = Date.now();
+    let misses = 0;
+    while (Date.now() - startedAt < GIVE_UP_AFTER_MS) {
+      await sleep(POLL_EVERY_MS);
+      if (Date.now() - startedAt > 15000) setLoadingNote('Longer messages take a little more time.');
+      let status;
+      try {
+        status = await postJSON('/.netlify/functions/analyze-status', { password: memberPassword, jobId: start.data.jobId });
+      } catch {
+        if (++misses >= 3) throw new Error("We lost the connection while waiting. Please try again.");
+        continue; // a brief network blip: keep waiting
+      }
+      const d = status.data;
+      if (d.status === 'done') return d.result;
+      if (d.status === 'error' || d.status === 'missing' || !status.res.ok) {
+        throw new Error(d.error || GENERIC_ERROR);
+      }
+    }
+    throw new Error("This is taking much longer than usual. Please try again in a moment.");
   }
 
   function renderResults(d) {
@@ -643,11 +713,26 @@
     btn.disabled = on;
     spinner.style.display = on ? 'block' : 'none';
     label.textContent = on ? 'Analyzing…' : 'Analyze My Text';
+    setLoadingNote(on ? 'Reading your message…' : '');
   }
 
-  function showError(msg) {
+  function setLoadingNote(msg) {
+    const note = document.getElementById('loading-note');
+    note.textContent = msg;
+    note.style.display = msg ? 'block' : 'none';
+  }
+
+  function showError(msg, withRetry) {
     const el = document.getElementById('app-error');
     el.textContent = msg;
+    if (withRetry) {
+      const retry = document.createElement('button');
+      retry.className = 'retry-btn';
+      retry.textContent = 'Try again';
+      retry.onclick = analyze;
+      el.appendChild(document.createElement('br'));
+      el.appendChild(retry);
+    }
     el.style.display = 'block';
   }
 </script>
