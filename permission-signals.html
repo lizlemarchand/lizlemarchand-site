@@ -296,6 +296,25 @@
       color: var(--muted); transition: all 0.2s;
     }
     .copy-btn:hover { border-color: var(--forest); color: var(--forest); }
+    .word-count {
+      font-size: 0.75rem; color: var(--muted); text-align: right;
+      margin: -0.9rem 0 1rem;
+    }
+    .word-count.over { color: var(--rose-dark); font-weight: 500; }
+    .passages-intro { font-size: 0.85rem; color: var(--brown-mid); margin-bottom: 1rem; }
+    .passages-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .passage-original {
+      font-size: 0.85rem; line-height: 1.6; color: var(--brown);
+      border-left: 3px solid var(--rose-dark); padding: 0.25rem 0 0.25rem 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    .passage-original span {
+      display: block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.2rem;
+    }
+    .passage-variations { display: flex; flex-direction: column; gap: 0.6rem; }
+    .passage-variations .rewrite-card { padding: 1rem 1.25rem; }
+    .passage-variations .rewrite-text { font-size: 0.95rem; padding-right: 3.5rem; }
     .copy-btn.copied { border-color: var(--forest); color: var(--forest); }
 
     .reflection-card {
@@ -446,6 +465,7 @@
     </div>
     <span class="app-label" style="margin-top:1rem;">Step 2 — Paste Your Text</span>
     <textarea class="app-textarea" id="user-text" placeholder="Paste your email, bio, sales message, price quote, social caption, or any text you want to analyze…"></textarea>
+    <p class="word-count" id="word-count" aria-live="polite">0 words</p>
     <button class="analyze-btn" id="analyze-btn" onclick="analyze()">
       <div class="spinner" id="spinner"></div>
       <span id="btn-label">Analyze My Text</span>
@@ -478,8 +498,15 @@
 
     <!-- Rewrites -->
     <div class="result-section">
-      <p class="result-section-label">3 Stronger Rewrites</p>
+      <p class="result-section-label" id="rewrites-label">3 Stronger Rewrites</p>
       <div class="rewrites-list" id="rewrites-list"></div>
+    </div>
+
+    <!-- Sentence-by-sentence variations (longer messages only) -->
+    <div class="result-section" id="passages-section" style="display:none;">
+      <p class="result-section-label">Sentence by Sentence</p>
+      <p class="passages-intro">Three ways to say each flagged part of your message. Pick the one that sounds most like you.</p>
+      <div class="passages-list" id="passages-list"></div>
     </div>
 
     <!-- Reflection -->
@@ -540,6 +567,22 @@
 <script>
   let selectedContext = 'Business';
   let memberPassword = '';
+  const MAX_WORDS = 800; // keep in step with netlify/lib/shared.mjs
+
+  function countWords(text) {
+    const t = text.trim();
+    return t ? t.split(/\s+/).length : 0;
+  }
+
+  // Live word count under the text box
+  document.getElementById('user-text').addEventListener('input', function () {
+    const n = countWords(this.value);
+    const el = document.getElementById('word-count');
+    el.textContent = n > MAX_WORDS
+      ? `${n} words · please keep it to about ${MAX_WORDS}`
+      : `${n} word${n === 1 ? '' : 's'}`;
+    el.classList.toggle('over', n > MAX_WORDS);
+  });
 
   async function postJSON(url, payload) {
     const res = await fetch(url, {
@@ -600,6 +643,10 @@
     errEl.style.display = 'none';
 
     if (!text) { showError('Please paste some text to analyze.'); return; }
+    if (countWords(text) > MAX_WORDS) {
+      showError(`This one is quite long. For the clearest results, paste up to about ${MAX_WORDS} words at a time, or one section of your email.`);
+      return;
+    }
 
     setLoading(true);
     document.getElementById('results').style.display = 'none';
@@ -681,21 +728,59 @@
     // Rewrites
     const rl = document.getElementById('rewrites-list');
     rl.innerHTML = '';
-    (d.rewrites || []).forEach((r, i) => {
-      const div = document.createElement('div');
-      div.className = 'rewrite-card';
-      div.innerHTML = `
-        <p class="rewrite-num">Option ${i + 1} — ${r.label}</p>
-        <p class="rewrite-text">${r.text}</p>
-        <button class="copy-btn" onclick="copyText(this, \`${r.text.replace(/`/g, '\\`')}\`)">Copy</button>`;
-      rl.appendChild(div);
+    const isLong = d.mode === 'long';
+    const fullRewrites = isLong ? (d.fullRewrite ? [d.fullRewrite] : []) : (d.rewrites || []);
+    document.getElementById('rewrites-label').textContent = isLong ? 'Your Self-Led Rewrite' : '3 Stronger Rewrites';
+    fullRewrites.forEach((r, i) => {
+      rl.appendChild(rewriteCard(isLong ? r.label : `Option ${i + 1} — ${r.label}`, r.text));
     });
+
+    // Longer messages: three variations for each flagged sentence or passage
+    const ps = document.getElementById('passages-section');
+    const pl = document.getElementById('passages-list');
+    pl.innerHTML = '';
+    if (isLong && (d.passages || []).length) {
+      d.passages.forEach(p => {
+        const block = document.createElement('div');
+        const orig = document.createElement('p');
+        orig.className = 'passage-original';
+        const tag = document.createElement('span');
+        tag.textContent = 'You wrote';
+        orig.append(tag, `"${p.original}"`);
+        const vars = document.createElement('div');
+        vars.className = 'passage-variations';
+        (p.variations || []).forEach(v => vars.appendChild(rewriteCard(v.label, v.text)));
+        block.append(orig, vars);
+        pl.appendChild(block);
+      });
+      ps.style.display = 'block';
+    } else {
+      ps.style.display = 'none';
+    }
 
     // Reflection
     document.getElementById('reflection-text').textContent = d.reflection || '';
 
     document.getElementById('results').style.display = 'block';
     document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // One rewrite card with a Copy button. Built with textContent so quotes in the text can't break it.
+  function rewriteCard(label, text) {
+    const div = document.createElement('div');
+    div.className = 'rewrite-card';
+    const num = document.createElement('p');
+    num.className = 'rewrite-num';
+    num.textContent = label;
+    const body = document.createElement('p');
+    body.className = 'rewrite-text';
+    body.textContent = text;
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'Copy';
+    btn.onclick = () => copyText(btn, text);
+    div.append(num, body, btn);
+    return div;
   }
 
   function copyText(btn, text) {

@@ -10,6 +10,15 @@ export function jobStore() {
 
 export const VALID_CONTEXTS = ['Business', 'Sales', 'Personal'];
 
+// Messages over LONG_MESSAGE_WORDS get one full rewrite plus sentence-by-sentence variations.
+// Messages over MAX_WORDS are not analyzed. Keep both in step with permission-signals.html.
+export const LONG_MESSAGE_WORDS = 250;
+export const MAX_WORDS = 800;
+export function countWords(text) {
+  const t = String(text).trim();
+  return t ? t.split(/\s+/).length : 0;
+}
+
 // Job IDs come from crypto.randomUUID(). Reject anything else before touching storage.
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export function isValidJobId(id) {

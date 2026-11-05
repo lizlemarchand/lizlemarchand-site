@@ -1,9 +1,9 @@
 // Start endpoint: checks the password, validates the input, saves the job and
 // hands it to the background function. Returns the job ID straight away.
 import { randomUUID } from 'node:crypto';
-import { jobStore, VALID_CONTEXTS, json, checkPassword, readJsonBody } from '../lib/shared.mjs';
+import { jobStore, VALID_CONTEXTS, MAX_WORDS, countWords, json, checkPassword, readJsonBody } from '../lib/shared.mjs';
 
-const MAX_CHARS = 20000; // hard server-side cap; the page shows a friendlier word limit
+const MAX_CHARS = 20000; // extra safety cap alongside the word limit
 
 export default async (req, context) => {
   if (req.method !== 'POST') return json(405, { error: 'Method Not Allowed' });
@@ -22,8 +22,10 @@ export default async (req, context) => {
   if (typeof text !== 'string' || !text.trim()) {
     return json(400, { error: 'Please paste some text to analyze.' });
   }
-  if (text.length > MAX_CHARS) {
-    return json(400, { error: 'This one is quite long. Please paste a shorter section.' });
+  if (text.length > MAX_CHARS || countWords(text) > MAX_WORDS) {
+    return json(400, {
+      error: `This one is quite long. For the clearest results, paste up to about ${MAX_WORDS} words at a time, or one section of your email.`,
+    });
   }
 
   // Test hook so the error message and retry button can be checked. Never active on the live site.

@@ -1,7 +1,7 @@
 // Background function: does the actual analysis with the Anthropic API.
 // Netlify lets background functions run for up to 15 minutes, so long messages no longer time out.
 // It only acts on a job ID that the start endpoint created, so calling it directly does nothing.
-import { jobStore, isValidJobId, readJsonBody } from '../lib/shared.mjs';
+import { jobStore, isValidJobId, readJsonBody, countWords, LONG_MESSAGE_WORDS } from '../lib/shared.mjs';
 
 // Errors whose message is safe and kind to show to members.
 function friendly(message) {
@@ -31,7 +31,31 @@ function parseClaudeJSON(raw) {
   throw friendly('We had trouble reading the analysis. Please try again.');
 }
 
-function buildPrompt(context, text) {
+// Rewrite section for messages over LONG_MESSAGE_WORDS: one full rewrite, then three
+// variations of each flagged sentence or passage instead of three full rewrites.
+const LONG_REWRITES = `  "fullRewrite": { "label": "Self-Led Rewrite", "text": <one full rewrite of the whole message, rooted and confident, keeping its purpose, key content and structure> },
+  "passages": [
+    {
+      "original": <an exact sentence or short passage from the text that contains one or more of the signals above, in the order they appear>,
+      "variations": [
+        { "label": "Direct & Warm", "text": <rewrite of this passage only: direct, with warmth> },
+        { "label": "Confident & Clear", "text": <rewrite of this passage only: confident and clear> },
+        { "label": "Decisive & Grounded", "text": <rewrite of this passage only: decisive and grounded> }
+      ]
+    }
+  ],`;
+
+const LONG_GUIDANCE = `
+For the rewrites: giving the recipient genuine autonomy is not the same as the writer hedging. If the recipient should have a real choice (for example whether to go ahead, or a clear way to say no), keep that choice and state it plainly. Remove the writer's own hedging, apologizing and self-minimizing. Do not add escape-hatch language such as "no pressure", "only if it works for you" or "feel free to ignore this". Include one entry in "passages" for every sentence or short passage that contains a signal; if several signals sit in the same sentence, group them into one entry.
+`;
+
+const SHORT_REWRITES = `  "rewrites": [
+    { "label": <e.g. "Direct & Grounded">, "text": <rewritten version, rooted and confident> },
+    { "label": <e.g. "Warm & Clear">, "text": <warmer tone but no hedging> },
+    { "label": <e.g. "Bold & Specific">, "text": <bolder version that owns the value completely> }
+  ],`;
+
+function buildPrompt(context, text, isLong) {
   return `You are a coach specializing in helping women identify "permission signals" — subtle language patterns that unconsciously signal low confidence, self-doubt, or a need for external validation before taking up space. These include apologetic phrasing, excessive hedging, minimizing language, over-explaining, unsolicited discounting of one's own value, and fear-based qualifiers.
 
 Context: ${context}
@@ -44,14 +68,10 @@ Analyze the following text and return a JSON object with exactly this structure:
   "signals": [
     { "phrase": <the exact phrase or pattern from the text>, "explanation": <why this is a permission signal and what it signals to the reader> }
   ],
-  "rewrites": [
-    { "label": <e.g. "Direct & Grounded">, "text": <rewritten version, rooted and confident> },
-    { "label": <e.g. "Warm & Clear">, "text": <warmer tone but no hedging> },
-    { "label": <e.g. "Bold & Specific">, "text": <bolder version that owns the value completely> }
-  ],
+${isLong ? LONG_REWRITES : SHORT_REWRITES}
   "reflection": <a single, personalized, empathetic paragraph (3-5 sentences) written directly to the user — acknowledge what the text is trying to do, name the underlying fear gently, and offer one grounding truth about their worth>
 }
-
+${isLong ? LONG_GUIDANCE : ''}
 IMPORTANT: Your entire response must be a single valid JSON object and nothing else. Do not wrap it in markdown code fences. Do not include any text, explanation, or formatting before or after the JSON. Begin your response with { and end it with }.
 
 Text to analyze:
@@ -69,6 +89,7 @@ function friendlyApiError(status) {
 }
 
 async function runAnalysis(context, text) {
+  const isLong = countWords(text) > LONG_MESSAGE_WORDS;
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
     console.error('ANTHROPIC_API_KEY is not set');
@@ -84,8 +105,9 @@ async function runAnalysis(context, text) {
     },
     body: JSON.stringify({
       model: 'claude-sonnet-4-6',
-      max_tokens: 4096,
-      messages: [{ role: 'user', content: buildPrompt(context, text) }],
+      // Long messages get a full rewrite plus three variations per flagged passage, so they need more room.
+      max_tokens: isLong ? 8192 : 4096,
+      messages: [{ role: "user", content: buildPrompt(context, text, isLong) }],
     }),
   });
 
@@ -101,7 +123,9 @@ async function runAnalysis(context, text) {
     console.error('Anthropic response hit max_tokens');
   }
   const raw = data.content[0].text.trim();
-  return parseClaudeJSON(raw);
+  const result = parseClaudeJSON(raw);
+  result.mode = isLong ? "long" : "short";
+  return result;
 }
 
 export default async (req) => {
