@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What's Your Selling Archetype? | Liz Lemarchand</title>
-  <meta name="description" content="Take this 2-minute quiz to find out which energy you're really selling from, and whether it's helping or quietly costing you." />
-  <link rel="canonical" href="https://lizlemarchand.com/archetype-quiz.html" />
+  <title>Where Do You Freeze in Sales? The Sales Freeze Scorecard | Liz Lemarchand</title>
+  <meta name="description" content="10 real-life questions, 2 minutes. Find the exact moment your sales conversations stall, and the words to use instead." />
+  <link rel="canonical" href="https://lizlemarchand.com/sales-freeze-scorecard.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -251,14 +251,15 @@
   </ul>
 </nav>
 
+
 <!-- HERO -->
 <section class="quiz-hero" id="hero-section">
   <div class="quiz-hero-inner">
-    <p class="hero-eyebrow">Free Quiz</p>
-    <h1 class="hero-title">What's Your<br><em>Selling Archetype?</em></h1>
-    <p class="hero-sub">Take this 2-minute quiz to find out which energy you're really selling from, and whether it's helping or quietly costing you.</p>
-    <button class="btn-start" id="start-btn">Start the Quiz</button>
-    <p class="hero-microcopy">Clear answers about how you sell, in a few minutes.</p>
+    <p class="hero-eyebrow">Free Scorecard</p>
+    <h1 class="hero-title">Where Do You<br><em>Freeze in Sales?</em></h1>
+    <p class="hero-sub">10 real-life questions. 2 minutes. Find the exact moment your sales conversations stall, whether you swing toward people pleasing or pushing, and the words to use instead.</p>
+    <button class="btn-start" id="start-btn">Get My Score</button>
+    <p class="hero-microcopy">Answer with what you actually do, not what you know you should do.</p>
   </div>
 </section>
 
@@ -266,7 +267,7 @@
 <section class="quiz-section" id="quiz-section">
   <div class="quiz-inner">
     <div class="quiz-progress-wrap">
-      <p class="quiz-progress-label" id="progress-label">Question 1 of 6</p>
+      <p class="quiz-progress-label" id="progress-label">Question 1 of 10</p>
       <div class="quiz-progress-bar">
         <div class="quiz-progress-fill" id="progress-fill" style="width: 0%"></div>
       </div>
@@ -279,15 +280,29 @@
 <!-- RESULT -->
 <section class="result-section" id="result-section">
   <div class="result-inner">
-    <p class="result-eyebrow">Your Result</p>
+    <p class="result-eyebrow">Your Sales Freeze Score</p>
+    <p class="sc-score"><span id="sc-score">0</span><small>/30</small></p>
     <h2 class="result-headline" id="result-headline"></h2>
     <p class="result-copy" id="result-copy"></p>
 
-    <div class="result-form-wrap">
-      <span class="result-form-label">Get Your Free Guide</span>
-      <p class="result-form-title">Send me the full Selling Archetype Guide</p>
+    <div class="sc-freeze">
+      <p class="sc-label">Your #1 Freeze Point</p>
+      <h3 class="sc-freeze-name" id="sc-freeze-name"></h3>
+      <p class="sc-freeze-why" id="sc-freeze-why"></p>
+      <p class="sc-label">Say this instead</p>
+      <p class="sc-words" id="sc-words"></p>
+      <p class="sc-label">Your one action this week</p>
+      <p class="sc-action" id="sc-action"></p>
+    </div>
 
-      <!-- Netlify form — detected at build time via data-netlify="true" -->
+    <div class="sc-bars" id="sc-bars" aria-label="Your score at each Freeze Point"></div>
+
+    <div class="result-form-wrap">
+      <span class="result-form-label">Free Guide</span>
+      <p class="result-form-title">Get the words for all five Freeze Points</p>
+      <p class="sc-form-sub">I'll email you the Sales Conversation Decoder: the exact words for the ask, the price, the silence, the follow-up and the close, plus what your client's objections really mean.</p>
+
+      <!-- Netlify form: keeps the original form name so the existing systeme.io connection keeps working -->
       <form
         name="archetype-quiz-leads"
         method="POST"
@@ -296,6 +311,8 @@
       >
         <input type="hidden" name="form-name" value="archetype-quiz-leads" />
         <input type="hidden" name="archetype" id="form-archetype" value="" />
+        <input type="hidden" name="score" id="form-score" value="" />
+        <input type="hidden" name="lean" id="form-lean" value="" />
 
         <div class="form-field">
           <input type="text" name="name" placeholder="Your first name" required />
@@ -303,12 +320,31 @@
         <div class="form-field">
           <input type="email" name="email" placeholder="Your email address" required />
         </div>
-        <button type="submit" class="btn-submit">Send Me My Guide</button>
+        <button type="submit" class="btn-submit">Send Me the Decoder</button>
         <p class="form-note">By submitting you agree to receive emails from Liz Lemarchand. Unsubscribe anytime. View our <a href="/privacy-policy.html">Privacy Policy</a>.</p>
       </form>
     </div>
   </div>
 </section>
+
+<style>
+  .sc-score { font-family: var(--serif); font-size: 4.5rem; line-height: 1; color: var(--forest); margin: 0.5rem 0 1rem; }
+  .sc-score small { font-size: 1.6rem; color: var(--muted); margin-left: 0.25rem; }
+  .sc-freeze { background: var(--white); border: 1px solid var(--blush-mid); border-left: 6px solid var(--gold); border-radius: 14px; padding: 1.75rem; margin: 2rem 0; text-align: left; }
+  .sc-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin: 1.25rem 0 0.35rem; }
+  .sc-label:first-child { margin-top: 0; }
+  .sc-freeze-name { font-family: var(--serif); font-size: 2rem; color: var(--forest); margin: 0; font-weight: 500; }
+  .sc-freeze-why, .sc-action { color: var(--brown-mid); line-height: 1.75; margin: 0.25rem 0 0; }
+  .sc-words { font-family: var(--serif); font-size: 1.35rem; font-style: italic; color: var(--brown); line-height: 1.5; margin: 0.25rem 0 0; }
+  .sc-bars { display: grid; gap: 0.6rem; margin: 0 0 2.5rem; text-align: left; }
+  .sc-bar-row { display: grid; grid-template-columns: 7.5rem 1fr 2.5rem; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--brown-mid); }
+  .sc-bar { height: 10px; background: var(--pale-rose); border-radius: 10px; overflow: hidden; }
+  .sc-bar span { display: block; height: 100%; background: var(--forest); border-radius: 10px; }
+  .sc-bar-row.is-freeze { color: var(--gold); font-weight: 500; }
+  .sc-bar-row.is-freeze .sc-bar span { background: var(--gold); }
+  .sc-form-sub { color: var(--brown-mid); line-height: 1.7; margin: 0 0 1.25rem; }
+  @media (max-width: 480px) { .sc-bar-row { grid-template-columns: 6rem 1fr 2.25rem; } .sc-freeze { padding: 1.25rem; } }
+</style>
 
 <!-- FOOTER -->
 <footer>
@@ -331,99 +367,98 @@
   </div>
 </footer>
 
+
 <script>
   // ── DATA ──────────────────────────────────────────────────────────────────
+  // Each answer: lean = "calm" | "wobble" | "pleaser" | "bulldozer". Points: calm 3, wobble 2, pleaser 0, bulldozer 0.
   const QUESTIONS = [
-    {
-      q: "When a prospect asks \"How much does it cost?\", your gut reaction is:",
-      answers: [
-        { text: "I state the price clearly and let the silence sit.", archetype: "Queen" },
-        { text: "I answer plainly, without softening it or over-explaining.", archetype: "Sage" },
-        { text: "I start listing everything they get, just in case it's not enough.", archetype: "Mother" },
-        { text: "I feel a flicker of urgency to close before they change their mind.", archetype: "Huntress" },
-        { text: "I make it light or charming so it doesn't feel like \"a sales moment.\"", archetype: "Lover" },
-      ]
-    },
-    {
-      q: "A prospect goes quiet after you send your offer. You:",
-      answers: [
-        { text: "Trust the silence. They're considering it.", archetype: "Queen" },
-        { text: "Follow up once, clearly, and let the ball stay in their court.", archetype: "Sage" },
-        { text: "Worry I said something wrong and want to check in \"just to help.\"", archetype: "Mother" },
-        { text: "Follow up multiple times, increasingly urgent.", archetype: "Huntress" },
-        { text: "Send something warm and playful to \"keep it friendly.\"", archetype: "Lover" },
-      ]
-    },
-    {
-      q: "Someone asks for a discount. Your first instinct is:",
-      answers: [
-        { text: "I calmly explain my price reflects my value, and hold it.", archetype: "Queen" },
-        { text: "I say no, clearly, without over-explaining.", archetype: "Sage" },
-        { text: "I feel guilty saying no and consider it.", archetype: "Mother" },
-        { text: "I offer a deal to close it before they walk away.", archetype: "Huntress" },
-        { text: "I deflect with humor rather than answer directly.", archetype: "Lover" },
-      ]
-    },
-    {
-      q: "Before a sales conversation, you feel most:",
-      answers: [
-        { text: "Grounded. I don't need this to go a certain way.", archetype: "Queen" },
-        { text: "Clear. I know exactly what I will and won't accept.", archetype: "Sage" },
-        { text: "Eager to be liked and helpful.", archetype: "Mother" },
-        { text: "Activated, like I need to make this happen.", archetype: "Huntress" },
-        { text: "A little nervous about being \"too salesy,\" so I lean on warmth.", archetype: "Lover" },
-      ]
-    },
-    {
-      q: "When someone says no, you:",
-      answers: [
-        { text: "Receive it without taking it personally.", archetype: "Queen" },
-        { text: "Respect it immediately and move on.", archetype: "Sage" },
-        { text: "Wonder what I could have done differently to change their mind.", archetype: "Mother" },
-        { text: "Feel the urge to convince them otherwise.", archetype: "Huntress" },
-        { text: "Worry they didn't like me.", archetype: "Lover" },
-      ]
-    },
-    {
-      q: "The energy you most want to be known for in your work is:",
-      answers: [
-        { text: "Confidence and presence.", archetype: "Queen" },
-        { text: "Clarity and strength.", archetype: "Sage" },
-        { text: "Warmth and generosity.", archetype: "Mother" },
-        { text: "Drive and momentum.", archetype: "Huntress" },
-        { text: "Connection and charm.", archetype: "Lover" },
-      ]
-    },
+    { point: "ask", q: "You've had a great call. She loves what you do. When it's time to invite her to work with you, you:", answers: [
+      { text: "Say it plainly: \"Based on what you've told me, my program is built for this. Want to hear how it works?\"", lean: "calm" },
+      { text: "Invite her, then add \"but only if you want to, of course!\"", lean: "wobble" },
+      { text: "Hope she asks how to work with you, and wrap up the call if she doesn't.", lean: "pleaser" },
+      { text: "Launch into the full pitch before she's finished talking.", lean: "bulldozer" } ] },
+    { point: "ask", q: "When you post about your offer online, it usually sounds like:", answers: [
+      { text: "Here's who it's for, what changes, the price, and how to join.", lean: "calm" },
+      { text: "A clear post that ends with \"no pressure, just putting it out there!\"", lean: "wobble" },
+      { text: "I rarely post about it. I share value and hope people DM me.", lean: "pleaser" },
+      { text: "\"LAST CHANCE\" energy, countdowns and urgency.", lean: "bulldozer" } ] },
+    { point: "price", q: "Someone asks, \"How much is it?\" You:", answers: [
+      { text: "Say the number and stop talking.", lean: "calm" },
+      { text: "Say the number, then add a sentence about why it's worth it.", lean: "wobble" },
+      { text: "Feel my stomach drop and mention a cheaper option before she reacts.", lean: "pleaser" },
+      { text: "Rush past the price to the bonuses so she doesn't dwell on it.", lean: "bulldozer" } ] },
+    { point: "price", q: "Someone asks for a discount. You:", answers: [
+      { text: "Hold my price kindly, and offer to adjust what's included if budget is the issue.", lean: "calm" },
+      { text: "Hold the price, but explain why for quite a while.", lean: "wobble" },
+      { text: "Say yes, and quietly resent it later.", lean: "pleaser" },
+      { text: "Offer a \"today only\" deal to close it right now.", lean: "bulldozer" } ] },
+    { point: "silence", q: "You've said your price and there's a pause. You:", answers: [
+      { text: "Let the silence sit. She's thinking.", lean: "calm" },
+      { text: "Wait a few seconds, then ask \"What are you thinking?\"", lean: "wobble" },
+      { text: "Fill it fast: \"But we can totally make it work, there are payment plans...\"", lean: "pleaser" },
+      { text: "Jump in with more reasons she should say yes.", lean: "bulldozer" } ] },
+    { point: "silence", q: "She says, \"I need to think about it.\" You:", answers: [
+      { text: "Get curious: \"Of course. What specifically do you want to think through?\"", lean: "calm" },
+      { text: "Say \"Of course!\" and book a time to talk again.", lean: "wobble" },
+      { text: "Say \"Totally, no rush!\" and hope she comes back.", lean: "pleaser" },
+      { text: "Tell her the price goes up tomorrow.", lean: "bulldozer" } ] },
+    { point: "followup", q: "Someone was interested a week ago and went quiet. You:", answers: [
+      { text: "Send a clear follow-up that names what she wanted and asks yes or no.", lean: "calm" },
+      { text: "Follow up, but open with \"Sorry to bother you...\"", lean: "wobble" },
+      { text: "Don't follow up. I don't want to be the woman who chases.", lean: "pleaser" },
+      { text: "Message her every day until she answers.", lean: "bulldozer" } ] },
+    { point: "followup", q: "Your follow-up messages usually start with:", answers: [
+      { text: "Her own words: \"When we spoke, you mentioned wanting to...\"", lean: "calm" },
+      { text: "\"Just checking in!\"", lean: "wobble" },
+      { text: "I don't really send follow-ups.", lean: "pleaser" },
+      { text: "\"Spots are almost gone!\"", lean: "bulldozer" } ] },
+    { point: "close", q: "She says yes. You:", answers: [
+      { text: "Thank her and send the link and the next step right away.", lean: "calm" },
+      { text: "Celebrate, then wait a day to send the link so I don't seem pushy.", lean: "wobble" },
+      { text: "Ask \"Are you sure?\" and remind her she can change her mind.", lean: "pleaser" },
+      { text: "Immediately pitch her a bigger package.", lean: "bulldozer" } ] },
+    { point: "close", q: "She says no. You:", answers: [
+      { text: "Thank her warmly and let it be a complete answer.", lean: "calm" },
+      { text: "Thank her, then explain why it would have been great for her.", lean: "wobble" },
+      { text: "Spend the evening wondering what I did wrong.", lean: "pleaser" },
+      { text: "Argue the point until she changes her mind.", lean: "bulldozer" } ] },
   ];
 
-  const RESULTS = {
-    Queen: {
-      headline: "You sell from <em>Queen</em> Energy",
-      copy: "You lead with confidence and presence, the energy that closes without forcing. Get the full guide, including how to deepen this energy and where it can still slip, in your free download below."
-    },
-    Sage: {
-      headline: "You sell from <em>Sage</em> Energy",
-      copy: "You sell with clarity and strength, rare and powerful traits. Get the full guide, including how to keep your edge without losing warmth, in your free download below."
-    },
-    Mother: {
-      headline: "You sell from <em>Mother</em> Energy",
-      copy: "You sell from generosity, which is beautiful, but it may be costing you. Get your full guide below to learn how to access Queen energy instead, so your giving doesn't come at your own expense."
-    },
-    Huntress: {
-      headline: "You sell from <em>Huntress</em> Energy",
-      copy: "You sell from drive and urgency, which can read as pressure instead of confidence. Get your full guide below to learn how to access Queen energy, the steadier, more magnetic alternative."
-    },
-    Lover: {
-      headline: "You sell from <em>Lover</em> Energy",
-      copy: "You sell through charm and connection, which works, until it becomes a substitute for clarity. Get your full guide below to learn how to access Sage energy, so your worth doesn't depend on being liked."
-    },
+  const POINTS = {
+    ask:      { name: "The Ask",       why: "The moment to invite her in is where your conversations stall. Without a clear invitation, she has nothing to say yes to, so she says nothing.",
+                words: "\"Based on what you've told me, my program is built for exactly this. Would you like to hear how it works?\"",
+                action: "Write your own version of that sentence and say it to one real person this week." },
+    price:    { name: "The Price",     why: "Saying your number is where your body tightens. The explaining, discounting or rushing that follows tells her the price is negotiable, even when it isn't.",
+                words: "\"It's [your price].\" Then stop talking.",
+                action: "Say your price out loud ten times today, until it sounds as ordinary as your name." },
+    silence:  { name: "The Silence",   why: "The pause after your price, or after \"I need to think about it\", is where you lose your footing. That silence isn't rejection. It's her thinking.",
+                words: "\"Of course. What specifically do you want to think through?\"",
+                action: "In your next conversation, when the pause comes, count to five in your head before you speak." },
+    followup: { name: "The Follow-Up", why: "Interested people go quiet and you let them go. A follow-up isn't chasing. It's leadership, and it's where most of your sales are hiding.",
+                words: "\"When we spoke, you mentioned wanting to [her words]. That's exactly what my [offer] helps with. Is that something you're ready to work on?\"",
+                action: "Pick one person you never followed up with and send that message today." },
+    close:    { name: "The Close",     why: "The yes and the no are where you wobble: second-guessing a yes, or taking a no personally. Both cost you energy you need for the next conversation.",
+                words: "Yes: \"Wonderful. Here's the link to get started, and here's what happens next.\" No: \"Thank you for telling me. I respect that.\"",
+                action: "Write your yes message and your no message now, so they're ready before you need them." },
+  };
+  const LABELS = { ask: "The Ask", price: "The Price", silence: "The Silence", followup: "Follow-Up", close: "The Close" };
+  const PRIORITY = ["price", "followup", "ask", "silence", "close"];
+
+  const LEANS = {
+    calm:      { headline: "You sell from the <em>calm, confident middle</em>",
+                 copy: "Most of the time you say what you mean and let her decide. Your work now is consistency, especially at your Freeze Point below, where the old pattern still sneaks in." },
+    pleaser:   { headline: "When you freeze, you swing toward <em>people pleasing</em>",
+                 copy: "Softening, discounting, waiting to be chosen. That's not a personality flaw. It's years of being taught that asking directly is too much, and it can be unlearned. The goal isn't to become pushy. It's the calm, confident middle." },
+    bulldozer: { headline: "When you freeze, you swing toward <em>pushing</em>",
+                 copy: "Rushing, urging, filling the space. That's nerves wearing a power suit. The fix isn't more pressure, it's more calm: the confident middle, where she gets to decide and you don't need her to." },
   };
 
   // ── STATE ─────────────────────────────────────────────────────────────────
   let currentQ = 0;
-  const tallies = { Queen: 0, Sage: 0, Mother: 0, Huntress: 0, Lover: 0 };
+  const pointScores = { ask: 0, price: 0, silence: 0, followup: 0, close: 0 };
+  const leanCounts = { calm: 0, wobble: 0, pleaser: 0, bulldozer: 0 };
+  const VALUE = { calm: 3, wobble: 2, pleaser: 0, bulldozer: 0 };
 
-  // Shuffle answer display order once per question on page load
   const shuffledAnswers = QUESTIONS.map(q => {
     const copy = [...q.answers];
     for (let i = copy.length - 1; i > 0; i--) {
@@ -434,68 +469,75 @@
   });
 
   // ── HELPERS ───────────────────────────────────────────────────────────────
-  function scoreResult() {
-    const max = Math.max(...Object.values(tallies));
-    const leaders = Object.keys(tallies).filter(k => tallies[k] === max);
-    if (leaders.length === 1) return leaders[0];
-
-    // Tiebreaker: weight Q1 (index 0) and Q6 (index 5) answers by checking
-    // which archetype was chosen on those questions.
-    const tiebreakScores = {};
-    leaders.forEach(k => tiebreakScores[k] = tallies[k]);
-    // We store the Q1 and Q6 picks in the tally weight array
-    if (q1pick && leaders.includes(q1pick)) tiebreakScores[q1pick] += 0.5;
-    if (q6pick && leaders.includes(q6pick)) tiebreakScores[q6pick] += 0.5;
-    return leaders.reduce((a, b) => tiebreakScores[a] >= tiebreakScores[b] ? a : b);
-  }
-
-  let q1pick = null;
-  let q6pick = null;
-
   function renderQuestion() {
     const total = QUESTIONS.length;
     document.getElementById('progress-label').textContent = `Question ${currentQ + 1} of ${total}`;
     document.getElementById('progress-fill').style.width = `${(currentQ / total) * 100}%`;
     document.getElementById('quiz-question').textContent = QUESTIONS[currentQ].q;
-
     const container = document.getElementById('quiz-answers');
     container.innerHTML = '';
     shuffledAnswers[currentQ].forEach(answer => {
       const btn = document.createElement('button');
       btn.className = 'quiz-answer';
       btn.textContent = answer.text;
-      btn.addEventListener('click', () => selectAnswer(answer.archetype, btn));
+      btn.addEventListener('click', () => selectAnswer(answer.lean, btn));
       container.appendChild(btn);
     });
   }
 
-  function selectAnswer(archetype, btn) {
-    // Prevent double-click
+  function selectAnswer(lean, btn) {
     document.querySelectorAll('.quiz-answer').forEach(b => b.disabled = true);
     btn.classList.add('selected');
-
-    tallies[archetype]++;
-    if (currentQ === 0) q1pick = archetype;
-    if (currentQ === 5) q6pick = archetype;
-
+    pointScores[QUESTIONS[currentQ].point] += VALUE[lean];
+    leanCounts[lean]++;
     setTimeout(() => {
       currentQ++;
-      if (currentQ < QUESTIONS.length) {
-        renderQuestion();
-      } else {
-        showResult();
-      }
+      if (currentQ < QUESTIONS.length) renderQuestion(); else showResult();
     }, 380);
+  }
+
+  function freezePoint() {
+    const min = Math.min(...Object.values(pointScores));
+    return PRIORITY.find(p => pointScores[p] === min);
+  }
+
+  function overallLean() {
+    if (leanCounts.calm >= 7) return 'calm';
+    if (leanCounts.pleaser === 0 && leanCounts.bulldozer === 0) return 'calm';
+    return leanCounts.bulldozer > leanCounts.pleaser ? 'bulldozer' : 'pleaser';
   }
 
   function showResult() {
     document.getElementById('quiz-section').classList.remove('active');
-    const winner = scoreResult();
-    const result = RESULTS[winner];
+    const score = Object.values(pointScores).reduce((a, b) => a + b, 0);
+    const fp = freezePoint();
+    const lean = overallLean();
 
-    document.getElementById('result-headline').innerHTML = result.headline;
-    document.getElementById('result-copy').textContent = result.copy;
-    document.getElementById('form-archetype').value = winner;
+    document.getElementById('sc-score').textContent = score;
+    document.getElementById('result-headline').innerHTML = LEANS[lean].headline;
+    document.getElementById('result-copy').textContent = LEANS[lean].copy;
+    document.getElementById('sc-freeze-name').textContent = POINTS[fp].name;
+    document.getElementById('sc-freeze-why').textContent = POINTS[fp].why;
+    document.getElementById('sc-words').textContent = POINTS[fp].words;
+    document.getElementById('sc-action').textContent = POINTS[fp].action;
+
+    const bars = document.getElementById('sc-bars');
+    bars.innerHTML = '';
+    Object.keys(LABELS).forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'sc-bar-row' + (p === fp ? ' is-freeze' : '');
+      const label = document.createElement('span'); label.textContent = LABELS[p];
+      const bar = document.createElement('div'); bar.className = 'sc-bar';
+      const fill = document.createElement('span'); fill.style.width = (pointScores[p] / 6 * 100) + '%';
+      bar.appendChild(fill);
+      const val = document.createElement('span'); val.textContent = pointScores[p] + '/6';
+      row.append(label, bar, val);
+      bars.appendChild(row);
+    });
+
+    document.getElementById('form-archetype').value = POINTS[fp].name;
+    document.getElementById('form-score').value = score;
+    document.getElementById('form-lean').value = lean;
 
     const rs = document.getElementById('result-section');
     rs.classList.add('active');

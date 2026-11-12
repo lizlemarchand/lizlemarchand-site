@@ -30,7 +30,8 @@ Instead: name the offer, what it does for her, and the price, then give one clea
 - Name prices plainly: Standard $5/year, Premium $37/month or $347/year, VIP $275/month.
 - Never call the community "free". Joining is Standard at $5/year. The lead magnets (Decoder, Audit, quiz) are free.
 - The method is always written in this order: **Clear. Kind. True.** (never "Kind, Clear, and True").
-- Blog post CTAs point to the Sales Conversation Decoder, not the quiz.
+- Blog post CTAs point to the Sales Conversation Decoder.
+- The archetype quiz is retired (Nov 2026). The front door is the Sales Freeze Scorecard (sales-freeze-scorecard.html), which keeps the Netlify form name "archetype-quiz-leads" so the systeme.io connection and "Website Quiz" tag keep working. Never rename that form.
 - **The Sales Conversation Decoder is the front-door lead magnet.** Feature it over the archetype quiz. The quiz stays live but is never the most prominent offer.
 
 ## Lead magnets and email (systeme.io)

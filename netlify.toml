@@ -13,3 +13,16 @@
   to = "/"
   status = 301
   force = true
+
+# The archetype quiz was replaced by the Sales Freeze Scorecard (Nov 2026)
+[[redirects]]
+  from = "/archetype-quiz.html"
+  to = "/sales-freeze-scorecard.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/assets/selling-archetype-guide.pdf"
+  to = "/assets/sales-conversation-decoder.pdf"
+  status = 301
+  force = true
