@@ -32,13 +32,13 @@ Instead: name the offer, what it does for her, and the price, then give one clea
 - The method is always written in this order: **Clear. Kind. True.** (never "Kind, Clear, and True").
 - Blog post CTAs point to the Sales Conversation Decoder.
 - The archetype quiz is retired (Nov 2026). The front door is the Sales Freeze Scorecard (sales-freeze-scorecard.html), which keeps the Netlify form name "archetype-quiz-leads" so the systeme.io connection and "Website Quiz" tag keep working. Never rename that form.
-- **The Sales Conversation Decoder is the front-door lead magnet.** Feature it over the archetype quiz. The quiz stays live but is never the most prominent offer.
+- **Front door:** the Sales Freeze Scorecard leads to the Sales Conversation Decoder. Every channel points there.
 
 ## Lead magnets and email (systeme.io)
 Forms are Netlify Forms; contacts land in systeme.io with a tag:
 - Sales Conversation Decoder → tag "Sales Conversation Decoder"
 - Permission Signals Audit → tag "Permission Signals Audit"
-- Archetype quiz → tag "Website Quiz"
+- Sales Freeze Scorecard (form "archetype-quiz-leads") → tag "Website Quiz" → Quiz Welcome sequence (Freeze Point emails)
 - Newsletter → tag "Newsletter"
 systeme.io plan caps automation rules at 10, so check before adding a new tag-triggered sequence.
 
